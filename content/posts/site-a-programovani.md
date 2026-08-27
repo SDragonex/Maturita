@@ -56,5 +56,5 @@ pdf = "MZ-IT.pdf"
 
 ---
 
-> **Autor poznámek:** Dany Chaker (SDragonex)
+> **Autor poznámek:** Dany Chaker
 > Střední škola technická a ekonomická, Brno, Olomoucká
