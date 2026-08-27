@@ -1,4 +1,4 @@
-{% extends "_base.html" %} {% block title %}{{ section.title | title }} | {{
+{% extends "_base.html" %} {% import "_macros.html" as macros %} {% block title %}{{ section.title | title }} | {{
 config.title }}{% endblock title %} {% block head %}
 <!-- Primary Meta Tags -->
 <meta
@@ -25,7 +25,7 @@ config.title }}{% endblock title %} {% block head %}
   <article class="article-block title-block">
     <h2 class="heading">{{ section.title }}</h2>
     <aside class="page">
-      Page {{ paginator.current_index }} / {{ paginator.number_pagers }}
+      Stránka {{ paginator.current_index }} / {{ paginator.number_pagers }}
     </aside>
   </article>
 
@@ -41,9 +41,9 @@ config.title }}{% endblock title %} {% block head %}
 
   <div class="pagination-footer">
     {% if paginator.previous %}
-    <a href="{{ paginator.previous }}" class="prev-link">← Prev</a>
+    <a href="{{ paginator.previous }}" class="prev-link">← Předchozí</a>
     {% endif %} {{ macros::paginator_block() }} {% if paginator.next %}
-    <a href="{{ paginator.next }}" class="next-link">Next →</a>
+    <a href="{{ paginator.next }}" class="next-link">Další →</a>
     {% endif %}
   </div>
 </main>
