@@ -1,5 +1,4 @@
 {% extends "_base.html" %}
-{% import "_macros.html" as macros %}
 {% block title %}{{ config.title }}{% endblock title
 %} {% block head %}
 <!-- Primary Meta Tags -->
@@ -40,8 +39,13 @@
       <ul class="social-links">
         {% for link in config.extra.social_links %}
         <li>
+          {% set icon_class = "fab fa-" ~ link.name %}
+          {% if link.name == "email" %}{% set icon_class = "fas fa-envelope" %}{% endif %}
+          {% if link.name == "rss" %}{% set icon_class = "fas fa-rss" %}{% endif %}
+          {% if link.name == "link" %}{% set icon_class = "fas fa-link" %}{% endif %}
+          {% if link.name == "globe" %}{% set icon_class = "fas fa-globe" %}{% endif %}
           <a href="{{ link.url | safe }}" aria-label="{{ link.name | title }}">
-            <i class="{{ macros::social_icon(name=link.name) }}"></i>
+            <i class="{{ icon_class }}"></i>
           </a>
         </li>
         {% endfor %}
