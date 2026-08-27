@@ -66,13 +66,13 @@ mottos = [
     "Informační technologie",
 ]
 
-social_links = [
-    { name = "github", url = "https://github.com/SDragonex" }
-]
+#social_links = [
+#    { name = "github", url = "https://github.com/SDragonex" }
+#]
 
 [extra.sections]
 posts  = true
 about  = true
-archive = false
+archive = true
 tags   = false
-links  = false
+links  = true
