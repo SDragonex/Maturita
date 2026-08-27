@@ -1,4 +1,5 @@
-{% extends "_base.html" %} {% import "_macros.html" as macros %} {% block title %}{{ page.title }} | {{ config.title
+{% extends "_base.html" %}
+{% block title %}{{ page.title }} | {{ config.title
 }}{% endblock title %} {% block head %}
 <!-- Primary Meta Tags -->
 {% if page.description %} {% set description = page.description %} {%- elif
@@ -53,7 +54,7 @@ config.default_language %} {% set section_title = page.components[0] %} {%- else
             <h1 class="heading">{{ page.title }}</h1>
             <div class="meta-line">
                 {% if page.date %}
-                <span class="date">{{ macros::cs_date(value=page.date, style="full") }}</span>
+                <span class="date">{{ page.date | date(format="%d. %m. %Y") }}</span>
                 {% endif %}
             </div>
         </div>
