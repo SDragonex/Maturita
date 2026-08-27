@@ -41,17 +41,6 @@
                     {% endif %}
                 </div>
             </div>
-            {% if config.extra.social_links %}
-            <ul class="social-links">
-                {% for link in config.extra.social_links %}
-                <li>
-                    <a href="{{ link.url | safe }}" aria-label="{{ link.name | title }}">
-                        <i class="{% if link.name == 'email' %}fas fa-envelope{% elif link.name == 'rss' %}fas fa-rss{% elif link.name == 'link' %}fas fa-link{% elif link.name == 'globe' %}fas fa-globe{% else %}fab fa-{{ link.name }}{% endif %}"></i>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
             {% if config.extra.sections.about | default(value=true) %}
             <div class="sidebar-action">
                 <a href="{{ config.base_url | safe }}/about/">O projektu</a>
