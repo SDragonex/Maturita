@@ -10,7 +10,7 @@ pinned = true
 
 # Maturitní témata 2026 — Rozcestník
 
-> **Autor:** Dany Chaker (SDragonex)
+> **Autor:** Dany Chaker
 > **Škola:** SŠTE Brno, Olomoucká
 > **Obor:** 18-20-M/01 Informační technologie
 > **Zkušební období:** jaro a podzim 2026
@@ -46,4 +46,4 @@ pinned = true
 
 > [!NOTE]
 > Tento web je studijní pomůcka. Veškerá officiální témata pocházejí z PDF dokumentů vydaných školou.
-> Stránku spravuje Dany Chaker (SDragonex) na GitHub Pages.
+> Stránku spravuje Dany Chaker na GitHub Pages.
