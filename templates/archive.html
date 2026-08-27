@@ -1,4 +1,5 @@
-{% extends "_base.html" %} {% import "_macros.html" as macros %} {% block title %}Archiv | {{ config.title }}{%
+{% extends "_base.html" %}
+{% block title %}Archiv | {{ config.title }}{%
 endblock title %} {% block content %}
 <main class="article-list">
   <div class="article-header">
@@ -17,11 +18,11 @@ endblock title %} {% block content %}
         <div class="timeline-post-item">
           <div class="post-date-node">
             <span class="date-text"
-              >{{ macros::cs_date(value=post.date, style="short") }}</span
+              >{{ post.date | date(format="%d. %m.") }}</span
             >
           </div>
           <a href="{{ post.permalink }}" class="post-link">{{ post.title }}</a>
-          {% if loop.last and loop.parent.loop.last %}
+          {% if loop.last %}
           <div class="timeline-end-marker"></div>
           {% endif %}
         </div>
