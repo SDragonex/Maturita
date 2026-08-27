@@ -3,9 +3,6 @@ title = "📚 Rozcestník — Maturitní témata 2026"
 description = "Hlavní rozcestník pro všechna maturitní témata — SŠTE Brno, obor Informační technologie"
 date = 2026-08-27
 
-[taxonomies]
-tags = ["rozcestník"]
-
 [extra]
 author = "Dany Chaker"
 pinned = true
