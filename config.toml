@@ -2,8 +2,8 @@
 base_url = "https://sdragonex.github.io/Maturita"
 
 # The site title and description; used in feeds by default.
-title = "Maturitní Příprava"
-description = "Přehled maturitních témat | Dany Chaker (SDragonex)"
+title = "Maturita"
+description = "Přehled maturitních témat"
 
 # When set to "true", a feed is automatically generated.
 generate_feeds = true
@@ -29,7 +29,7 @@ compile_sass = true
 
 # When set to "true", a search index is built from the pages and section
 # content for `default_language`.
-build_search_index = false
+build_search_index = true
 
 # You can put any kind of data here. The data
 # will be accessible in all templates
@@ -62,9 +62,8 @@ motto_mode = "multi"
 home_recent_posts = 3
 
 mottos = [
-    "Maturita 2026 – zvládneme to! 🎓",
-    "SŠTE Brno, Olomoucká",
-    "Obor: 18-20-M/01 Informační technologie",
+    "SŠTE Olomoucká",
+    "Informační technologie",
 ]
 
 social_links = [
@@ -75,5 +74,5 @@ social_links = [
 posts  = true
 about  = true
 archive = false
-tags   = true
+tags   = false
 links  = false
