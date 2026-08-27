@@ -29,20 +29,89 @@ config.title }}{% endblock title %} {% block head %}
     </aside>
   </article>
 
-  {% if paginator.current_index == 1 and section.extra.pinned_posts %} {% for
-  post_path in section.extra.pinned_posts %} {% set post =
-  get_page(path=post_path) %} {{ macros::article_block(post=post, pinned=true)
-  }} {% endfor %} {% endif %} {% for post in paginator.pages %} {% if
-  section.extra.pinned_posts and post.relative_path in
-  section.extra.pinned_posts %} {% continue %} {% endif %} {{
-  macros::article_block(post=post) }} {% endfor %}
+  {% if paginator.current_index == 1 and section.extra.pinned_posts %}
+  {% for post_path in section.extra.pinned_posts %}
+  {% set post = get_page(path=post_path) %}
+  <article class="article-block">
+    <div class="article-content">
+      <div class="article-header">
+        <a href="{{ post.permalink | safe }}" class="title-link">
+          <h2 class="heading">{{ post.title }}</h2>
+        </a>
+      </div>
+      <div class="article-summary">
+        <p class="description">{{ post.description }}</p>
+      </div>
+      <div class="meta-line">
+        <span class="pinned-label"><i class="fa-solid fa-thumbtack"></i></span>
+        <span class="separator">/</span>
+        <span class="date">{{ post.date | date(format="%d. %m. %Y") }}</span>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+  {% endif %}
+
+  {% for post in paginator.pages %}
+  {% if section.extra.pinned_posts and post.relative_path in section.extra.pinned_posts %}
+  {% continue %}
+  {% endif %}
+  <article class="article-block">
+    <div class="article-content">
+      <div class="article-header">
+        <a href="{{ post.permalink | safe }}" class="title-link">
+          <h2 class="heading">{{ post.title }}</h2>
+        </a>
+      </div>
+      <div class="article-summary">
+        <p class="description">{{ post.description }}</p>
+      </div>
+      <div class="meta-line">
+        {% if post.date %}
+        <span class="date">{{ post.date | date(format="%d. %m. %Y") }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
 
   <div class="ad">{% block ad2 %} {% endblock ad2 %}</div>
 
   <div class="pagination-footer">
     {% if paginator.previous %}
     <a href="{{ paginator.previous }}" class="prev-link">← Předchozí</a>
-    {% endif %} {{ macros::paginator_block() }} {% if paginator.next %}
+    {% endif %}
+    <aside class="paginator">
+      {% if paginator.number_pagers <= 5 %}{% set start = 1 %}{% set end = paginator.number_pagers %}{% endif %}
+      {% if paginator.number_pagers > 5 %}
+        {% if paginator.current_index >= 3 %}
+          {% set start = paginator.current_index - 2 %}
+          {% if paginator.number_pagers - paginator.current_index < 2 %}
+            {% set difference = paginator.number_pagers - paginator.current_index %}
+            {% set compensation = 1 - difference %}
+            {% set start = paginator.current_index - 3 - compensation %}
+          {% endif %}
+        {% else %}
+          {% set start = 1 %}
+        {% endif %}
+        {% if paginator.number_pagers >= paginator.current_index + 2 %}
+          {% set end = paginator.current_index + 2 %}
+          {% if paginator.current_index <= 3 %}
+            {% set end = 5 %}
+          {% endif %}
+        {% else %}
+          {% set end = paginator.number_pagers %}
+        {% endif %}
+      {% endif %}
+      {% for i in range(start=start, end=end+1) %}
+        {% if i == paginator.current_index %}
+          <a class="link -highlight" href="{{ paginator.base_url }}{{ i }}"><span class="number">{{ i }}</span></a>
+        {% else %}
+          <a class="link" href="{{ paginator.base_url }}{{ i }}"><span class="number">{{ i }}</span></a>
+        {% endif %}
+      {% endfor %}
+    </aside>
+    {% if paginator.next %}
     <a href="{{ paginator.next }}" class="next-link">Další →</a>
     {% endif %}
   </div>
