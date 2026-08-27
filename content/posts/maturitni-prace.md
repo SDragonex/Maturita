@@ -3,9 +3,6 @@ title = "Maturitní práce s obhajobou"
 description = "Maturitní témata — zkouška profilové části maturitní zkoušky s obhajobou (jaro a podzim 2026)"
 date = 2026-01-04
 
-[taxonomies]
-tags = ["IT", "maturitní-práce", "obhajoba"]
-
 [extra]
 author = "Dany Chaker"
 pdf = "MZ-IT.pdf"
