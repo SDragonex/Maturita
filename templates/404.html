@@ -54,19 +54,19 @@
             {% endif %}
             {% if config.extra.sections.about | default(value=true) %}
             <div class="sidebar-action">
-                <a href="{{ config.base_url | safe }}/about/">About Me</a>
+                <a href="{{ config.base_url | safe }}/about/">O autorovi</a>
             </div>
             {% endif %}
             <nav class="sidebar-nav">
-                <a href="{{ config.base_url | safe }}">Home</a>
+                <a href="{{ config.base_url | safe }}">Domů</a>
                 {% if config.extra.sections.posts | default(value=true) %}
-                <a href="{{ config.base_url | safe }}/posts/">Posts</a>
+                <a href="{{ config.base_url | safe }}/posts/">Příspěvky</a>
                 {% endif %}
                 {% if config.extra.sections.archive | default(value=true) %}
-                <a href="{{ config.base_url | safe }}/archive/">Archives</a>
+                <a href="{{ config.base_url | safe }}/archive/">Archiv</a>
                 {% endif %}
                 {% if config.extra.sections.links | default(value=true) %}
-                <a href="{{ config.base_url | safe }}/links/">Links</a>
+                <a href="{{ config.base_url | safe }}/links/">Odkazy</a>
                 {% endif %}
             </nav>
         </div>
@@ -74,36 +74,36 @@
 
     <div class="page-top">
         <nav class="nav">
-            <a href="{{ config.base_url | safe }}">Home</a>
+            <a href="{{ config.base_url | safe }}">Domů</a>
             {% if config.extra.sections.posts | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/posts/">Posts</a>
+            <a href="{{ config.base_url | safe }}/posts/">Příspěvky</a>
             {% endif %}
             {% if config.extra.sections.about | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/about/">About</a>
+            <a href="{{ config.base_url | safe }}/about/">O autorovi</a>
             {% endif %}
             {% if config.extra.sections.archive | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/archive/">Archives</a>
+            <a href="{{ config.base_url | safe }}/archive/">Archiv</a>
             {% endif %}
             {% if config.extra.sections.links | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/links/">Links</a>
+            <a href="{{ config.base_url | safe }}/links/">Odkazy</a>
             {% endif %}
         </nav>
         <div class="information">
             <div class="back_btn">
-                <a onclick="window.history.go(-1)" aria-label="Go back"><i class="fas fa-chevron-left"></i></a>
+                <a onclick="window.history.go(-1)" aria-label="Zpět"><i class="fas fa-chevron-left"></i></a>
             </div>
             <div class="theme_btn">
-                <a onclick="toggleTheme()" aria-label="Toggle theme"><i class="fas fa-moon" id="theme-icon"></i></a>
+                <a onclick="toggleTheme()" aria-label="Přepnout motiv"><i class="fas fa-moon" id="theme-icon"></i></a>
             </div>
             <div class="feed_btn">
-                <a class="feed-icon" aria-label="RSS Feed"><i class="fas fa-rss"></i></a>
+                <a class="feed-icon" aria-label="RSS kanál"><i class="fas fa-rss"></i></a>
                 <div class="feed-dropdown">
                     <a href="{{ config.base_url | safe }}/atom.xml" target="_blank">Atom</a>
                     <a href="{{ config.base_url | safe }}/rss.xml" target="_blank">RSS</a>
                 </div>
             </div>
             <div class="avatar_btn">
-                <a onclick="toggleSidebar()" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></a>
+                <a onclick="toggleSidebar()" aria-label="Postranní panel"><i class="fas fa-bars"></i></a>
             </div>
         </div>
     </div>
