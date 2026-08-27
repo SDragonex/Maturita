@@ -1,7 +1,7 @@
 {% import "_macros.html" as macros %}
 
 <!doctype html>
-<html lang="{{ lang }}">
+<html lang="cs">
 
 <head>
   <meta charset="utf-8">
@@ -102,23 +102,23 @@
 
       {% if config.extra.sections.about | default(value=true) %}
       <div class="sidebar-action">
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">About Me</a>
+        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O autorovi</a>
       </div>
       {% endif %}
 
       <nav class="sidebar-nav">
-        <a href="{{ get_url(path="@/_index.md", lang=lang) }}">Home</a>
+        <a href="{{ get_url(path="@/_index.md", lang=lang) }}">Domů</a>
 
         {% if config.extra.sections.posts | default(value=true) %}
-        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Posts</a>
+        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Příspěvky</a>
         {% endif %}
 
         {% if config.extra.sections.archive | default(value=true) %}
-        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}">Archives</a>
+        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}">Archiv</a>
         {% endif %}
 
         {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Links</a>
+        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Odkazy</a>
         {% endif %}
       </nav>
     </div>
@@ -129,40 +129,40 @@
     {% if current_path != "/" %}
     <div class="page-top animated fadeInDown">
       <nav class="nav">
-        <a href="{{ get_url(path="@/_index.md", lang=lang) }}">Home</a>
+        <a href="{{ get_url(path="@/_index.md", lang=lang) }}">Domů</a>
 
         {% if config.extra.sections.posts | default(value=true) %}
-        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}" {% if current_path is starting_with("/posts") %}class="active"{% endif %}>Posts</a>
+        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}" {% if current_path is starting_with("/posts") %}class="active"{% endif %}>Příspěvky</a>
         {% endif %}
 
         {% if config.extra.sections.about | default(value=true) %}
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}" {% if current_path is starting_with("/about") %}class="active"{% endif %}>About</a>
+        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}" {% if current_path is starting_with("/about") %}class="active"{% endif %}>O autorovi</a>
         {% endif %}
 
         {% if config.extra.sections.archive | default(value=true) %}
-        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}" {% if current_path is starting_with("/archive") %}class="active"{% endif %}>Archives</a>
+        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}" {% if current_path is starting_with("/archive") %}class="active"{% endif %}>Archiv</a>
         {% endif %}
 
         {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}" {% if current_path is starting_with("/links") %}class="active"{% endif %}>Links</a>
+        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}" {% if current_path is starting_with("/links") %}class="active"{% endif %}>Odkazy</a>
         {% endif %}
       </nav>
       <div class="information">
         <div class="back_btn">
-          <a onclick="window.history.go(-1)" aria-label="Go back"><i class="fas fa-chevron-left"></i></a>
+          <a onclick="window.history.go(-1)" aria-label="Zpět"><i class="fas fa-chevron-left"></i></a>
         </div>
         <div class="theme_btn">
-          <a onclick="toggleTheme()" aria-label="Toggle theme"><i class="fas fa-moon" id="theme-icon"></i></a>
+          <a onclick="toggleTheme()" aria-label="Přepnout motiv"><i class="fas fa-moon" id="theme-icon"></i></a>
         </div>
         <div class="feed_btn">
-          <a class="feed-icon" aria-label="RSS Feed"><i class="fas fa-rss"></i></a>
+          <a class="feed-icon" aria-label="RSS kanál"><i class="fas fa-rss"></i></a>
           <div class="feed-dropdown">
             <a href="{{ get_url(path="atom.xml") }}" target="_blank">Atom</a>
             <a href="{{ get_url(path="rss.xml") }}" target="_blank">RSS</a>
           </div>
         </div>
         <div class="avatar_btn">
-          <a onclick="toggleSidebar()" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></a>
+          <a onclick="toggleSidebar()" aria-label="Postranní panel"><i class="fas fa-bars"></i></a>
         </div>
       </div>
     </div>
@@ -174,7 +174,7 @@
     </div>
     <div class="page-footer">
       <div class="footer-content">
-        <span>© 2026 <a href="https://github.com/SDragonex" target="_blank">Dany Chaker (SDragonex)</a><span class="separator">/</span>Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a></span>
+        <span>© 2026 <a href="https://github.com/SDragonex" target="_blank">Dany Chaker (SDragonex)</a></span>
       </div>
     </div>
   </div>
