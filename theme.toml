@@ -3,7 +3,7 @@ description = "Kompletní příprava na Maturitní zkoušku"
 tags = ["Clean", "Blog", "Responsive"]
 license = "MIT"
 homepage = "https://github.com/SDragonex/Maturita"
-demo = "https://sdragonex.github.io/maturita/"
+demo = "https://sdragonex.github.io/Maturita/"
 # The minimum version of Zola required
 min_version = "0.21.0"
 
@@ -28,4 +28,4 @@ links = true
 # The theme author info: you!
 [author]
 name = "Dany Chaker"
-homepage = "https://sdragonex.github.io/maturita/"
+homepage = "https://sdragonex.github.io/Maturita/"
