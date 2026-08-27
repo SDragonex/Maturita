@@ -30,33 +30,16 @@
           {% endif %}
         </div>
       </div>
-      <ul class="social-links">
-        {% for link in config.extra.social_links %}
-        <li>
-          {% set icon_class = "fab fa-" ~ link.name %}
-          {% if link.name == "email" %}{% set icon_class = "fas fa-envelope" %}{% endif %}
-          {% if link.name == "rss" %}{% set icon_class = "fas fa-rss" %}{% endif %}
-          {% if link.name == "link" %}{% set icon_class = "fas fa-link" %}{% endif %}
-          {% if link.name == "globe" %}{% set icon_class = "fas fa-globe" %}{% endif %}
-          <a href="{{ link.url | safe }}" aria-label="{{ link.name | title }}">
-            <i class="{{ icon_class }}"></i>
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-
       <nav class="home-nav">
         {% if config.extra.sections.posts | default(value=true) %}
         <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Příspěvky</a>
         {% endif %}
         {% if config.extra.sections.about | default(value=true) %}
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O autorovi</a>
+        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
         {% endif %}
-        {% if config.extra.sections.archive | default(value=true) %}
-        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}">Archiv</a>
-        {% endif %}
+
         {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Odkazy</a>
+        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Moje další projekty</a>
         {% endif %}
       </nav>
     </div>
