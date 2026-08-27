@@ -1,6 +1,6 @@
 ﻿# Maturitní Příprava 2026
 
-> **Autor:** Dany Chaker ([SDragonex](https://github.com/SDragonex))
+> **Autor:** Dany Chaker
 > **Škola:** SŠTE Brno, Olomoucká
 > **Obor:** 18-20-M/01 Informační technologie
 
@@ -36,4 +36,4 @@ templates/            — HTML šablony
 
 ---
 
-© 2026 Dany Chaker (SDragonex)
+© 2026 Dany Chaker
