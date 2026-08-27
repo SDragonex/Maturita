@@ -22,7 +22,7 @@ generate_feeds = true
 #       {name = "authors"}, # Basic definition: no feed or pagination
 #     ]
 #
-taxonomies = [{ name = "tags", paginate_by = 5 }]
+# taxonomies = []  # No taxonomies - tags removed
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
