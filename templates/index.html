@@ -1,17 +1,12 @@
 {% extends "_base.html" %}
-{% block title %}{{ config.title }}{% endblock title
-%} {% block head %}
-<!-- Primary Meta Tags -->
+{% block title %}{{ config.title }}{% endblock title %}
+{% block head %}
 <meta name="description" content="{{ config.description }}" />
-
-<!-- Open Graph / Facebook -->
 <meta property="og:title" content="{{ config.title }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ config.base_url | safe }}" />
-
-<!-- Twitter -->
-
-{% endblock head %} {% block content %}
+{% endblock head %}
+{% block content %}
 <div class="home-container">
   <div class="home-intro">
     <div class="logo-title">
@@ -26,7 +21,6 @@
           <div class="description">
             <p>{{ config.description }}</p>
           </div>
-          {# --- Motto (between description and social links) --- #}
           {% if config.extra.motto_mode and config.extra.motto_mode != "hide" %}
             {% if config.extra.motto_mode == "single" and config.extra.motto %}
             <p class="motto">{{ config.extra.motto }}</p>
@@ -52,26 +46,20 @@
       </ul>
 
       <nav class="home-nav">
-
         {% if config.extra.sections.posts | default(value=true) %}
-        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}" {% if current_path is starting_with(value="/posts") %}class="active"{% endif %}>Příspěvky</a>
+        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Příspěvky</a>
         {% endif %}
-
         {% if config.extra.sections.about | default(value=true) %}
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}" {% if current_path is starting_with(value="/about") %}class="active"{% endif %}>O autorovi</a>
+        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O autorovi</a>
         {% endif %}
-
         {% if config.extra.sections.archive | default(value=true) %}
-        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}" {% if current_path is starting_with(value="/archive") %}class="active"{% endif %}>Archiv</a>
+        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}">Archiv</a>
         {% endif %}
-
         {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}" {% if current_path is starting_with(value="/links") %}class="active"{% endif %}>Odkazy</a>
+        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Odkazy</a>
         {% endif %}
       </nav>
-
     </div>
   </div>
 </div>
-
 {% endblock content %}
