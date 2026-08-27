@@ -73,6 +73,4 @@ mottos = [
 [extra.sections]
 posts  = true
 about  = true
-archive = true
-tags   = false
 links  = true
