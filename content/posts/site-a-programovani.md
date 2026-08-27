@@ -3,9 +3,6 @@ title = "Počítačové sítě a programování"
 description = "Maturitní témata — Počítačové sítě a programování v C# (jaro a podzim 2026)"
 date = 2026-01-03
 
-[taxonomies]
-tags = ["IT", "sítě", "programování", "C#"]
-
 [extra]
 author = "Dany Chaker"
 pdf = "MZ-IT.pdf"
