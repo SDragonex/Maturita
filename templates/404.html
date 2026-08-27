@@ -65,9 +65,6 @@
                 {% if config.extra.sections.archive | default(value=true) %}
                 <a href="{{ config.base_url | safe }}/archive/">Archives</a>
                 {% endif %}
-                {% if config.extra.sections.tags | default(value=true) %}
-                <a href="{{ config.base_url | safe }}/tags/">Categories</a>
-                {% endif %}
                 {% if config.extra.sections.links | default(value=true) %}
                 <a href="{{ config.base_url | safe }}/links/">Links</a>
                 {% endif %}
@@ -86,9 +83,6 @@
             {% endif %}
             {% if config.extra.sections.archive | default(value=true) %}
             <a href="{{ config.base_url | safe }}/archive/">Archives</a>
-            {% endif %}
-            {% if config.extra.sections.tags | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/tags/">Categories</a>
             {% endif %}
             {% if config.extra.sections.links | default(value=true) %}
             <a href="{{ config.base_url | safe }}/links/">Links</a>
