@@ -104,7 +104,7 @@
 
       {% if config.extra.sections.about | default(value=true) %}
       <div class="sidebar-action">
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O autorovi</a>
+        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
       </div>
       {% endif %}
 
@@ -115,12 +115,8 @@
         <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Příspěvky</a>
         {% endif %}
 
-        {% if config.extra.sections.archive | default(value=true) %}
-        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}">Archiv</a>
-        {% endif %}
-
         {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Odkazy</a>
+        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Moje další projekty</a>
         {% endif %}
       </nav>
     </div>
@@ -138,15 +134,11 @@
         {% endif %}
 
         {% if config.extra.sections.about | default(value=true) %}
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O autorovi</a>
-        {% endif %}
-
-        {% if config.extra.sections.archive | default(value=true) %}
-        <a href="{{ get_url(path="@/archive/index.md", lang=lang) }}">Archiv</a>
+        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
         {% endif %}
 
         {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Odkazy</a>
+        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Moje další projekty</a>
         {% endif %}
       </nav>
       <div class="information">
@@ -176,7 +168,7 @@
     </div>
     <div class="page-footer">
       <div class="footer-content">
-        <span>© 2026 <a href="https://github.com/SDragonex" target="_blank">Dany Chaker (SDragonex)</a></span>
+        <span>© 2026 Dany Chaker</span>
       </div>
     </div>
   </div>
