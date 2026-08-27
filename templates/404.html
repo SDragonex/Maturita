@@ -54,7 +54,7 @@
             {% endif %}
             {% if config.extra.sections.about | default(value=true) %}
             <div class="sidebar-action">
-                <a href="{{ config.base_url | safe }}/about/">O autorovi</a>
+                <a href="{{ config.base_url | safe }}/about/">O projektu</a>
             </div>
             {% endif %}
             <nav class="sidebar-nav">
@@ -62,11 +62,8 @@
                 {% if config.extra.sections.posts | default(value=true) %}
                 <a href="{{ config.base_url | safe }}/posts/">Příspěvky</a>
                 {% endif %}
-                {% if config.extra.sections.archive | default(value=true) %}
-                <a href="{{ config.base_url | safe }}/archive/">Archiv</a>
-                {% endif %}
                 {% if config.extra.sections.links | default(value=true) %}
-                <a href="{{ config.base_url | safe }}/links/">Odkazy</a>
+                <a href="{{ config.base_url | safe }}/links/">Moje další projekty</a>
                 {% endif %}
             </nav>
         </div>
@@ -79,13 +76,10 @@
             <a href="{{ config.base_url | safe }}/posts/">Příspěvky</a>
             {% endif %}
             {% if config.extra.sections.about | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/about/">O autorovi</a>
-            {% endif %}
-            {% if config.extra.sections.archive | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/archive/">Archiv</a>
+            <a href="{{ config.base_url | safe }}/about/">O projektu</a>
             {% endif %}
             {% if config.extra.sections.links | default(value=true) %}
-            <a href="{{ config.base_url | safe }}/links/">Odkazy</a>
+            <a href="{{ config.base_url | safe }}/links/">Moje další projekty</a>
             {% endif %}
         </nav>
         <div class="information">
