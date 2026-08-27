@@ -3,9 +3,6 @@ title = "Aplikační software"
 description = "Maturitní témata — Software a webové aplikace; počítačová grafika (jaro a podzim 2026)"
 date = 2026-01-02
 
-[taxonomies]
-tags = ["IT", "aplikační-software", "grafika"]
-
 [extra]
 author = "Dany Chaker"
 pdf = "MZ-IT.pdf"
