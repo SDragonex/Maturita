@@ -1,0 +1,167 @@
+{% extends "_base.html" %} {% block title %}{{ page.title }} | {{ config.title
+}}{% endblock title %} {% block head %}
+<!-- Primary Meta Tags -->
+{% if page.description %} {% set description = page.description %} {%- elif
+page.summary %} {% set description = page.summary %} {% else %} {% set
+description = page.content %} {% endif %}
+<meta
+  name="description"
+  content="{{ description | striptags | truncate(length=100) | safe }}"
+/>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:title" content="{{ page.title }} | {{ config.title }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ page.permalink | safe }}" />
+{% if page.date %}
+<meta property="article:published_time" content="{{ page.date }}" />
+<meta property="article:modified_time" content="{{ page.date }}" />
+{% endif %}
+<meta property="article:section" content="{{ page.components | first }}" />
+<!--
+  {% if page.taxonomies is defined %}
+    {% if page.taxonomies.tags is defined %}
+      {% for tag in page.taxonomies.tags %}
+        <meta property="article:tag" content="{{ tag }}">
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+-->
+
+{% endblock head %} {% block page_heading %} {%- if lang ==
+config.default_language %} {% set section_title = page.components[0] %} {%- else
+%} {% set section_title = page.components[1] %} {%- endif -%}
+<h1 class="title">
+  <a href="{{ get_url(path="@/_index.md", lang=lang) }}">{{ config.title }}</a>
+</h1>
+{% endblock page_heading %} {% block content %} {#
+<pre
+  style="
+    font-size: xx-small;
+    height: 50vh;
+    overflow: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    background-color: hsla(0, 0%, 90%, 1);
+  "
+>
+    <code>
+      {{ __tera_context | escape }}
+    </code>
+  </pre>
+#}
+
+<article class="content-article">
+  <main class="article-content">
+    <div class="article-intro-container">
+        <div class="intro-header">
+            <h1 class="heading">{{ page.title }}</h1>
+            <div class="meta-line">
+                {% if page.date %}
+                <span class="date">{{ page.date | date(format="%b. %d, %Y") }}</span>
+                {% endif %}
+                
+                {% if page.taxonomies.tags %}
+                <span class="separator">/</span>
+                <span class="tags">
+                {% for tag in page.taxonomies.tags %}
+                <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">#{{ tag }}</a>
+                {% endfor %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="intro-body">
+            {% if page.description %}
+            <div class="intro-abstract">
+                <div class="abstract-title">ABSTRACT</div>
+                <p class="description">{{ page.description }}</p>
+            </div>
+            {% endif %}
+
+            {% if page.toc and page.extra.toc | default(value=true) %}
+            <details class="intro-toc">
+                <summary class="toc-title">CONTENTS</summary>
+                <div class="toc-wrapper">
+                <ul class="toc-list">
+                    <li class="toc-root">
+                        <a href="#" class="active-toc">{{ page.title }}</a>
+                        {% if page.toc %}
+                        <ul>
+                            {% for h1 in page.toc %}
+                            <li>
+                                <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                                {% if h1.children %}
+                                <ul>
+                                    {% for h2 in h1.children %}
+                                    <li>
+                                        <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                                        {% if h2.children %}
+                                        <ul>
+                                            {% for h3 in h2.children %}
+                                            <li>
+                                                <a href="{{ h3.permalink | safe }}">{{ h3.title }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </li>
+                </ul>
+                </div>
+            </details>
+            {% endif %}
+        </div>
+    </div>
+    
+    {{ page.content | safe }}
+  </main>
+  <section class="article-action-block">
+    <div class="share-block">
+      <a
+        href="https://mastodon.social/share?text={{ page.title }}%20{{ page.permalink }}"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        title="Mastodon"
+        ><i class="fa-brands fa-mastodon"></i></a>
+      <a
+        href="https://twitter.com/intent/tweet?text={{ page.title }}&amp;url={{ page.permalink }}"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        title="X / Twitter"
+        ><i class="fa-brands fa-x-twitter"></i></a>
+      <a
+        href="https://t.me/share/url?url={{ page.permalink }}&amp;text={{ page.title }}"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        title="Telegram"
+        ><i class="fa-brands fa-telegram"></i></a>
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?u={{ page.permalink }}"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        title="Facebook"
+        ><i class="fa-brands fa-facebook-f"></i></a>
+      <a
+        href="https://social-plugins.line.me/lineit/share?url={{ page.permalink }}"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        title="LINE"
+        ><i class="fa-brands fa-line"></i></a>
+    </div>
+  </section>
+  <br />
+</article>
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% set url = get_url(path=src) %} {% if caption %}
+<figure {% if class %}class="{{ class }}" {% endif %}>
+  <img src="{{ url }}" alt="{{ alt | default(value="") }}" />
+  <figcaption>{{ caption | safe }}</figcaption>
+</figure>
+{% else %} <img src="{{ url }}" alt="{{ alt | default(value="") }}" {% if class
+%}class="{{ class }}"{% endif %} /> {% endif %}

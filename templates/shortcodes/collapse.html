@@ -1,0 +1,7 @@
+<details class="collapse-block" {% if unfold %}open{% endif %}>
+  <summary class="collapse-summary">
+    <span class="collapse-title">{{ summary | default(value="Details") }}</span>
+    <span class="collapse-icon"></span>
+  </summary>
+  <div class="collapse-content">{{ body | markdown | safe }}</div>
+</details>

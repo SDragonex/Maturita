@@ -1,0 +1,36 @@
+{
+  "name": "math-display",
+  "scopeName": "text.math-display",
+  "patterns": [
+    {
+      "match": "\\\\[a-zA-Z@]+",
+      "name": "keyword.control.math"
+    },
+    {
+      "match": "\\\\[^a-zA-Z@]",
+      "name": "constant.character.escape.math"
+    },
+    {
+      "match": "\\b(0|[1-9][0-9]*)\\b",
+      "name": "constant.numeric.math"
+    },
+    {
+      "begin": "\\{",
+      "end": "\\}",
+      "name": "meta.brace.curly.math",
+      "patterns": [{ "include": "$self" }]
+    },
+    {
+      "match": "[+\\-*/=<>!&|^~]",
+      "name": "keyword.operator.math"
+    },
+    {
+      "match": "\\$|\\$\\$",
+      "name": "punctuation.definition.math"
+    },
+    {
+      "match": "%.*$",
+      "name": "comment.line.percentage.tex"
+    }
+  ]
+}

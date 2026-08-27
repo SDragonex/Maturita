@@ -1,0 +1,22 @@
+{% extends "_base.html" %} {% block title %}Categories | {{ config.title }}{%
+endblock title %} {% block content %}
+<main class="article-list">
+  <div class="article-header">
+    <h1 class="heading">Categories</h1>
+  </div>
+
+  {% if terms %} {% set my_terms = terms %} {% else %} {% set taxonomy =
+  get_taxonomy(kind="tags", lang=lang) %} {% set my_terms = taxonomy.items %} {%
+  endif %}
+
+  <div class="category-cloud">
+    {% for term in my_terms %}
+    <a href="{{ term.permalink }}" class="category-chip">
+      <span class="category-prefix">#</span>
+      <span class="category-name">{{ term.name }}</span>
+      <span class="category-count">{{ term.pages | length }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</main>
+{% endblock content %}

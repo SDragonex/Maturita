@@ -1,0 +1,79 @@
+# The URL the site will be built for
+base_url = "https://sdragonex.github.io/maturita"
+
+# The site title and description; used in feeds by default.
+title = "Maturitní Příprava"
+description = "Přehled maturitních témat | Dany Chaker (SDragonex)"
+
+# When set to "true", a feed is automatically generated.
+generate_feeds = true
+
+# The filename to use for the feed. Used as the template filename, too.
+# Defaults to "atom.xml", which has a builtin template that renders an Atom 1.0 feed.
+# There is also a builtin template "rss.xml" that renders an RSS 2.0 feed.
+# feed_filename = "atom.xml"
+
+# The taxonomies to be rendered for the site and their configuration.
+# Example:
+#     taxonomies = [
+#       {name = "tags", feed = true}, # each tag will have its own feed
+#       {name = "tags", lang = "fr"}, # you can have taxonomies with the same name in multiple languages
+#       {name = "categories", paginate_by = 5},  # 5 items per page for a term
+#       {name = "authors"}, # Basic definition: no feed or pagination
+#     ]
+#
+taxonomies = [{ name = "tags", paginate_by = 5 }]
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# When set to "true", a search index is built from the pages and section
+# content for `default_language`.
+build_search_index = false
+
+# You can put any kind of data here. The data
+# will be accessible in all templates
+# Example:
+#     [extra]
+#     author = "Famous author"
+#
+# author value will be available using {{ config.extra.author }} in templates
+#
+
+[markdown]
+render_emoji = true
+github_alerts = true
+bottom_footnotes = true
+
+[markdown.highlighting]
+style = "class"
+light_theme = "one-light"
+dark_theme = "one-dark-pro"
+extra_grammars = [ "syntaxes/math-display.json" ]
+
+[extra]
+main_section = "posts"
+math_display = "mathjax"
+avatar = ""
+author = "Dany Chaker"
+
+home_layout = "focus"
+motto_mode = "multi"
+home_recent_posts = 3
+
+mottos = [
+    "Maturita 2026 – zvládneme to! 🎓",
+    "SŠTE Brno, Olomoucká",
+    "Obor: 18-20-M/01 Informační technologie",
+]
+
+social_links = [
+    { name = "github", url = "https://github.com/SDragonex" }
+]
+
+[extra.sections]
+posts  = true
+about  = true
+archive = false
+tags   = true
+links  = false

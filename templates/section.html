@@ -1,0 +1,50 @@
+{% extends "_base.html" %} {% block title %}{{ section.title | title }} | {{
+config.title }}{% endblock title %} {% block head %}
+<!-- Primary Meta Tags -->
+<meta
+  name="description"
+  content="{{ section.title | title }} | {{ config.title }}"
+/>
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:title"
+  content="{{ section.title | title }} | {{ config.title }}"
+/>
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ section.permalink | safe }}" />
+
+<!-- Twitter -->
+{% endblock head %} {% block page_heading %}
+<h1 class="title">
+  <a href="/">{{ config.title }}</a>
+</h1>
+{% endblock page_heading %} {% block content %}
+<main class="article-list">
+  <div class="ad">{% block ad1 %} {% endblock ad1 %}</div>
+  <article class="article-block title-block">
+    <h2 class="heading">{{ section.title }}</h2>
+    <aside class="page">
+      Page {{ paginator.current_index }} / {{ paginator.number_pagers }}
+    </aside>
+  </article>
+
+  {% if paginator.current_index == 1 and section.extra.pinned_posts %} {% for
+  post_path in section.extra.pinned_posts %} {% set post =
+  get_page(path=post_path) %} {{ macros::article_block(post=post, pinned=true)
+  }} {% endfor %} {% endif %} {% for post in paginator.pages %} {% if
+  section.extra.pinned_posts and post.relative_path in
+  section.extra.pinned_posts %} {% continue %} {% endif %} {{
+  macros::article_block(post=post) }} {% endfor %}
+
+  <div class="ad">{% block ad2 %} {% endblock ad2 %}</div>
+
+  <div class="pagination-footer">
+    {% if paginator.previous %}
+    <a href="{{ paginator.previous }}" class="prev-link">← Prev</a>
+    {% endif %} {{ macros::paginator_block() }} {% if paginator.next %}
+    <a href="{{ paginator.next }}" class="next-link">Next →</a>
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}

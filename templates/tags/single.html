@@ -1,0 +1,44 @@
+{% extends "_base.html" %} {% block title %}{{ term.name }} | {{ config.title
+}}{% endblock title %} {% block head %}
+<!-- Primary Meta Tags -->
+<meta
+  name="description"
+  content="{{ term.name | title }} | {{ config.title }}"
+/>
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:title"
+  content="{{ term.name | title }} | {{ config.title }}"
+/>
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ term.permalink | safe }}" />
+
+<!-- Twitter -->
+{% endblock head %} {% block page_heading %}
+<h1 class="title">
+  <a href="/">{{ config.title }}</a>
+</h1>
+{% endblock page_heading %} {% block content %}
+<main class="article-list">
+  <div class="ad">{% block ad1 %} {% endblock ad1 %}</div>
+  <article class="article-block title-block">
+    <h2 class="heading"><span class="hash">#</span>{{ term.name }}</h2>
+    <aside class="page">
+      Page {{ paginator.current_index }} / {{ paginator.number_pagers }}
+    </aside>
+  </article>
+  {% for post in paginator.pages %} {{ macros::article_block(post=post) }} {%
+  endfor %}
+
+  <div class="ad">{% block ad2 %} {% endblock ad2 %}</div>
+
+  <div class="pagination-footer">
+    {% if paginator.previous %}
+    <a href="{{ paginator.previous }}" class="prev-link">← Prev</a>
+    {% endif %} {{ macros::paginator_block() }} {% if paginator.next %}
+    <a href="{{ paginator.next }}" class="next-link">Next →</a>
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}
