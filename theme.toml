@@ -21,7 +21,7 @@ home_recent_posts = 0
 posts = true
 about = true
 archive = true
-tags = true
+tags = false
 links = true
 
 # The theme author info: you!
