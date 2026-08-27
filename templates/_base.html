@@ -87,21 +87,6 @@
           {% endif %}
         </div>
       </div>
-      <ul class="social-links">
-        {% for link in config.extra.social_links %}
-        <li>
-          <a href="{{ link.url | safe }}" aria-label="{{ link.name | title }}">
-            {% set icon_class = "fab fa-" ~ link.name %}
-            {% if link.name == "email" %}{% set icon_class = "fas fa-envelope" %}{% endif %}
-            {% if link.name == "rss" %}{% set icon_class = "fas fa-rss" %}{% endif %}
-            {% if link.name == "link" %}{% set icon_class = "fas fa-link" %}{% endif %}
-            {% if link.name == "globe" %}{% set icon_class = "fas fa-globe" %}{% endif %}
-            <i class="{{ icon_class }}"></i>
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-
       {% if config.extra.sections.about | default(value=true) %}
       <div class="sidebar-action">
         <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
@@ -168,7 +153,7 @@
     </div>
     <div class="page-footer">
       <div class="footer-content">
-        <span>© 2026 Dany Chaker</span>
+        <span>© 2026 <a href="https://github.com/SDragonex" target="_blank" rel="noopener noreferrer">Dany Chaker</a></span>
       </div>
     </div>
   </div>
