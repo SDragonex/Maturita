@@ -3,9 +3,6 @@ title = "Anglický jazyk"
 description = "Maturitní témata — ústní zkouška profilové části maturitní zkoušky (jaro a podzim 2026)"
 date = 2026-01-01
 
-[taxonomies]
-tags = ["anglický-jazyk", "jazyky"]
-
 [extra]
 author = "Dany Chaker"
 pdf = "MZ-AJ.pdf"
