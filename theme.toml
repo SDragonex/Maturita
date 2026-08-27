@@ -20,7 +20,6 @@ home_recent_posts = 0
 [extra.sections]
 posts = true
 about = true
-archive = true
 tags = false
 links = true
 
