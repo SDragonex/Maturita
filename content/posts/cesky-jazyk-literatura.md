@@ -3,9 +3,6 @@ title = "Český jazyk a literatura"
 description = "Školní seznam literárních děl k ústní maturitní zkoušce — školní rok 2025/2026"
 date = 2026-01-05
 
-[taxonomies]
-tags = ["český-jazyk", "literatura", "knihy"]
-
 [extra]
 author = "Dany Chaker"
 pdf = "MZ-KNIHY.pdf"
