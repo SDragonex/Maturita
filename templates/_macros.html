@@ -19,21 +19,11 @@
         <span class="pinned-label"><i class="fa-solid fa-thumbtack"></i></span>
         <span class="separator">/</span>
         {% endif %}
-        
+
         {% if post.date %}
         <span class="date">{{ post.date | date(format="%b. %d, %Y") }}</span>
         {% endif %}
-        
-        {% if post.taxonomies.tags %}
-        <span class="separator">/</span>
-        <span class="tags">
-        {% for tag in post.taxonomies.tags %}
-        <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">#{{ tag }}</a>
-        {% endfor %}
-        </span>
-        {% endif %}
     </div>
-  </div>
 </article>
 {% endmacro article_block %} 
 
