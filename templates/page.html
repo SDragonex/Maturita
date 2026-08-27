@@ -1,4 +1,4 @@
-{% extends "_base.html" %} {% block title %}{{ page.title }} | {{ config.title
+{% extends "_base.html" %} {% import "_macros.html" as macros %} {% block title %}{{ page.title }} | {{ config.title
 }}{% endblock title %} {% block head %}
 <!-- Primary Meta Tags -->
 {% if page.description %} {% set description = page.description %} {%- elif
@@ -53,7 +53,7 @@ config.default_language %} {% set section_title = page.components[0] %} {%- else
             <h1 class="heading">{{ page.title }}</h1>
             <div class="meta-line">
                 {% if page.date %}
-                <span class="date">{{ page.date | date(format="%b. %d, %Y") }}</span>
+                <span class="date">{{ macros::cs_date(value=page.date, style="full") }}</span>
                 {% endif %}
             </div>
         </div>
@@ -61,14 +61,14 @@ config.default_language %} {% set section_title = page.components[0] %} {%- else
         <div class="intro-body">
             {% if page.description %}
             <div class="intro-abstract">
-                <div class="abstract-title">ABSTRACT</div>
+                <div class="abstract-title">ABSTRAKT</div>
                 <p class="description">{{ page.description }}</p>
             </div>
             {% endif %}
 
             {% if page.toc and page.extra.toc | default(value=true) %}
             <details class="intro-toc">
-                <summary class="toc-title">CONTENTS</summary>
+                <summary class="toc-title">OBSAH</summary>
                 <div class="toc-wrapper">
                 <ul class="toc-list">
                     <li class="toc-root">
