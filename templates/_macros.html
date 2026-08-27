@@ -1,15 +1,39 @@
+{%- set cs_months_full = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"] -%}
+{%- set cs_months_short = ["led", "úno", "bře", "dub", "kvě", "čvn", "čvc", "srp", "zář", "říj", "lis", "pro"] -%}
+
+{%- macro cs_date(value, style="full") -%}
+  {%- if value is not string -%}
+    {%- set value = value | date(format="%Y-%m-%d") -%}
+  {%- endif -%}
+  {%- if value is string -%}
+    {%- set parts = value | split(pat="-") -%}
+    {%- set year = parts[0] -%}
+    {%- set month = parts[1] | int -%}
+    {%- set day = parts[2] | int -%}
+    {%- if style == "full" -%}
+      {{ day }}. {{ cs_months_full[month - 1] }} {{ year }}
+    {%- elif style == "short" -%}
+      {{ day }}. {{ cs_months_short[month - 1] }}
+    {%- elif style == "numeric" -%}
+      {{ day }}. {{ month }}. {{ year }}
+    {%- else -%}
+      {{ day }}. {{ cs_months_full[month - 1] }} {{ year }}
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro cs_date -%}
+
 {% macro article_block(post, pinned=false) %}
 <article class="article-block">
   {%- if post.extra.link %} {% set link = post.extra.link %} {% else %} {% set
   link = post.permalink %} {% endif %}
-  
+
   <div class="article-content">
     <div class="article-header">
         <a href="{{ link | safe }}" class="title-link">
             <h2 class="heading">{{ post.title }}</h2>
         </a>
     </div>
-    
+
     <div class="article-summary">
         <p class="description">{{ post.description }}</p>
     </div>
@@ -21,11 +45,12 @@
         {% endif %}
 
         {% if post.date %}
-        <span class="date">{{ post.date | date(format="%b. %d, %Y") }}</span>
+        <span class="date">{{ self::cs_date(value=post.date, style="full") }}</span>
         {% endif %}
     </div>
+  </div>
 </article>
-{% endmacro article_block %} 
+{% endmacro article_block %}
 
 {% macro social_icon(name) %}
     {%- if name == "email" -%}
