@@ -19,6 +19,12 @@ Zároveň ho dávám k dispozici i ostatním. Kdyby se ti hodily stejné poznám
 
 Všechna témata vycházejí z oficiálních dokumentů školy, které najdeš v sekci [Příspěvky](/posts/).
 
+## Plán do budoucna
+
+Tento web bych časem rád rozšířil o kompletní školní repozitář – tedy všechno, co jsem za čtyři roky na SŠTE nasbíral. Mám na GitHubu už starší repo [SDragonex/SSTE](https://github.com/SDragonex/SSTE), kam postupně přesouvám HTML/CSS/JS/PHP/SQL projekty od prvního ročníku.
+
+Cílem je mít na jednom místě jak maturitní poznámky (tady), tak i všechny projekty a úkoly z celého studia – aby to celé tvořilo jeden ucelený archiv mé školní práce od prváku až po maturitu.
+
 ## Jak s tím pracuju
 
 - Pišu si vlastní poznámky k jednotlivým otázkám – spíš heslovitě než knižně, abych látku zvládl říct nahoru
