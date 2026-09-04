@@ -34,6 +34,12 @@ pinned = true
 | [🌐 Počítačové sítě a programování](@/posts/site-a-programovani.md) | 26 témat | [MZ-IT.pdf](/MZ-IT.pdf) |
 | [🎓 Maturitní práce s obhajobou](@/posts/maturitni-prace.md) | 7 oblastí | [MZ-IT.pdf](/MZ-IT.pdf) |
 
+### 📘 Jak maturita funguje
+
+| Téma | Popis |
+|------|-------|
+| [🎓 Jak maturita funguje](@/posts/jak-maturita-funguje.md) | Struktura, harmonogram, didaktické testy, ústní zkoušky a opravné termíny |
+
 ---
 
 ## 📥 Přímé odkazy na PDF
