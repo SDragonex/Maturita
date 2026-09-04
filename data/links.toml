@@ -1,14 +1,17 @@
 [[groups]]
 name = "Přátelé"
 items = [
-    # Přidejte své přátele zde
-    #{ name = "Resory's blog", url = "https://resorie.github.io/blog/", description = "Runtime Error", avatar = "https://avatars.githubusercontent.com/u/49238603" },
+    { name = "Marek Polák", url = "https://github.com/marekpolak3", description = "Spolužák ze SŠTE – AI, kód, jazyky.", avatar = "https://avatars.githubusercontent.com/u/239418787" },
+    { name = "samcejko", url = "https://github.com/samcejko", description = "Kámoš a spolužák ze SŠTE.", avatar = "https://avatars.githubusercontent.com/u/161358575" },
 ]
-desc = "Moji přátelé"
+desc = "Kámoši a spolužáci ze SŠTE"
 
 [[groups]]
 name = "Projekty"
 items = [
-    { name = "Zola", url = "https://www.getzola.org/", description = "Statický generátor webových stránek použitý pro tento blog.", avatar = "https://avatars.githubusercontent.com/u/43047029" },
+    { name = "SuppleZ", url = "https://github.com/SDragonex/SuppleZ", description = "Supplement Wiki – webová encyklopedie doplňků stravy v JavaScriptu.", avatar = "https://avatars.githubusercontent.com/u/161358575" },
+    { name = "Impostor", url = "https://github.com/SDragonex/Impostor", description = "Párty hra v prohlížeči (JS + Tailwind).", avatar = "https://avatars.githubusercontent.com/u/161358575" },
+    { name = "SD-Player", url = "https://github.com/SDragonex/SD-Player", description = "Desktopový hudební přehrávač v C# WPF.", avatar = "https://avatars.githubusercontent.com/u/161358575" },
+    { name = "SSTE", url = "https://github.com/SDragonex/SSTE", description = "Školní projekty od prvního ročníku – HTML, CSS, JS, PHP, SQL.", avatar = "https://avatars.githubusercontent.com/u/161358575" },
 ]
-desc = "Užitečné projekty"
+desc = "Moje další projekty na GitHubu"
