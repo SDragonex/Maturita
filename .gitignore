@@ -4,3 +4,4 @@ temp/
 **/.DS_Store
 **/Thumbs.db
 /.vscode
+scripts/generate-stubs.ps1
