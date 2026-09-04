@@ -15,6 +15,8 @@
   <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/syst/dist/SourceHanSerifCN/result.css' />
   <link rel="stylesheet" href="{{ get_url(path="style.css") }}">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="/pagefind/pagefind-component-ui.css" rel="stylesheet">
+  <script src="/pagefind/pagefind-component-ui.js" type="module"></script>
 
   <script>
     (function() {
@@ -126,6 +128,9 @@
         <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Moje další projekty</a>
         {% endif %}
       </nav>
+      <div class="search-block">
+        <pagefind-search id="search"></pagefind-search>
+      </div>
       <div class="information">
         <div class="back_btn">
           <a onclick="window.history.go(-1)" aria-label="Zpět"><i class="fas fa-chevron-left"></i></a>
