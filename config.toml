@@ -29,7 +29,7 @@ compile_sass = true
 
 # When set to "true", a search index is built from the pages and section
 # content for `default_language`.
-build_search_index = true
+build_search_index = false
 
 # You can put any kind of data here. The data
 # will be accessible in all templates
