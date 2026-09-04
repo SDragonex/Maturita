@@ -32,6 +32,9 @@ jobs:
       - name: Build Zola site
         run: zola build
 
+      - name: Index site with Pagefind
+        run: npx -y pagefind@latest --site public
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
