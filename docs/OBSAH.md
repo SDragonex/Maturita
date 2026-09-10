@@ -1,6 +1,6 @@
 # Obsah a zdroje
 
-Stav inventáře: 9. 9. 2026. Projekt obsahuje **169 studijních témat**. Počty jsou vlastností místních školních podkladů pro rok 2026, nikoli dosud potvrzeným rozsahem zkoušek 2027.
+Stav inventáře: 10. 9. 2026. Projekt obsahuje **169 studijních témat**. Počty jsou vlastností místních školních podkladů pro rok 2026, nikoli dosud potvrzeným rozsahem zkoušek 2027.
 
 | Složka | Počet | Rozcestník | Podklad |
 |---|---:|---|---|
@@ -17,6 +17,7 @@ Každý rozcestník odkazuje na celou svou sadu. Soubory `_index.md` definují s
 |---|---|
 | Celostátní pravidla a termíny | MŠMT a CERMAT; konkrétní odkazy a datum kontroly jsou v [průvodci](../content/posts/jak-maturita-funguje.md) |
 | Školní témata, seznam knih, formy zkoušek | Archivní PDF 2026; pro rok 2027 čekají na potvrzení aktuálními dokumenty [školy](https://www.sstebrno.cz/pro-studenty/maturity/) |
+| Obecná osnova ústní zkoušky z ČJL | Místní dokument CERMAT/CZVV z roku 2014, verze 1.0; podklad pro budoucí strukturu rozborů, nikoli potvrzení školních podmínek 2027 |
 | Literární fakta a interpretace | Především konkrétní přečtené vydání; bibliografie z katalogu, interpretace doložená ukázkou |
 | Technické postupy | Dokumentace výrobce nebo specifikace pro použitou verzi; výsledek vlastního pokusu |
 | Modelové odpovědi a studijní plán | Vlastní didaktické příklady a doporučení; nejsou školním zadáním ani údaji o studentovi |
@@ -46,11 +47,30 @@ Nadpis stránky vykresluje šablona; vlastní výklad začíná nadpisem druhé 
 
 **AJ:** osnova odpovědi, slovníček EN/CZ, modelový projev B1/B2, otázky, gramatika a samostatný nácvik. Fiktivní zkušenosti musí zůstat označené. Modelová úroveň ani délka projevu nejsou potvrzeným školním limitem.
 
-**ČJL:** rozsah četby, autor a kontext, literární druh a žánr, kompozice a vyprávění, postavy a vztahy, děj a motivy, jazyk a otázky. U lyriky se nenutí románový děj a u výboru se děj titulní prózy nevydává za obsah celé knihy. Přehled doplňuje četbu; kompletní odborná revize všech 97 položek zatím není doložena.
+**ČJL, současný stav:** rozsah četby, autor a kontext, literární druh a žánr, kompozice a vyprávění, postavy a vztahy, děj a motivy, jazyk a otázky. U lyriky se nenutí románový děj a u výboru se děj titulní prózy nevydává za obsah celé knihy. Přehled doplňuje četbu; kompletní odborná revize všech 97 položek zatím není doložena. Přechod na novou osnovu níže je výslovně odložený a dosud neproběhl.
 
 **ASW a PSP:** vysvětlení principu, praktický příklad, časté chyby, procvičení a samostatný úkol. Popis řešení není dokladem spuštění programu či konfigurace. U skutečně provedeného úkolu eviduj verzi nástroje, vstup, postup, očekávání a výsledek.
 
+Od 10. 9. 2026 mají PSP 7 (IPv4) a PSP 21 (kolekce C#) konkrétní spuštěné ukázky a zkontrolované výstupy, viz [protokol](OVERENI.md). Výpočet adres nedokládá síťovou konektivitu a konzolové události nejsou testem vykreslení WPF. Další témata tím nejsou automaticky ověřena. Datum `updated` se u aktualizovaného článku zobrazuje v záhlaví a v metadatech změny.
+
 **Maturitní práce:** společná metodika popisuje zadání, návrh, realizaci, dokumentaci, ověření a obhajobu. Konkrétní cíle, termíny a kritéria se doplní až podle schváleného zadání.
+
+## Podklad pro budoucí sjednocení literárních rozborů
+
+Uživatel přidal [obecna-struktura-ustni-zkousky.pdf](../static/obecna-struktura-ustni-zkousky.pdf). Soubor byl 10. 9. 2026 přečten textově i z náhledu stránky. Má jednu stranu, logo CERMAT a označení **CISKOM_3_1_6_P_struktura_UZ, © 2014 CZVV, verze 1.0**. Neobsahuje délku přípravy či zkoušení, bodové hodnocení ani údaj o platnosti pro rok 2027. Datum přidání souboru nezměnilo rok původního dokumentu.
+
+Přesný seznam bodů je přepsaný v [metodice rozboru](../content/posts/rozbor-literatury.md). Budoucí rozbory mají zachovat toto členění:
+
+| Část | Obsah podle dokumentu |
+|---|---|
+| Umělecký text I | Zasazení výňatku, téma a motiv, časoprostor, kompozice, literární druh a žánr |
+| Umělecký text II | Vypravěč / lyrický subjekt, postava, vyprávěcí způsoby, typy promluv, veršová výstavba |
+| Umělecký text III | Jazykové prostředky, tropy a figury včetně jejich funkce ve výňatku |
+| Literárněhistorický kontext | Kontext autorovy tvorby a literární / obecně kulturní kontext |
+| Neumělecký text I | Souvislost výňatků, hlavní myšlenka, podstatnost informací, způsoby čtení a interpretace, domněnky a fakta, komunikační situace |
+| Neumělecký text II | Funkční styl, slohový postup a útvar, kompozice výňatku, jazykové prostředky a jejich funkce |
+
+**Přepracování všech 97 rozborů je podle přání uživatele úkolem do budoucna.** Přidání PDF a metodiky není dokončenou migrací obsahu. Při pozdější úpravě se oddělí informace o díle od odpovědí závislých na konkrétním výňatku. Neumělecký text se nebude automaticky připisovat knize bez ukázky; vlastní nácvik musí být označen jako cvičný. Požadavky konkrétní školy pro jaro/podzim 2027 zůstávají samostatným ověřovaným vstupem.
 
 ## Literatura vyžadující upřesnění
 
