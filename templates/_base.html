@@ -7,29 +7,42 @@
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 
   {% block feed_link %}
+  <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path="atom.xml") }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ config.title }}" href="{{ get_url(path="rss.xml") }}">
   {% endblock feed_link %}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=Ysabeau:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet"><link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-Regular/result.css' />
-  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/syst/dist/SourceHanSerifCN/result.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&amp;family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&amp;family=Ysabeau:ital,wght@0,400..700;1,400..700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ get_url(path="style.css") }}">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-  <link href="/pagefind/pagefind-component-ui.css" rel="stylesheet">
-  <script src="/pagefind/pagefind-component-ui.js" type="module"></script>
+  <link id="giallo-light" rel="stylesheet" href="{{ get_url(path="giallo-light.css") }}" media="(prefers-color-scheme: light)">
+  <link id="giallo-dark" rel="stylesheet" href="{{ get_url(path="giallo-dark.css") }}" media="(prefers-color-scheme: dark)">
+  <link href="{{ get_url(path="pagefind/pagefind-component-ui.css") }}" rel="stylesheet">
+  <script src="{{ get_url(path="pagefind/pagefind-component-ui.js") }}" type="module"></script>
 
   <script>
-    (function() {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme) {
-        document.documentElement.style.colorScheme = savedTheme;
-      }
-    })();
+    function readSavedTheme() {
+      try {
+        const value = localStorage.getItem("theme");
+        return value === "light" || value === "dark" ? value : null;
+      } catch (_) { return null; }
+    }
+    function applyTheme(scheme) {
+      document.documentElement.style.colorScheme = scheme;
+      document.documentElement.dataset.pfTheme = scheme;
+      document.querySelectorAll('[id^="giallo-"]').forEach(link => {
+        link.media = link.id === 'giallo-' + scheme ? 'all' : 'not all';
+      });
+    }
+    const systemScheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    applyTheme(readSavedTheme() || systemScheme());
   </script>
 
   {% if config.extra.math_display == "mathjax" %}
   <script>
-    MathJax = {
+    window.MathJax = {
+      startup: { typeset: false },
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']],
@@ -41,23 +54,7 @@
       }
     };
   </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
-  <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          document.querySelectorAll('code').forEach(el => {
-              if (el.parentElement.tagName === 'PRE') return;
-              const text = el.textContent.trim();
-              if (text.startsWith('$') && text.endsWith('$') && !text.startsWith('$$')) {
-                  const span = document.createElement('span');
-                  span.textContent = text;
-                  el.replaceWith(span);
-              }
-          });
-          if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
-              MathJax.typesetPromise();
-          }
-      });
-  </script>
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-svg.js"></script>
   {% endif %}
 
   {% block head %}
@@ -65,9 +62,12 @@
 </head>
 
 <body class="body-block">
+  <pagefind-config bundle-path="{{ get_url(path="pagefind", trailing_slash=true) }}" base-url="{{ get_url(path="", trailing_slash=true) }}"></pagefind-config>
+  <a class="skip-link" href="#main-content">Přeskočit na obsah</a>
   <div id="sidebar-mask" onclick="toggleSidebar()"></div>
   {% if current_path != "/" %}
   <div id="sidebar" class="">
+    <button class="sidebar-close" type="button" onclick="toggleSidebar(false)" aria-label="Zavřít menu">×</button>
     <div class="logo-title">
       <div class="title-inner">
         {% if config.extra.avatar %}
@@ -95,16 +95,14 @@
       </div>
       {% endif %}
 
-      <nav class="sidebar-nav">
-        <a href="{{ get_url(path="@/_index.md", lang=lang) }}">Domů</a>
-
-        {% if config.extra.sections.posts | default(value=true) %}
-        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Příspěvky</a>
-        {% endif %}
-
-        {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Moje další projekty</a>
-        {% endif %}
+      <nav class="sidebar-nav" aria-label="Postranní navigace">
+<a href="{{ get_url(path="@/posts/anglicky-jazyk.md") }}">Anglický jazyk</a>
+<a href="{{ get_url(path="@/posts/cesky-jazyk-literatura.md") }}">Český jazyk a literatura</a>
+<a href="{{ get_url(path="@/posts/aplikacni-software.md") }}">Aplikační software</a>
+<a href="{{ get_url(path="@/posts/site-a-programovani.md") }}">Sítě a programování</a>
+<a href="{{ get_url(path="@/posts/maturitni-prace.md") }}">Maturitní práce</a>
+<a href="{{ get_url(path="@/posts/jak-maturita-funguje.md") }}">Pravidla 2027</a>
+<a href="{{ get_url(path="@/posts/studijni-plan.md") }}">Studijní plán</a>
       </nav>
     </div>
   </div>
@@ -113,11 +111,11 @@
   <div id="main">
     {% if current_path != "/" %}
     <div class="page-top animated fadeInDown">
-      <nav class="nav">
+      <nav class="nav" aria-label="Hlavní navigace">
         <a href="{{ get_url(path="@/_index.md", lang=lang) }}">Domů</a>
 
         {% if config.extra.sections.posts | default(value=true) %}
-        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Příspěvky</a>
+        <a href="{{ get_url(path="@/posts/rozcestnik.md", lang=lang) }}">Předměty</a>
         {% endif %}
 
         {% if config.extra.sections.about | default(value=true) %}
@@ -129,30 +127,30 @@
         {% endif %}
       </nav>
       <div class="search-block">
-        <pagefind-search id="search"></pagefind-search>
+        <pagefind-searchbox id="search" placeholder="Hledat v přípravě…" hide-shortcut></pagefind-searchbox>
       </div>
       <div class="information">
         <div class="back_btn">
-          <a onclick="window.history.go(-1)" aria-label="Zpět"><i class="fas fa-chevron-left"></i></a>
+          <button type="button" onclick="goBack()" aria-label="Zpět"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
         </div>
         <div class="theme_btn">
-          <a onclick="toggleTheme()" aria-label="Přepnout motiv"><i class="fas fa-moon" id="theme-icon"></i></a>
+          <button type="button" onclick="toggleTheme()" aria-label="Přepnout motiv"><i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i></button>
         </div>
-        <div class="feed_btn">
-          <a class="feed-icon" aria-label="RSS kanál"><i class="fas fa-rss"></i></a>
+        <details class="feed_btn">
+          <summary class="feed-icon" aria-label="Odběr novinek"><i class="fas fa-rss" aria-hidden="true"></i></summary>
           <div class="feed-dropdown">
-            <a href="{{ get_url(path="atom.xml") }}" target="_blank">Atom</a>
-            <a href="{{ get_url(path="rss.xml") }}" target="_blank">RSS</a>
+            <a href="{{ get_url(path="atom.xml") }}">Atom</a>
+            <a href="{{ get_url(path="rss.xml") }}">RSS</a>
           </div>
-        </div>
+        </details>
         <div class="avatar_btn">
-          <a onclick="toggleSidebar()" aria-label="Postranní panel"><i class="fas fa-bars"></i></a>
+          <button type="button" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Postranní panel" aria-controls="sidebar" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
     {% endif %}
     <div class="autopagerize_page_element">
-      <div class="content animated fadeIn {% if current_path == '/' %}home-content{% endif %}">
+      <div id="main-content" tabindex="-1" class="content animated fadeIn {% if current_path == '/' %}home-content{% endif %}">
         {% block content %}{% endblock content %}
       </div>
     </div>
@@ -164,51 +162,70 @@
   </div>
 
   <script>
-    function toggleSidebar() {
-      var sidebar = document.getElementById("sidebar");
-      var mask = document.getElementById("sidebar-mask");
-      sidebar.classList.toggle("open");
-      mask.classList.toggle("open");
+    function goBack() {
+      if (window.history.length > 1) window.history.back();
+      else window.location.assign({{ get_url(path="@/_index.md") | json_encode | safe }});
     }
 
-    const getPreferredScheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    function syncSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      if (!sidebar) return;
+      const mobile = window.matchMedia('(max-width: 960px)').matches;
+      const open = mobile && sidebar.classList.contains('open');
+      sidebar.inert = mobile && !open;
+      document.getElementById('main').inert = open;
+      document.getElementById('sidebar-mask').classList.toggle('open', open);
+      const button = document.getElementById('sidebar-toggle');
+      if (button) button.setAttribute('aria-expanded', String(open));
+    }
+
+    function toggleSidebar(force) {
+      const sidebar = document.getElementById('sidebar');
+      if (!sidebar) return;
+      const open = typeof force === 'boolean' ? force : !sidebar.classList.contains('open');
+      sidebar.classList.toggle('open', open);
+      syncSidebar();
+      if (open) sidebar.querySelector('.sidebar-close')?.focus();
+      else document.getElementById('sidebar-toggle')?.focus();
+    }
+    syncSidebar();
+    window.matchMedia('(max-width: 960px)').addEventListener('change', syncSidebar);
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        if (document.getElementById('sidebar')?.classList.contains('open')) toggleSidebar(false);
+        document.querySelectorAll('.feed_btn[open]').forEach(feed => {
+          feed.open = false;
+          feed.querySelector('summary')?.focus();
+        });
+      }
+    });
 
     function updateThemeIcon(scheme) {
-      const themeIcon = document.getElementById("theme-icon");
-      if (themeIcon) {
-        if (scheme === 'dark') {
-          themeIcon.classList.remove("fa-moon");
-          themeIcon.classList.add("fa-sun");
-        } else {
-          themeIcon.classList.remove("fa-sun");
-          themeIcon.classList.add("fa-moon");
-        }
-      }
+      const icon = document.getElementById('theme-icon');
+      if (!icon) return;
+      icon.classList.toggle('fa-moon', scheme !== 'dark');
+      icon.classList.toggle('fa-sun', scheme === 'dark');
     }
-
     function toggleTheme() {
-      const root = document.documentElement;
-      const effectiveScheme = root.style.colorScheme || getPreferredScheme();
-      const targetScheme = effectiveScheme === 'dark' ? 'light' : 'dark';
-
-      root.style.colorScheme = targetScheme;
-      localStorage.setItem("theme", targetScheme);
-      updateThemeIcon(targetScheme);
+      const scheme = document.documentElement.style.colorScheme === 'dark' ? 'light' : 'dark';
+      applyTheme(scheme);
+      try { localStorage.setItem('theme', scheme); } catch (_) { /* The theme still works for this page. */ }
+      updateThemeIcon(scheme);
     }
-
-    (function() {
-      const savedTheme = localStorage.getItem("theme");
-      const systemTheme = getPreferredScheme();
-      updateThemeIcon(savedTheme || systemTheme);
-
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem("theme")) {
-          updateThemeIcon(e.matches ? 'dark' : 'light');
-        }
-      });
-    })();
+    updateThemeIcon(document.documentElement.style.colorScheme);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (!readSavedTheme()) {
+        applyTheme(systemScheme());
+        updateThemeIcon(systemScheme());
+      }
+    });
 
     document.addEventListener("DOMContentLoaded", function() {
+        customElements.whenDefined('pagefind-searchbox').then(() => {
+            document.querySelectorAll('pagefind-searchbox input').forEach(input => {
+                input.setAttribute('aria-label', 'Hledat ve studijní přípravě');
+            });
+        });
         const MATH_LANGS = ['math', 'math-display', 'tex', 'latex'];
 
         document.querySelectorAll('pre code').forEach(code => {
@@ -263,13 +280,31 @@
 
                 const btn = document.createElement('button');
                 btn.className = 'code-copy-btn';
-                btn.setAttribute('aria-label', 'Copy code');
+                btn.type = 'button';
+                btn.setAttribute('aria-label', 'Kopírovat kód');
                 btn.innerHTML = '<i class="fa-regular fa-copy"></i>';
-                btn.addEventListener('click', () => {
-                    navigator.clipboard.writeText(code.textContent).then(() => {
-                        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-                        setTimeout(() => btn.innerHTML = '<i class="fa-regular fa-copy"></i>', 1500);
-                    });
+                const status = document.createElement('span');
+                status.className = 'visually-hidden';
+                status.setAttribute('role', 'status');
+                right.appendChild(status);
+                btn.addEventListener('click', async () => {
+                    try {
+                        if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+                        await navigator.clipboard.writeText(code.textContent);
+                        status.textContent = 'Kód byl zkopírován.';
+                        btn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fa-regular fa-copy" aria-hidden="true"></i>';
+                            status.textContent = '';
+                        }, 1500);
+                    } catch (_) {
+                        const range = document.createRange();
+                        range.selectNodeContents(code);
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                        status.textContent = 'Automatické kopírování není dostupné. Kód je označený, zkopírujte jej ručně.';
+                    }
                 });
                 right.appendChild(btn);
 
@@ -288,6 +323,11 @@
                  code.replaceWith(span);
             }
         });
+
+        if (window.MathJax?.startup?.promise) {
+            window.MathJax.startup.promise.then(() => window.MathJax.typesetPromise())
+                .catch(() => { /* Keep the readable TeX if the external renderer fails. */ });
+        }
 
         document.querySelectorAll('[data-mottos]').forEach(function(el) {
             var mottos = JSON.parse(el.dataset.mottos);
@@ -325,7 +365,7 @@
     });
   </script>
 
-  <script src="//instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+  <script src="https://instant.page/5.1.0" type="module" integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
 </body>
 
 </html>
