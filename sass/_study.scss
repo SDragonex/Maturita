@@ -1,0 +1,85 @@
+/* Study controls and readable layouts for small screens. */
+html[data-pf-theme="dark"] {
+  --pf-background: #101317;
+  --pf-text: #dedfe1;
+  --pf-text-secondary: #b3b7bf;
+  --pf-text-muted: #a5aab3;
+  --pf-border: #30343b;
+  --pf-hover: #1d2229;
+  --pf-mark: #fff;
+}
+
+.sidebar-nav a[aria-current] {
+  color: var(--text-color) !important;
+  font-weight: 700;
+  text-decoration: underline !important;
+  text-underline-offset: .3em;
+}
+.topic-position {
+  font-style: normal;
+  padding: .2rem .5rem;
+  margin-right: .75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+.article-intro-container .heading { overflow-wrap: anywhere; }
+.article-content > details {
+  margin: 1.5rem 0;
+  > summary { cursor: pointer; font-weight: 600; line-height: 1.5; }
+  > p { margin: 1rem 0; line-height: 1.6; }
+  > pre, > table { margin-top: 1rem; }
+}
+.catalog-jump { display: inline-block; margin-left: 1rem; font-style: normal; text-decoration: underline; text-underline-offset: .2em; }
+.article-content [hidden] { display: none !important; }
+.catalog-filter {
+  margin: 2rem 0 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--code-bg);
+  font-family: 'Ysabeau', system-ui, sans-serif;
+  scroll-margin-top: calc(var(--topbar-h) + 1rem);
+  .catalog-filter-fields { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .8rem; }
+  .catalog-query { flex: 2 1 220px; }
+  .catalog-category { flex: 1 1 220px; min-width: 0; }
+  label { display: block; margin-bottom: .4rem; font-weight: 600; }
+  input, select, button {
+    min-height: 44px;
+    max-width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: .55rem .7rem;
+  }
+  input, select { width: 100%; }
+  button { cursor: pointer; }
+  button:disabled { opacity: .55; cursor: default; }
+  p { margin-top: .7rem; color: var(--text-color-light); font-size: .95rem; }
+}
+
+@media (max-width: 600px) {
+  .article-content table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0;
+  }
+  .article-intro-container {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    .intro-header { margin-bottom: 1rem; }
+    .intro-header .heading { font-size: 1.9rem; }
+    .intro-body { padding-left: .75rem; gap: .75rem; }
+    .intro-body .intro-abstract .description { padding-left: 0; font-size: 1rem; line-height: 1.55; }
+  }
+  .catalog-filter { padding: .8rem; }
+}
+
+@media print {
+  :root { color-scheme: light !important; }
+  .catalog-jump, .catalog-filter-fields { display: none !important; }
+  .catalog-filter { padding: 0; border: 0; background: none; }
+  .catalog-filter p { color: #000; }
+}
