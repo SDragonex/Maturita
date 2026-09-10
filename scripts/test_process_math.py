@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.process_math import process_content, process_file, process_paths
+from scripts.process_math import CONTENT_DIR, iter_markdown_files, process_content, process_file, process_paths
 
 
 def document(body: str) -> str:
@@ -10,6 +10,22 @@ def document(body: str) -> str:
 
 
 class ProcessMathTest(unittest.TestCase):
+    def test_default_directory_is_repository_content(self) -> None:
+        self.assertEqual(CONTENT_DIR, Path(__file__).resolve().parents[1] / "content")
+        self.assertTrue(CONTENT_DIR.is_dir())
+
+    def test_missing_input_fails_instead_of_reporting_success(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaises(FileNotFoundError):
+                process_paths([Path(directory) / "missing"])
+
+    def test_overlapping_inputs_process_each_file_once(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root / "page.md"
+            path.write_text(document("$a_b$"), encoding="utf-8")
+            self.assertEqual(iter_markdown_files([root, path]), [path])
+
     def test_encodes_punctuation_but_keeps_dollar_delimiters(self) -> None:
         source = document("Value $a_b<c*d$ and\n$$\n\\begin{aligned}\nx&=y\\\\\n\\end{aligned}\n$$\n")
 
