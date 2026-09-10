@@ -1,6 +1,6 @@
 +++
 title = "Anglický jazyk"
-description = "Maturitní témata — ústní zkouška profilové části maturitní zkoušky (jaro a podzim 2026)"
+description = "Maturitní témata — ústní zkouška profilové části maturitní zkoušky (jaro a podzim 2027)"
 date = 2026-01-01
 
 [extra]
@@ -8,13 +8,14 @@ author = "Dany Chaker"
 pdf = "MZ-AJ.pdf"
 +++
 
-# Maturitní témata — Anglický jazyk
+> **Příprava na rok 2027.** Přiložené školní PDF je podklad pro rok 2026. Platnost témat a kritérií pro jaro/podzim 2027 dosud není potvrzena. [Stav zdrojů a pravidel](@/posts/jak-maturita-funguje.md).
+
 
 > **Ústní zkouška profilové části maturitní zkoušky**
-> Zkušební období: **jaro a podzim 2026**
+> Cílová příprava: **jaro a podzim 2027**
 > SŠTE Brno, Olomoucká
 
-📄 [Stáhnout PDF se zadáním](/MZ-AJ.pdf)
+📄 [Školní témata 2026 – PDF](../../MZ-AJ.pdf)
 
 ---
 
