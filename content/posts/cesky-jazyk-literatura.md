@@ -1,6 +1,6 @@
 +++
 title = "Český jazyk a literatura"
-description = "Školní seznam literárních děl k ústní maturitní zkoušce — školní rok 2025/2026"
+description = "Školní seznam literárních děl k ústní maturitní zkoušce — příprava 2026/2027; seznam školy 2025/2026"
 date = 2026-01-05
 
 [extra]
@@ -8,12 +8,14 @@ author = "Dany Chaker"
 pdf = "MZ-KNIHY.pdf"
 +++
 
-# Školní seznam literárních děl
-## Ústní maturitní zkouška z ČJL — školní rok 2025/2026
+> **Příprava na rok 2027.** Přiložené školní PDF je podklad pro rok 2026. Platnost témat a kritérií pro jaro/podzim 2027 dosud není potvrzena. [Stav zdrojů a pravidel](@/posts/jak-maturita-funguje.md).
+
+
+## Ústní maturitní zkouška z ČJL — příprava 2026/2027; seznam školy 2025/2026
 
 > SŠTE Brno, Olomoucká
 
-📄 [Stáhnout PDF se seznamem](/MZ-KNIHY.pdf)
+📄 [Stáhnout PDF se seznamem](../../MZ-KNIHY.pdf)
 
 ---
 
