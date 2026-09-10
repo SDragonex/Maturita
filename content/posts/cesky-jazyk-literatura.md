@@ -4,6 +4,7 @@ description = "Školní seznam literárních děl k ústní maturitní zkoušce 
 date = 2026-01-05
 
 [extra]
+catalog = "cjl"
 author = "Dany Chaker"
 pdf = "MZ-KNIHY.pdf"
 +++
