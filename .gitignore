@@ -5,3 +5,6 @@ temp/
 **/Thumbs.db
 /.vscode
 scripts/generate-stubs.ps1
+
+__pycache__/
+*.py[cod]
