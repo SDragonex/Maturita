@@ -4,6 +4,7 @@ description = "Maturitní témata — Software a webové aplikace; počítačov�
 date = 2026-01-02
 
 [extra]
+catalog = "asw"
 author = "Dany Chaker"
 pdf = "MZ-IT.pdf"
 +++
