@@ -15,11 +15,7 @@ config.title }}{% endblock title %} {% block head %}
 <meta property="og:url" content="{{ section.permalink | safe }}" />
 
 <!-- Twitter -->
-{% endblock head %} {% block page_heading %}
-<h1 class="title">
-  <a href="/">{{ config.title }}</a>
-</h1>
-{% endblock page_heading %} {% block content %}
+{% endblock head %}  {% block content %}
 <main class="article-list">
   <div class="ad">{% block ad1 %} {% endblock ad1 %}</div>
   <article class="article-block title-block">
@@ -105,9 +101,9 @@ config.title }}{% endblock title %} {% block head %}
       {% endif %}
       {% for i in range(start=start, end=end+1) %}
         {% if i == paginator.current_index %}
-          <a class="link -highlight" href="{{ paginator.base_url }}{{ i }}"><span class="number">{{ i }}</span></a>
+          <a class="link -highlight" href="{% if i == 1 %}{{ paginator.first }}{% else %}{{ paginator.base_url }}{{ i }}/{% endif %}"><span class="number">{{ i }}</span></a>
         {% else %}
-          <a class="link" href="{{ paginator.base_url }}{{ i }}"><span class="number">{{ i }}</span></a>
+          <a class="link" href="{% if i == 1 %}{{ paginator.first }}{% else %}{{ paginator.base_url }}{{ i }}/{% endif %}"><span class="number">{{ i }}</span></a>
         {% endif %}
       {% endfor %}
     </aside>
