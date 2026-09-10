@@ -15,10 +15,10 @@
     --gutter-h-narrow: 0px;
 
     @media screen and (max-width: 900px) {
-        --gutter-h: calc((100vw - 600px) / 3);
+        --gutter-h: max(1rem, calc((100vw - 600px) / 3));
     }
     @media screen and (max-width: 700px) {
-        --gutter-h-narrow: calc((100vw - 400px) / 3);
+        --gutter-h-narrow: max(1rem, calc((100vw - 400px) / 3));
     }
 
     /* Colors */
