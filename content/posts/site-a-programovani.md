@@ -4,6 +4,7 @@ description = "Maturitní témata — Počítačové sítě a programování v C
 date = 2026-01-03
 
 [extra]
+catalog = "psp"
 author = "Dany Chaker"
 pdf = "MZ-IT.pdf"
 +++
