@@ -11,7 +11,7 @@ import string
 from pathlib import Path
 
 
-CONTENT_DIR = Path(__file__).resolve().parents[3] / "content"
+CONTENT_DIR = Path(__file__).resolve().parents[1] / "content"
 
 LEGACY_DISPLAY_RE = re.compile(
     r'<div[ \t]+class=(?P<quote>["\'])math-display(?P=quote)[ \t]*>'
@@ -201,11 +201,13 @@ def process_content(content: str, restore_only: bool = False) -> str:
 def iter_markdown_files(paths: list[Path]) -> list[Path]:
     files: list[Path] = []
     for path in paths:
+        if not path.exists():
+            raise FileNotFoundError(f"Input path does not exist: {path}")
         if path.is_dir():
             files.extend(sorted(path.rglob("*.md")))
         elif path.suffix == ".md":
             files.append(path)
-    return files
+    return list(dict.fromkeys(files))
 
 
 def process_file(path: Path, restore_only: bool = False, check: bool = False) -> bool:
