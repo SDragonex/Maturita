@@ -2,11 +2,13 @@
 base_url = "https://sdragonex.github.io/Maturita"
 
 # The site title and description; used in feeds by default.
-title = "Maturita"
-description = "Přehled maturitních témat"
+title = "Maturita 2027"
+description = "Studijní příprava · SŠTE Brno · Informační technologie"
 
 # When set to "true", a feed is automatically generated.
 generate_feeds = true
+feed_filenames = ["atom.xml", "rss.xml"]
+default_language = "cs"
 
 # The filename to use for the feed. Used as the template filename, too.
 # Defaults to "atom.xml", which has a builtin template that renders an Atom 1.0 feed.
