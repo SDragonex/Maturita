@@ -1,7 +1,8 @@
 +++
 title = "Jak připravit rozbor literatury"
-description = "Výběr knih, práce s konkrétním vydáním, ukázkou a neuměleckým textem."
+description = "Výběr knih a osnova CERMAT pro budoucí rozbory uměleckého i neuměleckého textu."
 date = 2026-09-09
+updated = 2026-09-10
 +++
 
 ## Seznam pro rok 2027
@@ -10,17 +11,60 @@ date = 2026-09-09
 
 Osobní seznam nebyl dodán. Web proto neoznačuje žádných dvacet titulů za tvůj schválený výběr. Ke každé vybrané položce si zapiš číslo školy, přesný název, autora, kategorii, formu, vydání a překladatele. U spoluautorství počítej každého autora; neobcházej limit odlišným zápisem jména.
 
-## Co si připravit ke každé knize
+## Osnova podle přidaného dokumentu CERMAT
 
-| Část odpovědi | Konkrétní výstup |
-|---|---|
-| Kontext | Období a souvislost s tématem či způsobem psaní; nesyp jen životopisná data |
-| Druh a žánr | Rozliš literární druh, žánr a prózu/verš; román ve verších zůstává epikou |
-| Kompozice | Jak autor uspořádal děj, básně nebo scény; odliš čas vyprávění a pořadí událostí |
-| Mluvčí | Vypravěč, lyrický subjekt nebo dramatické postavy; odliš od historické osoby autora |
-| Postavy a motivy | Vztahy, příčiny rozhodnutí a opakující se obrazy |
-| Jazyk | Konkrétní příklad prostředku a jeho účinek v ukázce |
-| Interpretace | Vlastní vysvětlení podložené textem; připusť jiný obhajitelný výklad |
+[Obecná struktura ústní zkoušky — PDF](../../obecna-struktura-ustni-zkousky.pdf) je jednostránkový dokument s označením **© 2014 CZVV, verze 1.0**. Obsahuje následující části a dovednosti. Neuvádí časové limity, bodování ani platnost pro maturitu 2027; konkrétní podmínky je třeba ověřit u školy.
+
+Tato osnova bude základem budoucího sjednocení všech rozborů na webu. **Současných 97 literárních přehledů zatím není podle této osnovy přepracováno.** Jejich úprava je odložena na pozdější etapu.
+
+### Umělecký text — I. část
+
+- Zasazení výňatku do kontextu díla.
+- Téma a motiv.
+- Časoprostor.
+- Kompoziční výstavba.
+- Literární druh a žánr.
+
+### Umělecký text — II. část
+
+- Vypravěč / lyrický subjekt.
+- Postava.
+- Vyprávěcí způsoby.
+- Typy promluv.
+- Veršová výstavba.
+
+### Umělecký text — III. část
+
+- Jazykové prostředky a jejich funkce ve výňatku.
+- Tropy a figury a jejich funkce ve výňatku.
+
+### Literárněhistorický kontext
+
+- Kontext autorovy tvorby.
+- Literární / obecně kulturní kontext.
+
+### Neumělecký text — I. část
+
+- Souvislost mezi výňatky.
+- Hlavní myšlenka textu.
+- Podstatné a nepodstatné informace.
+- Různé možné způsoby čtení a interpretace textu.
+- Domněnky a fakta.
+- Komunikační situace, například účel a adresát.
+
+### Neumělecký text — II. část
+
+- Funkční styl.
+- Slohový postup.
+- Slohový útvar.
+- Kompoziční výstavba výňatku.
+- Jazykové prostředky a jejich funkce ve výňatku.
+
+## Jak osnovu používat při přípravě
+
+Ke knize si připrav její kontext, témata, kompozici a vztahy postav. Rozbor konkrétního výňatku však vyžaduje samotný text: prostředky dolož příkladem a vysvětli jejich účinek. Vypravěče nebo lyrický subjekt nezaměňuj s autorem. Jednotlivé body posuzuj podle druhu textu; například u prózy nevymýšlej veršovou výstavbu.
+
+Neumělecký text se také rozebírá podle konkrétní ukázky. Jeho styl, účel ani souvislost s uměleckým výňatkem nelze předem odvodit z názvu knihy. U budoucích rozborů proto oddělíme obecnou přípravu k dílu od nácviku s vybranými ukázkami; vlastní pracovní list bude označený jako cvičný.
 
 ## Sbírky, výbory a cykly
 
