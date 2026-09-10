@@ -15,7 +15,7 @@ Dokumentace patří ke studijnímu webu pro **jaro a podzim 2027**. Zachycuje zp
 - [Jak maturita funguje v roce 2027](../content/posts/jak-maturita-funguje.md): kalendář, společná a profilová část, původ pravidel.
 - [Studijní plán](../content/posts/studijni-plan.md): postup pro jaro i podzim a týdenní příprava.
 - [Rozcestník předmětů](../content/posts/rozcestnik.md): vstup ke všem tématům.
-- [Metodika literárního rozboru](../content/posts/rozbor-literatury.md): výběr, vydání, ukázka a neumělecký text.
+- [Metodika literárního rozboru](../content/posts/rozbor-literatury.md): výběr, vydání, ukázka a osnova podle dodaného [PDF CERMAT/CZVV](../static/obecna-struktura-ustni-zkousky.pdf). Přepracování 97 rozborů je odloženo na pozdější etapu.
 - [Odborné zdroje](../content/posts/odborne-zdroje.md): dokumentace pro IT a evidence vlastních příkladů.
 - [Maturitní práce](../content/posts/maturitni-prace.md): metodika realizace, dokumentace a obhajoby.
 
