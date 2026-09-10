@@ -1,48 +1,45 @@
 {% extends "_base.html" %}
-{% block title %}{{ config.title }}{% endblock title %}
-{% block head %}
-<meta name="description" content="{{ config.description }}" />
-<meta property="og:title" content="{{ config.title }}" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="{{ config.base_url | safe }}" />
-{% endblock head %}
+{% block title %}{{ config.title }} – SŠTE Brno{% endblock title %}
+{% block head %}<meta name="description" content="{{ config.description }}">{% endblock head %}
 {% block content %}
-<div class="home-container">
-  <div class="home-intro">
-    <div class="logo-title">
-      <div class="title-inner">
-        {% if config.extra.avatar %}
-        <div class="avatar">
-          <img src="{{ get_url(path=config.extra.avatar) }}" alt="avatar">
-        </div>
-        {% endif %}
-        <div class="title">
-          <h3>{{ config.title }}</h3>
-          <div class="description">
-            <p>{{ config.description }}</p>
-          </div>
-          {% if config.extra.motto_mode and config.extra.motto_mode != "hide" %}
-            {% if config.extra.motto_mode == "single" and config.extra.motto %}
-            <p class="motto">{{ config.extra.motto }}</p>
-            {% elif config.extra.motto_mode == "multi" and config.extra.mottos %}
-            <p class="motto" data-mottos='{{ config.extra.mottos | json_encode | safe }}'></p>
-            {% endif %}
-          {% endif %}
-        </div>
-      </div>
-      <nav class="home-nav">
-        {% if config.extra.sections.posts | default(value=true) %}
-        <a href="{{ get_url(path="@/posts/_index.md", lang=lang) }}">Příspěvky</a>
-        {% endif %}
-        {% if config.extra.sections.about | default(value=true) %}
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
-        {% endif %}
-
-        {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Moje další projekty</a>
-        {% endif %}
-      </nav>
+<main class="study-home">
+  <header class="study-home-header">
+    <a href="{{ get_url(path="@/about/index.md") }}">SŠTE BRNO · INFORMAČNÍ TECHNOLOGIE</a>
+    <button type="button" onclick="toggleTheme()" aria-label="Přepnout motiv">Světlý / tmavý motiv</button>
+  </header>
+  <section class="study-hero" aria-labelledby="home-title">
+    <p class="study-eyebrow">JARO / PODZIM 2027</p>
+    <h1 id="home-title">Připrav se. Pochop souvislosti.</h1>
+    <p>Jazyky, literatura a IT na jednom místě. Vyber téma, projdi příklad a zkus odpovědět bez poznámek.</p>
+    <div class="home-search"><pagefind-searchbox placeholder="Hledat téma, knihu nebo pojem…"></pagefind-searchbox></div>
+    <noscript>Vyhledávání vyžaduje JavaScript. Předměty a všechny výklady jsou dostupné přes odkazy níže.</noscript>
+  </section>
+  <aside class="study-year-note">
+    <strong>Jarní testy: 3.–6. května 2027.</strong>
+    Školní seznamy vycházejí z podkladů 2026; jejich platnost pro 2027 čeká na potvrzení.
+    <a href="{{ get_url(path="@/posts/jak-maturita-funguje.md") }}">Termíny a ověřené zdroje →</a>
+  </aside>
+  <section aria-labelledby="subjects-title">
+    <div class="study-section-heading"><h2 id="subjects-title">Co dnes procvičíš?</h2><a href="{{ get_url(path="@/posts/studijni-plan.md") }}">Studijní plán →</a></div>
+    <div class="study-subjects">
+      {% for item in [
+        {"key":"aj", "name":"Anglický jazyk", "slug":"anglicky-jazyk", "text":"Slovní zásoba, modelové projevy a rozhovory."},
+        {"key":"cjl", "name":"Český jazyk a literatura", "slug":"cesky-jazyk-literatura", "text":"Přehledy knih, souvislosti a práce s ukázkou."},
+        {"key":"asw", "name":"Aplikační software", "slug":"aplikacni-software", "text":"Grafika, 3D, dokumenty, databáze a web."},
+        {"key":"psp", "name":"Sítě a programování", "slug":"site-a-programovani", "text":"Adresace, servery, C# a aplikace ve WPF."}
+      ] %}
+      {% set topics = get_section(path=item.key ~ "/_index.md") %}
+      <a class="study-subject" href="{{ get_url(path="@/posts/" ~ item.slug ~ ".md") }}">
+        <span class="study-subject-count">{{ topics.pages | length }} {% if item.key == "cjl" %}literárních přehledů{% else %}témat{% endif %}</span>
+        <h3>{{ item.name }}</h3><p>{{ item.text }}</p><span class="study-subject-action">Otevřít předmět →</span>
+      </a>
+      {% endfor %}
     </div>
-  </div>
-</div>
+  </section>
+  <section class="study-home-resources" aria-label="Další příprava">
+    <a href="{{ get_url(path="@/posts/maturitni-prace.md") }}"><strong>Maturitní práce</strong><span>Od zadání přes dokumentaci k obhajobě →</span></a>
+    <a href="{{ get_url(path="@/posts/rozbor-literatury.md") }}"><strong>Jak rozebrat knihu</strong><span>Výběr, vydání a nácvik s ukázkou →</span></a>
+    <a href="{{ get_url(path="@/posts/odborne-zdroje.md") }}"><strong>Odborné zdroje</strong><span>Dokumentace a ověřování příkladů →</span></a>
+  </section>
+</main>
 {% endblock content %}
