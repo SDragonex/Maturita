@@ -16,7 +16,7 @@ description = page.content %} {% endif %}
 <meta property="og:url" content="{{ page.permalink | safe }}" />
 {% if page.date %}
 <meta property="article:published_time" content="{{ page.date }}" />
-<meta property="article:modified_time" content="{{ page.date }}" />
+<meta property="article:modified_time" content="{% if page.updated %}{{ page.updated }}{% else %}{{ page.date }}{% endif %}" />
 {% endif %}
 <meta property="article:section" content="{{ page.components | first }}" />
 
@@ -59,7 +59,13 @@ description = page.content %} {% endif %}
         <div class="intro-header">
             <h1 class="heading">{{ page.title }}</h1>
             <div class="meta-line" data-pagefind-ignore>
-                {% if page.date %}
+                {% if page.extra.subject %}
+                {% set subject_section = get_section(path=page.extra.subject ~ "/_index.md") %}
+                <span class="topic-position">{{ page.extra.cislo }} z {{ subject_section.pages | length }}</span>
+                {% endif %}
+                {% if page.updated %}
+                <span class="date">Aktualizováno {{ page.updated | date(format="%d. %m. %Y") }}</span>
+                {% elif page.date %}
                 <span class="date">{{ page.date | date(format="%d. %m. %Y") }}</span>
                 {% endif %}
             </div>
@@ -115,6 +121,22 @@ description = page.content %} {% endif %}
         </div>
     </div>
     
+    {% if page.extra.catalog %}
+    <div class="catalog-filter" data-catalog-prefix="{{ get_url(path=page.extra.catalog, trailing_slash=true) }}" data-pagefind-ignore hidden>
+      <div class="catalog-filter-fields">
+        <div class="catalog-query">
+          <label for="catalog-query">Filtrovat seznam</label>
+          <input id="catalog-query" type="search" placeholder="Název, autor nebo číslo…" autocomplete="off" aria-describedby="catalog-status">
+        </div>
+        <div class="catalog-category" hidden>
+          <label for="catalog-category">Kategorie</label>
+          <select id="catalog-category"><option value="">Všechny kategorie</option></select>
+        </div>
+        <button type="button" class="catalog-clear">Zrušit filtr</button>
+      </div>
+      <p id="catalog-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    </div>
+    {% endif %}
     {{ page.content | safe }}
     {% if page.extra.subject %}
     <nav class="topic-pagination" aria-label="Další studijní témata" data-pagefind-ignore>
