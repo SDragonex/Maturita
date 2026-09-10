@@ -23,7 +23,9 @@ content/ + config.toml + templates/ + sass/ + static/
 - `templates/_base.html` definuje rozložení, motiv, navigaci, vyhledávání a MathJax. `index.html` je úvodní stránka a `page.html` studijní článek s obsahem a navigací mezi tématy.
 - `sass/style.scss` skládá dílčí styly. `static/` se kopíruje do kořene výsledného webu, proto `static/MZ-IT.pdf` odpovídá adrese `/Maturita/MZ-IT.pdf` při produkčním nasazení.
 - Zola má vlastní vyhledávací index vypnutý. Pagefind indexuje obsah označený `data-pagefind-body`; navigace se vylučuje pomocí `data-pagefind-ignore`. Komponenta `pagefind-config` musí mít `bundle-path` i `base-url` sestavené pro aktuální podcestu včetně závěrečného lomítka.
-- `data/links.toml` slouží stránce dalších projektů. Atom/RSS vytváří Zola podle konfigurace.
+- `data/links.toml` slouží stránce dalších projektů. Generování odběrů je vypnuté; související šablony a ovládání byly odstraněny.
+- `static/js/study.js` přidává filtrování seznamů, zkratku „Přejít k seznamu“ a označení aktivního předmětu. Rozcestníky mají `extra.catalog` s kódem předmětu; tabulky a odkazy zůstávají dostupné i bez JavaScriptu. Filtr hledá v názvu, autorovi a čísle bez rozlišení diakritiky. Čistě číselný dotaz vybírá přesné existující číslo tématu, jinak hledá v textu (například název `1984`). Kategorie se přebírají z nadpisů tabulek. Tiskové styly zachovávají počet zobrazených výsledků i při aktivním filtru.
+- `sass/_study.scss` sjednocuje tmavé vyhledávání, styly filtru a kompaktnější mobilní úvod. Dlouhé nadpisy zalamuje a široké tabulky na mobilu posouvá uvnitř vlastního bloku; rozbalená řešení mají odstavcové mezery. Volba motivu používá stávající lokální nastavení prohlížeče.
 
 Šablony jsou upravené pro Tera v Zole 0.23.4. Změnu verze Zoly nebo Pagefind prováděj společně s kontrolou šablon, souborů vyhledávání a CI. Slepé přepnutí na nejnovější verzi není součástí běžného sestavení.
 
