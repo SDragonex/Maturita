@@ -4,6 +4,7 @@ description = "Maturitní témata — ústní zkouška profilové části maturi
 date = 2026-01-01
 
 [extra]
+catalog = "aj"
 author = "Dany Chaker"
 pdf = "MZ-AJ.pdf"
 +++
