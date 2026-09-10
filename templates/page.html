@@ -7,7 +7,7 @@ page.summary %} {% set description = page.summary %} {% else %} {% set
 description = page.content %} {% endif %}
 <meta
   name="description"
-  content="{{ description | striptags | truncate(length=100) | safe }}"
+  content="{{ description | striptags | truncate(length=160) }}"
 />
 
 <!-- Open Graph / Facebook -->
@@ -20,13 +20,7 @@ description = page.content %} {% endif %}
 {% endif %}
 <meta property="article:section" content="{{ page.components | first }}" />
 
-{% endblock head %} {% block page_heading %} {%- if lang ==
-config.default_language %} {% set section_title = page.components[0] %} {%- else
-%} {% set section_title = page.components[1] %} {%- endif -%}
-<h1 class="title">
-  <a href="{{ get_url(path="@/_index.md", lang=lang) }}">{{ config.title }}</a>
-</h1>
-{% endblock page_heading %} {% block content %} {#
+{% endblock head %}  {% block content %} {#
 <pre
   style="
     font-size: xx-small;
@@ -48,21 +42,33 @@ config.default_language %} {% set section_title = page.components[0] %} {%- else
 #}
 
 <article class="content-article">
-  <main class="article-content">
+  <main class="article-content" data-pagefind-body>
+    <nav class="study-breadcrumb" aria-label="Drobečková navigace" data-pagefind-ignore>
+      <a href="{{ get_url(path="@/posts/rozcestnik.md") }}">Rozcestník přípravy</a>
+      {% if page.components[0] == "aj" %}
+      <span aria-hidden="true">/</span><a href="{{ get_url(path="@/posts/anglicky-jazyk.md") }}" data-pagefind-meta="subject">Anglický jazyk</a>
+      {% elif page.components[0] == "cjl" %}
+      <span aria-hidden="true">/</span><a href="{{ get_url(path="@/posts/cesky-jazyk-literatura.md") }}" data-pagefind-meta="subject">Český jazyk a literatura</a>
+      {% elif page.components[0] == "asw" %}
+      <span aria-hidden="true">/</span><a href="{{ get_url(path="@/posts/aplikacni-software.md") }}" data-pagefind-meta="subject">Aplikační software</a>
+      {% elif page.components[0] == "psp" %}
+      <span aria-hidden="true">/</span><a href="{{ get_url(path="@/posts/site-a-programovani.md") }}" data-pagefind-meta="subject">Počítačové sítě a programování</a>
+      {% endif %}
+    </nav>
     <div class="article-intro-container">
         <div class="intro-header">
             <h1 class="heading">{{ page.title }}</h1>
-            <div class="meta-line">
+            <div class="meta-line" data-pagefind-ignore>
                 {% if page.date %}
                 <span class="date">{{ page.date | date(format="%d. %m. %Y") }}</span>
                 {% endif %}
             </div>
         </div>
 
-        <div class="intro-body">
+        <div class="intro-body" data-pagefind-ignore>
             {% if page.description %}
             <div class="intro-abstract">
-                <div class="abstract-title">ABSTRAKT</div>
+                <div class="abstract-title">PŘEHLED</div>
                 <p class="description">{{ page.description }}</p>
             </div>
             {% endif %}
@@ -110,6 +116,13 @@ config.default_language %} {% set section_title = page.components[0] %} {%- else
     </div>
     
     {{ page.content | safe }}
+    {% if page.extra.subject %}
+    <nav class="topic-pagination" aria-label="Další studijní témata" data-pagefind-ignore>
+      {% if page.lower %}<a rel="prev" href="{{ page.lower.permalink }}">← {{ page.lower.title }}</a>{% endif %}
+      {% if page.higher %}<a rel="next" href="{{ page.higher.permalink }}">{{ page.higher.title }} →</a>{% endif %}
+    </nav>
+    {% endif %}
+
   </main>
   <br />
 </article>
