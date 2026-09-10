@@ -111,7 +111,7 @@
         > h2,
         > h3,
         > h4 {
-            font-family: 'STIX Two Text', 'Noto Serif SC', serif;
+            font-family: 'STIX Two Text', Georgia, serif;
         }
 
         > h2 {
@@ -217,7 +217,7 @@
     padding-bottom: 0.3em;
     border-bottom: 2px solid var(--border-color);
     display: inline-block;
-    font-family: 'STIX Two Text', 'Noto Serif SC', serif;
+    font-family: 'STIX Two Text', Georgia, serif;
 }
 
 .group-desc {
@@ -290,7 +290,7 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                font-family: 'STIX Two Text', 'Noto Serif SC', serif;
+                font-family: 'STIX Two Text', Georgia, serif;
             }
 
             .friend-desc {
@@ -395,7 +395,7 @@
     }
 
     .year-label {
-        font-family: 'STIX Two Text', 'Noto Serif SC', serif;
+        font-family: 'STIX Two Text', Georgia, serif;
         font-size: 1.8em;
         font-weight: bold;
         color: var(--text-color);
@@ -465,7 +465,7 @@
         margin-right: 1em;
 
         .date-text {
-            font-family: 'Ysabeau', 'LXGW Bright', sans-serif;
+            font-family: 'Ysabeau', sans-serif;
             font-style: italic;
             font-size: 0.9em;
             color: var(--text-color-light);
@@ -475,7 +475,7 @@
     }
 
     .post-link {
-        font-family: 'STIX Two Text', 'Noto Serif SC', serif;
+        font-family: 'STIX Two Text', Georgia, serif;
         font-size: 1.05em;
         color: var(--text-color);
         text-decoration: none;
@@ -511,6 +511,5 @@
     }
 }
 
-// Giallo line number theme imports
-@import url("giallo-dark.css") (prefers-color-scheme: dark);
-@import url("giallo-light.css") (prefers-color-scheme: light);
+// Syntax theme stylesheets are loaded in the document head so they also follow
+// the explicit theme switch, not only the operating system preference.
