@@ -1,4 +1,45 @@
 // Home Page Styles
+.study-home {
+    width: min(1080px, 100%);
+    margin: 0 auto;
+    padding: 2rem clamp(1rem, 4vw, 3rem) 3rem;
+    box-sizing: border-box;
+    .study-home-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: .78rem; flex-wrap: wrap; }
+    button { font: inherit; padding: .65rem .8rem; border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-color); background: var(--bg-color); cursor: pointer; }
+    .study-hero { max-width: 740px; padding: clamp(2rem, 6vw, 4rem) 0 2rem; }
+    .study-eyebrow { font-size: .85rem; letter-spacing: .16em; color: var(--text-color-light); }
+    h1 { font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.12; margin: .75rem 0 1.2rem; font-weight: 600; }
+    .study-hero > p:last-of-type { max-width: 600px; font-size: 1.15rem; line-height: 1.6; }
+    .home-search { margin-top: 1.5rem; max-width: 600px; }
+    .study-year-note { border-left: 3px solid var(--border-color); padding: .9rem 1.2rem; background: var(--code-bg); line-height: 1.6; }
+    .study-year-note strong, .study-year-note a { display: block; }
+    .study-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+    .study-section-heading h2 { font-size: 1.5rem; }
+    .study-subjects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .study-subject { display: block; padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 5px; text-decoration: none; color: var(--text-color); transition: background .15s; }
+    .study-subject:hover { background: var(--code-bg); }
+    .study-subject h3 { font-size: 1.45rem; margin: .6rem 0; }
+    .study-subject p { margin: 0 0 1.2rem; color: var(--text-color-light); line-height: 1.5; }
+    .study-subject-count { color: var(--text-color-light); font-size: .82rem; }
+    .study-subject-action { font-size: .9rem; }
+    .study-home-resources { margin-top: 2rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+    .study-home-resources a { border-top: 1px solid var(--border-color); padding-top: 1rem; text-decoration: none; }
+    .study-home-resources strong, .study-home-resources span { display: block; }
+    .study-home-resources span { margin-top: .5rem; color: var(--text-color-light); font-size: .9rem; line-height: 1.5; }
+    @media (max-width: 620px) { .study-subjects, .study-home-resources { grid-template-columns: 1fr; } }
+}
+
+.topic-pagination { display: flex; justify-content: space-between; gap: 1rem; margin: 2.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--border-color); flex-wrap: wrap; }
+.topic-pagination a { flex: 1 1 220px; }
+
+@media print {
+    #sidebar, .page-top, .page-footer, .topic-pagination, .skip-link { display: none !important; }
+    #main { width: 100% !important; margin: 0 !important; padding: 0 !important; }
+    .content { max-width: none !important; margin: 0 !important; padding: 0 !important; }
+    .intro-toc, .study-breadcrumb, .code-copy-btn { display: none !important; }
+    :root { color-scheme: light; }
+}
+
 .home-container {
     display: flex;
     flex-direction: column;
@@ -132,7 +173,7 @@
 
             a {
                 color: var(--text-color-light);
-                font-family: 'Source Han Serif CN VF', serif;
+                font-family: 'STIX Two Text', serif;
                 font-size: 1.1rem;
                 text-decoration: none;
                 position: relative;
@@ -178,7 +219,7 @@
     }
 
     .motto {
-        font-family: 'Ysabeau', 'LXGW Bright', sans-serif;
+        font-family: 'Ysabeau', sans-serif;
         font-style: italic;
         font-size: 0.9em;
         color: var(--text-color-light);
