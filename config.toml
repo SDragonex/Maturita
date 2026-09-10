@@ -1,30 +1,12 @@
 # The URL the site will be built for
 base_url = "https://sdragonex.github.io/Maturita"
 
-# The site title and description; used in feeds by default.
+# The site title and description.
 title = "Maturita 2027"
 description = "Studijní příprava · SŠTE Brno · Informační technologie"
 
-# When set to "true", a feed is automatically generated.
-generate_feeds = true
-feed_filenames = ["atom.xml", "rss.xml"]
+generate_feeds = false
 default_language = "cs"
-
-# The filename to use for the feed. Used as the template filename, too.
-# Defaults to "atom.xml", which has a builtin template that renders an Atom 1.0 feed.
-# There is also a builtin template "rss.xml" that renders an RSS 2.0 feed.
-# feed_filename = "atom.xml"
-
-# The taxonomies to be rendered for the site and their configuration.
-# Example:
-#     taxonomies = [
-#       {name = "tags", feed = true}, # each tag will have its own feed
-#       {name = "tags", lang = "fr"}, # you can have taxonomies with the same name in multiple languages
-#       {name = "categories", paginate_by = 5},  # 5 items per page for a term
-#       {name = "authors"}, # Basic definition: no feed or pagination
-#     ]
-#
-# taxonomies = []  # No taxonomies - tags removed
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
