@@ -20,18 +20,23 @@
 #sidebar {
   width: 25%;
   background-size: cover;
-  height: 100%;
-  top: 0;
+  height: calc(100% - var(--topbar-h));
+  top: var(--topbar-h);
   left: 8.333%;
   position: fixed;
   z-index: 4;
   background-color: var(--sidebar-bg);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   transition: transform 0.3s ease-in-out;
   padding-right: 4vw;
   box-sizing: border-box;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  overflow-y: auto;
+
+  .sidebar-close { display: none; }
 
   &::after {
     content: "";
@@ -44,11 +49,27 @@
   }
 
   @media screen and (max-width: 960px) {
-    width: 250px;
+    width: min(300px, 85vw);
+    height: 100%;
+    top: 0;
     left: 0;
     transform: translateX(-100%);
+    visibility: hidden;
     border-right: 1px solid var(--border-color);
-    padding-right: 0;
+    padding: 1rem;
+
+    .sidebar-close {
+      display: block;
+      align-self: flex-end;
+      flex-shrink: 0;
+      width: 2.75rem;
+      height: 2.75rem;
+      font-size: 1.6rem;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      cursor: pointer;
+    }
 
     &::after {
         display: none;
@@ -56,12 +77,14 @@
 
     &.open {
         transform: translateX(0);
+        visibility: visible;
     }
   }
 
   .logo-title {
     text-align: center;
-    flex-grow: 1;
+    flex-shrink: 0;
+    margin: auto 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -96,7 +119,7 @@
     }
 
     .motto {
-      font-family: 'Ysabeau', 'LXGW Bright', sans-serif;
+      font-family: 'Ysabeau', sans-serif;
       font-style: italic;
       font-size: 0.85em;
       color: var(--text-color-light);
@@ -160,7 +183,7 @@
         display: inline-block;
         position: relative;
         color: var(--text-color-light);
-        font-family: 'Ysabeau', 'LXGW Bright', sans-serif;
+        font-family: 'Ysabeau', sans-serif;
         font-size: 1em;
         font-style: italic;
         text-decoration: none;
@@ -201,12 +224,12 @@
   }
 
   .sidebar-nav {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8em;
-    margin-top: 2em;
-    padding-top: 2em;
+    gap: 0.4em;
+    margin-top: 1em;
+    padding-top: 1em;
     position: relative;
 
     &::before {
@@ -226,11 +249,11 @@
 
     a {
         color: var(--text-color-light);
-        font-family: 'Source Han Serif CN VF', serif;
-        font-size: 1.1em;
+        font-family: 'STIX Two Text', serif;
+        font-size: 1em;
         text-decoration: none;
         position: relative;
-        padding-bottom: 0.8em;
+        padding: 0.6em 0;
 
         &:hover {
             color: var(--text-color);
