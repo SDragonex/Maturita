@@ -98,7 +98,7 @@
     gap: 1.5em;
     height: 100%;
 
-    .back_btn, .theme_btn, .feed_btn, .avatar_btn {
+    .back_btn, .theme_btn, .avatar_btn {
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -127,68 +127,6 @@
 
       &:hover {
         color: var(--text-color);
-      }
-    }
-
-    .feed_btn {
-      position: relative;
-      height: auto;
-      display: block;
-      summary { list-style: none; }
-      summary::-webkit-details-marker { display: none; }
-
-      &[open] .feed-dropdown,
-      &.feed_btn:not(details):hover .feed-dropdown {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-
-      .feed-dropdown {
-        position: absolute;
-        top: calc(100% - 4px);
-        right: -8px;
-        background-color: var(--bg-color);
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        padding: 4px;
-        min-width: 5.5rem;
-        box-shadow: 0 4px 16px var(--shadow-color);
-        z-index: 10;
-        opacity: 0;
-        transform: translateY(-4px);
-        transition: opacity 0.15s ease, transform 0.15s ease;
-        pointer-events: none;
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: -5px;
-            right: 12px;
-            width: 8px;
-            height: 8px;
-            background: var(--bg-color);
-            border-left: 1px solid var(--border-color);
-            border-top: 1px solid var(--border-color);
-            transform: rotate(45deg);
-        }
-
-        a {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          padding: 6px 10px;
-          border-radius: 4px;
-          font-size: 0.85rem;
-          color: var(--text-color-light);
-          white-space: nowrap;
-          text-decoration: none;
-
-          &:hover {
-            background-color: var(--social-bg);
-            color: var(--text-color);
-          }
-        }
       }
     }
 
