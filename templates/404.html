@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ get_url(path='404.css') }}">
     <script>
         (function() {
-            var stored = localStorage.getItem("theme");
+            var stored = null; try { stored = localStorage.getItem("theme"); } catch (_) {}
             if (stored) { document.documentElement.style.colorScheme = stored; }
         })();
     </script>
@@ -200,10 +200,10 @@
             var effective = root.style.colorScheme || getPreferredScheme();
             var target = effective === 'dark' ? 'light' : 'dark';
             root.style.colorScheme = target;
-            localStorage.setItem("theme", target);
+            try { localStorage.setItem("theme", target); } catch (_) {}
             updateThemeIcon(target);
         }
-        (function() { updateThemeIcon(localStorage.getItem("theme") || getPreferredScheme()); })();
+        (function() { var saved = null; try { saved = localStorage.getItem("theme"); } catch (_) {} updateThemeIcon(saved || getPreferredScheme()); })();
         // Motto typewriter
         document.querySelectorAll('[data-mottos]').forEach(function(el) {
             var mottos = JSON.parse(el.dataset.mottos);
@@ -228,7 +228,7 @@
         // Tail wag
         (function() {
             var tail = document.getElementById('tail');
-            if (!tail) return;
+            if (!tail || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             var frame = 0;
             function animate() {
                 frame++;
