@@ -45,6 +45,9 @@ def check(site: Path, base_url: str, *, require_search: bool = True) -> list[str
     prefix = origin.path
     pages = {p.resolve(): Page(p.read_text(encoding='utf-8')) for p in site.rglob('*.html')}
     errors = []
+    for resource in ('atom.xml', 'rss.xml', 'feed.json'):
+        if (site / resource).exists():
+            errors.append(f'Removed subscription resource is still generated: {resource}')
     for path, page in pages.items():
         relative = path.relative_to(site).as_posix()
         # Zola emits an intentional redirect document at posts/page/1/.
