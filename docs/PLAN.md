@@ -1,5 +1,7 @@
 # Plán dokončení a kontrola kvality
 
+> **Aktuální priorita od 22. 9. 2026:** naplánovat úpravy rozhraní a vzhledu se zaměřením na čitelnost a formátování pro studium. Detailní návrh, etapy a akceptační kritéria jsou v [plánu rozhraní](UI-PLAN.md). Rozsáhlé doplňování učiva a přepracování literárních rozborů se v této etapě neprovádí.
+
 Výchozí audit: 8. 9. 2026. Aktualizace plánu: 10. 9. 2026. Cíl stanovený uživatelem: dokončit a průběžně dokumentovat studijní web pro **jaro a podzim 2027**, SŠTE Brno, Olomoucká, obor 18-20-M/01 Informační technologie.
 
 ## Výchozí problémy
