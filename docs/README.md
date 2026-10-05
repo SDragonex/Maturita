@@ -6,6 +6,7 @@ Dokumentace patří ke studijnímu webu pro **jaro a podzim 2027**. Zachycuje zp
 |---|---|
 | [Hlavní README](../README.md) | Rozsah projektu, závislosti a první sestavení |
 | [Plán dokončení](PLAN.md) | Etapy, kritéria dokončení a chybějící vstupy |
+| [Plán rozhraní a vzhledu](UI-PLAN.md) | Aktuální priorita: čitelnost, navigace, studijní formátování, mobil a tisk; včetně samostatného prototypu |
 | [Obsah a zdroje](OBSAH.md) | Struktura studijních textů, platnost podkladů a obsahová revize |
 | [Údržba a architektura](UDRZBA.md) | Cesta od Markdownu k webu, lokální náhled, testy a nasazení |
 | [Protokol ověření](OVERENI.md) | Skutečně provedené kontroly a jejich omezení |
