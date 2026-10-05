@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="cs" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Návrh studijní stránky · Maturita</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0c0e;--surface:#131619;--text:#e5e6e3;--muted:#a4aaa9;--line:#303637;--accent:#79d3c4;--soft:#162723;--reading-size:18px;--header-height:84px}
+:root[data-theme="light"]{color-scheme:light;--bg:#f8f7f4;--surface:#f0efea;--text:#242b2b;--muted:#596562;--line:#cfd5d0;--accent:#13695e;--soft:#e7f0eb}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-height) + 24px)}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif}button,input{font:inherit}button,a,input,summary{touch-action:manipulation}a{color:var(--accent);text-underline-offset:.2em}a:hover{text-decoration-thickness:2px}button{color:var(--text);background:none;border:1px solid var(--line);border-radius:6px;cursor:pointer}button:hover{background:var(--surface)}:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.skip{position:fixed;top:-100px;left:12px;z-index:20;background:var(--surface);padding:12px}.skip:focus{top:8px}.prototype-strip{height:28px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px;letter-spacing:.05em}.site-head{height:56px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 24px;background:var(--bg)}.top{position:sticky;top:0;z-index:5}.brand{font-size:14px;font-weight:650;letter-spacing:.09em;color:var(--text);text-decoration:none}.head-left,.controls{display:flex;align-items:center;gap:14px}.text-size{border:0;margin:0;padding:0;display:flex;gap:2px}.text-size button{width:44px;height:44px;border-color:transparent;font-size:14px}.text-size button[aria-pressed="true"]{color:var(--accent);background:var(--soft)}.theme-button{width:44px;height:44px;font-size:20px}.menu-button{display:none;width:44px;height:44px;font-size:19px}.layout{max-width:1480px;margin:auto;display:grid;grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 84px)}.left-rail{border-right:1px solid var(--line);padding:32px 20px;position:sticky;top:84px;height:calc(100dvh - 84px);overflow:auto}.rail-caption{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}.subject-nav{display:grid;gap:6px}.subject-nav a{padding:11px 12px;line-height:1.45;color:var(--muted);font-size:15px;text-decoration:none;border-left:2px solid transparent}.subject-nav a:hover{color:var(--text);background:var(--surface)}.subject-nav a[aria-current]{color:var(--accent);background:var(--soft);border-left-color:var(--accent)}.rail-divider{border:0;border-top:1px solid var(--line);margin:28px 0}.rail-note{font-size:14px;line-height:1.65;color:var(--muted)}.reading-area{padding:44px clamp(24px,4vw,64px) 72px;min-width:0}.article{max-width:68ch;margin:auto;font-family:Georgia,'STIX Two Text',serif;font-size:var(--reading-size);line-height:1.7}.breadcrumb{font:14px/1.6 system-ui,sans-serif;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.breadcrumb span{color:var(--muted)}.eyebrow{font:14px/1.5 system-ui,sans-serif;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}h1{font-size:clamp(32px,3.4vw,46px);line-height:1.16;font-weight:500;letter-spacing:-.035em;margin:0 0 18px}.lead{font-size:1.13em;line-height:1.6;color:var(--muted);margin:0 0 22px}.article-meta{display:flex;gap:16px;flex-wrap:wrap;font:14px/1.7 system-ui,sans-serif;color:var(--muted);padding-bottom:26px;border-bottom:1px solid var(--line)}.article h2{font-size:1.43em;font-weight:500;line-height:1.3;letter-spacing:-.015em;margin:2.15em 0 .65em}.article h3{font-size:1.12em;line-height:1.4;margin:1.5em 0 .6em}.article p{margin:0 0 1em}.article ul{padding-left:1.3em;margin:0 0 1.2em}.article li+li{margin-top:.35em}.article strong{font-weight:700}.article code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.83em}.article p code,.article li code{background:var(--surface);padding:2px 5px;border-radius:3px}.note{border-left:3px solid var(--accent);background:var(--soft);padding:16px 20px;margin:24px 0}.note-label{font:600 14px/1.5 system-ui,sans-serif;color:var(--accent);margin-bottom:7px}.note p{margin:0;font-size:.95em}.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:5px;margin:20px 0 10px}table{border-collapse:collapse;width:100%;font:14px/1.5 system-ui,sans-serif;text-align:left}caption{text-align:left;padding:13px 16px;color:var(--muted);font-size:14px;background:var(--surface)}th,td{padding:13px 16px;border-top:1px solid var(--line);white-space:nowrap}th{font-weight:600}td:last-child,th:last-child{text-align:right}.small-note{font:14px/1.6 system-ui,sans-serif;color:var(--muted)}.code-block{border:1px solid var(--line);border-radius:5px;overflow:hidden;margin:20px 0}.code-top{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--surface);font:14px/1.5 system-ui,sans-serif;letter-spacing:.06em}.copy-button{min-height:36px;padding:4px 10px;letter-spacing:0;font-size:14px}.code-block pre{margin:0;padding:18px;overflow:auto;font:15px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}.code-block code{font:inherit}.code-comment{color:var(--muted)}.practice{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;margin-top:24px}.practice-label{font:600 14px/1.5 system-ui,sans-serif;color:var(--accent);letter-spacing:.08em;margin-bottom:10px}.practice form{font-family:system-ui,sans-serif;font-size:14px;line-height:1.5;display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin:20px 0}.field{flex:1 1 180px;max-width:300px}.field label{display:block;font-size:14px;margin-bottom:8px;color:var(--muted)}.field input{width:100%;min-height:44px;padding:9px 12px;background:var(--surface);border:1px solid var(--line);border-radius:5px;color:var(--text)}.check-button{min-height:44px;padding:9px 15px;color:var(--accent)}.answer-status{font:14px/1.6 system-ui,sans-serif;color:var(--accent);min-height:1.6em}details.solution{font-size:.95em;margin-top:16px}details.solution summary{min-height:44px;cursor:pointer;font:600 14px/1.5 system-ui,sans-serif;display:list-item;align-content:center;color:var(--accent)}details.solution>div{padding:12px 0 0}.sources{border-top:1px solid var(--line);margin-top:38px;padding-top:20px}.sources p{font:15px/1.7 system-ui,sans-serif;color:var(--muted)}.page-end{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:38px;padding-top:20px;border-top:1px solid var(--line);font:15px/1.6 system-ui,sans-serif}.right-rail{display:none;padding:45px 20px 30px 8px;position:sticky;top:84px;height:calc(100dvh - 84px);overflow:auto}.toc-links{display:grid;gap:4px}.toc-links a{font:14px/1.5 system-ui,sans-serif;color:var(--muted);text-decoration:none;padding:8px 0}.toc-links a:hover{color:var(--accent)}.inline-toc{margin-top:22px;padding:12px 0;border-bottom:1px solid var(--line);font-family:system-ui,sans-serif}.inline-toc>summary{min-height:32px;cursor:pointer;font-size:15px;color:var(--accent)}.inline-toc .toc-links{padding:8px 0}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:28px;font-size:14px}.dialog-head button{height:44px;width:44px;font-size:23px}dialog{margin:0;padding:24px 18px;width:min(320px,90vw);height:100dvh;max-height:100dvh;max-width:100vw;background:var(--bg);color:var(--text);border:0;border-right:1px solid var(--line)}dialog::backdrop{background:#0009;backdrop-filter:blur(3px)}
+@media(min-width:1280px){.layout{grid-template-columns:220px minmax(0,1fr) 200px}.right-rail{display:block}.inline-toc{display:none}.reading-area{padding-left:42px;padding-right:42px}}
+@media(max-width:960px){.site-head{padding:0 14px}.head-left,.controls{gap:8px}.menu-button{display:block}.brand{font-size:14px}.text-size button{width:44px}.layout{display:block}.left-rail{display:none}.reading-area{padding:30px 18px 48px}.article{width:100%}.article h2{font-size:1.35em}h1{font-size:30px}.article-meta{display:none}.reading-area{padding-top:20px}.breadcrumb{margin-bottom:14px}.lead{font-size:1em;margin-bottom:14px}.inline-toc{margin-top:12px;padding:6px 0}.article h2{margin-top:1.4em}.breadcrumb{font-size:11px}.note{padding:14px 15px}th,td{padding:12px}.table-scroll{margin-right:0}.prototype-strip{font-size:10px}.article-meta{gap:6px 12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{:root,:root[data-theme]{color-scheme:light;--bg:#fff;--surface:#fff;--text:#111;--muted:#333;--line:#777;--accent:#111;--soft:#fff}body{background:#fff;color:#111}.top,.left-rail,.right-rail,.inline-toc,.controls,.page-end,.copy-button,.practice form{display:none!important}.layout{display:block}.reading-area{padding:0}.article{max-width:none;font-size:11pt;color:#111}.note,.code-block,.table-scroll{background:none}h2,h3{break-after:avoid}tr{break-inside:avoid}.code-block pre{white-space:pre-wrap}.article-meta{color:#333}}
+</style>
+</head>
+<body>
+<a class="skip" href="#ucivo">Přeskočit na učivo</a>
+<div class="top">
+<div class="prototype-strip">Návrh rozhraní · ukázka formátování</div>
+<header class="site-head">
+<div class="head-left"><button class="menu-button" id="open-menu" aria-label="Otevřít navigaci" aria-controls="mobile-menu" aria-haspopup="dialog">☰</button><a class="brand" href="http://127.0.0.1:8765/Maturita/">MATURITA</a></div>
+<div class="controls"><fieldset class="text-size"><legend class="sr-only">Velikost textu učiva</legend><button type="button" data-size="18" aria-pressed="true" aria-label="Velikost textu 18 pixelů">18</button><button type="button" data-size="20" aria-pressed="false" aria-label="Velikost textu 20 pixelů">20</button><button type="button" data-size="22" aria-pressed="false" aria-label="Velikost textu 22 pixelů">22</button></fieldset><button class="theme-button" id="theme-toggle" aria-label="Přepnout na světlý motiv" title="Přepnout na světlý motiv">☀</button></div>
+</header>
+</div>
+<div class="layout">
+<aside class="left-rail" aria-label="Předměty">
+<p class="rail-caption">Studijní příprava</p>
+<nav class="subject-nav" aria-label="Předměty v místním náhledu"><a href="http://127.0.0.1:8765/Maturita/posts/rozcestnik/">Přehled přípravy</a><a href="http://127.0.0.1:8765/Maturita/posts/cesky-jazyk-literatura/">Český jazyk a literatura</a><a href="http://127.0.0.1:8765/Maturita/posts/anglicky-jazyk/">Anglický jazyk</a><a href="http://127.0.0.1:8765/Maturita/posts/aplikacni-software/">Aplikační software</a><a aria-current="true" href="http://127.0.0.1:8765/Maturita/posts/site-a-programovani/">Sítě a programování</a></nav>
+<hr class="rail-divider"><p class="rail-note">Ukázka vzhledu jedné studijní stránky. Odkazy na předměty vedou do místního náhledu projektu.</p>
+</aside>
+<div class="reading-area">
+<main class="article" id="ucivo" tabindex="-1">
+<nav class="breadcrumb" aria-label="Drobečková navigace"><a href="http://127.0.0.1:8765/Maturita/posts/rozcestnik/">Příprava</a><span aria-hidden="true">/</span><a href="http://127.0.0.1:8765/Maturita/posts/site-a-programovani/">Sítě a programování</a></nav>
+<p class="eyebrow">PSP · otázka 07</p>
+<h1>Adresování v počítačových sítích</h1>
+<p class="lead">Jak adresa a maska společně určují síť — a jak poznat, které adresy mohou dostat její zařízení.</p>
+<div class="article-meta"><span>Ukázka čtení, tabulky a cvičení</span><span>Studijní text je zkrácený pro návrh</span></div>
+<details class="inline-toc"><summary>Obsah této ukázky</summary><nav class="toc-links" aria-label="Obsah tématu"><a href="#zaklad">Adresa a síťová maska</a><a href="#prefixy">Přehled prefixů</a><a href="#priklad">Praktický příklad</a><a href="#procviceni">Vyzkoušej si to</a><a href="#zdroj">Zdroj</a></nav></details>
+<section aria-labelledby="zaklad"><h2 id="zaklad">Adresa a síťová maska</h2><p>IPv4 adresa má 32 bitů. Obvykle ji zapisujeme jako čtyři čísla oddělená tečkami, například <code>192.168.10.42</code>. Samotná adresa ale neurčuje, které další zařízení patří do stejné sítě.</p><p>O rozdělení rozhoduje <strong>síťová maska</strong>. Zápis <code>/24</code> říká, že prvních 24 bitů adresy tvoří síťovou část. Zbývajících 8 bitů lze použít pro adresy uvnitř sítě.</p><aside class="note" aria-label="Důležité"><div class="note-label">Důležité</div><p>U běžné IPv4 podsítě nelze zařízení přidělit adresu sítě ani broadcast. Například prefix /24 nabízí 256 adres, z nichž je obvykle 254 použitelných pro zařízení.</p></aside></section>
+<section aria-labelledby="prefixy"><h2 id="prefixy">Přehled prefixů</h2><p>Delší prefix znamená více bitů pro síť a méně adres pro zařízení. Při návrhu podsítě proto začni počtem zařízení, která se do ní mají vejít.</p><div class="table-scroll" role="region" aria-label="Tabulka prefixů; při přesahu lze posouvat vodorovně" tabindex="0"><table><caption>Běžné IPv4 podsítě</caption><thead><tr><th scope="col">Prefix</th><th scope="col">Maska</th><th scope="col">Adresy zařízení</th></tr></thead><tbody><tr><td>/24</td><td>255.255.255.0</td><td>254</td></tr><tr><td>/26</td><td>255.255.255.192</td><td>62</td></tr><tr><td>/28</td><td>255.255.255.240</td><td>14</td></tr></tbody></table></div><p class="small-note">Počty platí pro běžné podsítě s oddělenou adresou sítě a broadcastem; /31 a /32 mají zvláštní použití.</p></section>
+<section aria-labelledby="priklad"><h2 id="priklad">Praktický příklad</h2><p>Zařízení má adresu <code>192.168.10.42/24</code>. Síťovou adresu získáme ponecháním síťové části a vynulováním části pro zařízení:</p><div class="code-block"><div class="code-top"><span>IPv4 · příklad zápisu</span><button class="copy-button" id="copy-code" type="button">Kopírovat</button></div><pre tabindex="0" aria-label="Ukázka adresování"><code id="code-example">IP adresa:     192.168.10.42/24
+Síť:           192.168.10.0
+První adresa:  192.168.10.1
+Poslední:      192.168.10.254
+Broadcast:     192.168.10.255</code></pre></div><p class="sr-only" id="copy-status" role="status"></p><p>Výchozí brána musí být ze zařízení dosažitelná. V této síti by mohla mít například adresu <code>192.168.10.1</code>, pokud je tak rozhraní směrovače skutečně nastavené.</p></section>
+<section aria-labelledby="procviceni"><h2 id="procviceni">Vyzkoušej si to</h2><div class="practice"><div class="practice-label">JEDNA OTÁZKA K POCHOPENÍ</div><p>Kolik použitelných adres zařízení nabízí běžná IPv4 podsíť s prefixem <strong>/26</strong>?</p><form id="practice-form"><div class="field"><label for="answer">Tvá odpověď · počet adres</label><input id="answer" name="answer" type="number" inputmode="numeric" min="0" step="1" required placeholder="Například 30" aria-describedby="answer-status"></div><button class="check-button" type="submit">Zkontrolovat</button></form><p class="answer-status" id="answer-status" role="status" aria-live="polite"></p><details class="solution"><summary>Zobrazit řešení a postup</summary><div><p>Na adresování zařízení zbývá <strong>32 − 26 = 6 bitů</strong>. To dává 2<sup>6</sup> = 64 adres. Po odečtení adresy sítě a broadcastu zbývá <strong>62 použitelných adres</strong>.</p></div></details></div><p class="small-note" style="margin-top:14px">Ukázka budoucí komponenty procvičování: odpověď ověřuje jen tento příklad a nic neukládá.</p></section>
+<section class="sources" aria-labelledby="zdroj"><h2 id="zdroj" style="margin-top:0;font-size:1.1em">Zdroj a souvislosti</h2><p><a href="https://www.rfc-editor.org/rfc/rfc4632" target="_blank" rel="noopener noreferrer">RFC 4632 — CIDR a zápis síťových prefixů</a><br>Tato stránka slouží ke kontrole návrhu rozhraní. Kompletní studijní materiál zůstává v projektu.</p></section>
+<nav class="page-end" aria-label="Další kroky"><a href="http://127.0.0.1:8765/Maturita/psp/07-ip-adresovani/">Otevřít skutečné téma v místním náhledu →</a><a href="#ucivo">Zpět na začátek ↑</a></nav>
+</main>
+</div>
+<aside class="right-rail"><p class="rail-caption">Na této stránce</p><nav class="toc-links" aria-label="Obsah tématu na velké obrazovce"><a href="#zaklad">Adresa a síťová maska</a><a href="#prefixy">Přehled prefixů</a><a href="#priklad">Praktický příklad</a><a href="#procviceni">Vyzkoušej si to</a><a href="#zdroj">Zdroj</a></nav></aside>
+</div>
+<dialog id="mobile-menu" aria-labelledby="menu-title"><div class="dialog-head"><strong id="menu-title">Studijní příprava</strong><button id="close-menu" aria-label="Zavřít navigaci">×</button></div><nav class="subject-nav" aria-label="Předměty na mobilu"><a href="http://127.0.0.1:8765/Maturita/posts/rozcestnik/">Přehled přípravy</a><a href="http://127.0.0.1:8765/Maturita/posts/cesky-jazyk-literatura/">Český jazyk a literatura</a><a href="http://127.0.0.1:8765/Maturita/posts/anglicky-jazyk/">Anglický jazyk</a><a href="http://127.0.0.1:8765/Maturita/posts/aplikacni-software/">Aplikační software</a><a aria-current="true" href="http://127.0.0.1:8765/Maturita/posts/site-a-programovani/">Sítě a programování</a></nav><hr class="rail-divider"><p class="rail-note">Odkazy vyžadují spuštěný místní náhled na portu 8765.</p></dialog>
+<script>
+'use strict';
+const root = document.documentElement;
+const themeButton = document.getElementById('theme-toggle');
+themeButton.addEventListener('click', () => {
+  const light = root.dataset.theme !== 'light';
+  root.dataset.theme = light ? 'light' : 'dark';
+  themeButton.textContent = light ? '☾' : '☀';
+  const label = light ? 'Přepnout na tmavý motiv' : 'Přepnout na světlý motiv';
+  themeButton.setAttribute('aria-label', label); themeButton.title = label;
+});
+document.querySelectorAll('[data-size]').forEach(button => button.addEventListener('click', () => {
+  root.style.setProperty('--reading-size', button.dataset.size + 'px');
+  document.querySelectorAll('[data-size]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+}));
+const dialog = document.getElementById('mobile-menu');
+const openMenu = document.getElementById('open-menu');
+openMenu.addEventListener('click', () => { dialog.showModal(); document.getElementById('close-menu').focus(); });
+document.getElementById('close-menu').addEventListener('click', () => dialog.close());
+dialog.addEventListener('close', () => openMenu.focus());
+dialog.addEventListener('click', event => { if (event.target === dialog && event.clientX > dialog.getBoundingClientRect().right) dialog.close(); });
+window.matchMedia('(min-width:961px)').addEventListener('change', event => { if (event.matches && dialog.open) dialog.close(); });
+document.getElementById('practice-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const correct = Number(document.getElementById('answer').value) === 62;
+  document.getElementById('answer-status').textContent = correct ? 'Správně: 62 použitelných adres. Postup najdeš v řešení.' : 'Ještě to zkus. Zbývá 6 bitů; odečti adresu sítě a broadcast.';
+});
+document.getElementById('copy-code').addEventListener('click', async () => {
+  const code = document.getElementById('code-example');
+  const status = document.getElementById('copy-status');
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+    await navigator.clipboard.writeText(code.textContent);
+    status.textContent = 'Ukázka byla zkopírována.';
+    document.getElementById('copy-code').textContent = 'Zkopírováno';
+  } catch (_) {
+    const range = document.createRange(); range.selectNodeContents(code);
+    const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
+    status.textContent = 'Ukázka je označena. Zkopíruj ji pomocí Ctrl+C nebo nabídky zařízení.';
+    document.getElementById('copy-code').textContent = 'Označeno — Ctrl+C';
+  }
+});
+let printedDetails = [];
+window.addEventListener('beforeprint', () => { printedDetails = [...document.querySelectorAll('details.solution:not([open])')]; printedDetails.forEach(item => item.open = true); });
+window.addEventListener('afterprint', () => { printedDetails.forEach(item => item.open = false); printedDetails = []; });
+</script>
+</body>
+</html>
