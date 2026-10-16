@@ -1,4 +1,4 @@
-﻿/* Study controls and readable layouts for small screens. */
+/* Study controls and readable layouts for small screens. */
 html[data-pf-theme="dark"] {
   --pf-background: #101317;
   --pf-text: #dedfe1;
@@ -10,10 +10,11 @@ html[data-pf-theme="dark"] {
 }
 
 .sidebar-nav a[aria-current] {
-  color: var(--text-color) !important;
-  font-weight: 700;
-  text-decoration: underline !important;
-  text-underline-offset: .3em;
+  color: var(--accent-color);
+  background-color: var(--soft-color);
+  border-left-color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .topic-position {
