@@ -1,14 +1,18 @@
 {% extends "_base.html" %}
 {% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
+{% block canonical %}{{ page.permalink | safe }}{% endblock canonical %}
 {% block head %}
 <!-- Primary Meta Tags -->
 {% if page.description %} {% set description = page.description %} {%- elif page.summary %} {% set description = page.summary %} {% else %} {% set description = page.content %} {% endif %}
 <meta name="description" content="{{ description | striptags | truncate(length=160) }}" />
+<meta name="author" content="{{ config.extra.author }}" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:title" content="{{ page.title }} | {{ config.title }}" />
+<meta property="og:description" content="{{ description | striptags | truncate(length=160) }}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{{ page.permalink | safe }}" />
+<meta property="og:site_name" content="{{ config.title }}" />
 {% if page.date %}
 <meta property="article:published_time" content="{{ page.date }}" />
 <meta property="article:modified_time" content="{% if page.updated %}{{ page.updated }}{% else %}{{ page.date }}{% endif %}" />
