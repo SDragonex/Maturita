@@ -1,14 +1,9 @@
 {% extends "_base.html" %}
-{% block title %}{{ page.title }} | {{ config.title
-}}{% endblock title %} {% block head %}
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
+{% block head %}
 <!-- Primary Meta Tags -->
-{% if page.description %} {% set description = page.description %} {%- elif
-page.summary %} {% set description = page.summary %} {% else %} {% set
-description = page.content %} {% endif %}
-<meta
-  name="description"
-  content="{{ description | striptags | truncate(length=160) }}"
-/>
+{% if page.description %} {% set description = page.description %} {%- elif page.summary %} {% set description = page.summary %} {% else %} {% set description = page.content %} {% endif %}
+<meta name="description" content="{{ description | striptags | truncate(length=160) }}" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:title" content="{{ page.title }} | {{ config.title }}" />
@@ -19,29 +14,10 @@ description = page.content %} {% endif %}
 <meta property="article:modified_time" content="{% if page.updated %}{{ page.updated }}{% else %}{{ page.date }}{% endif %}" />
 {% endif %}
 <meta property="article:section" content="{{ page.components | first }}" />
+{% endblock head %}
 
-{% endblock head %}  {% block content %} {#
-<pre
-  style="
-    font-size: xx-small;
-    height: 50vh;
-    overflow: auto;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    grid-column-start: 1;
-    grid-column-end: -1;
-    background-color: hsla(0, 0%, 90%, 1);
-  "
->
-    <code>
-      {{ __tera_context | escape }}
-    </code>
-  </pre>
-#}
-
-<article class="content-article">
+{% block content %}
+<article class="content-article{% if page.extra.catalog %} catalog-page{% endif %}">
   <main class="article-content" data-pagefind-body>
     <nav class="study-breadcrumb" aria-label="Drobečková navigace" data-pagefind-ignore>
       <a href="{{ get_url(path="@/posts/rozcestnik.md") }}">Rozcestník přípravy</a>
@@ -53,15 +29,32 @@ description = page.content %} {% endif %}
       <span aria-hidden="true">/</span><a href="{{ get_url(path="@/posts/aplikacni-software.md") }}" data-pagefind-meta="subject">Aplikační software</a>
       {% elif page.components[0] == "psp" %}
       <span aria-hidden="true">/</span><a href="{{ get_url(path="@/posts/site-a-programovani.md") }}" data-pagefind-meta="subject">Počítačové sítě a programování</a>
+      {% elif page.extra.catalog %}
+      <span aria-hidden="true">/</span><span data-pagefind-meta="subject">{{ page.title }}</span>
       {% endif %}
     </nav>
     <div class="article-intro-container">
         <div class="intro-header">
+            {% if page.extra.catalog %}
+            <p class="eyebrow" data-pagefind-ignore>Katalog · Přehled témat</p>
+            {% elif page.extra.subject and page.extra.cislo %}
+            <p class="eyebrow" data-pagefind-ignore>
+              {% if page.extra.subject == "aj" %}AJ · téma {% if page.extra.cislo < 10 %}0{% endif %}{{ page.extra.cislo }}
+              {% elif page.extra.subject == "cjl" %}ČJL · dílo {% if page.extra.cislo < 10 %}0{% endif %}{{ page.extra.cislo }}
+              {% elif page.extra.subject == "asw" %}ASW · téma {% if page.extra.cislo < 10 %}0{% endif %}{{ page.extra.cislo }}
+              {% elif page.extra.subject == "psp" %}PSP · otázka {% if page.extra.cislo < 10 %}0{% endif %}{{ page.extra.cislo }}
+              {% else %}{{ page.extra.subject | upper }} · {% if page.extra.cislo < 10 %}0{% endif %}{{ page.extra.cislo }}
+              {% endif %}
+            </p>
+            {% endif %}
             <h1 class="heading">{{ page.title }}</h1>
             <div class="meta-line" data-pagefind-ignore>
                 {% if page.extra.subject %}
                 {% set subject_section = get_section(path=page.extra.subject ~ "/_index.md") %}
-                <span class="topic-position">{{ page.extra.cislo }} z {{ subject_section.pages | length }}</span>
+                <span class="topic-position">Téma {{ page.extra.cislo }} z {{ subject_section.pages | length }}</span>
+                {% elif page.extra.catalog %}
+                {% set subject_section = get_section(path=page.extra.catalog ~ "/_index.md") %}
+                <span class="topic-position">{{ subject_section.pages | length }} {% if page.extra.catalog == "cjl" %}literárních děl{% else %}témat{% endif %}</span>
                 {% endif %}
                 {% if page.updated %}
                 <span class="date">Aktualizováno {{ page.updated | date(format="%d. %m. %Y") }}</span>
@@ -73,48 +66,32 @@ description = page.content %} {% endif %}
 
         <div class="intro-body" data-pagefind-ignore>
             {% if page.description %}
-            <div class="intro-abstract">
-                <div class="abstract-title">PŘEHLED</div>
-                <p class="description">{{ page.description }}</p>
-            </div>
+            <p class="lead description">{{ page.description }}</p>
             {% endif %}
 
             {% if page.toc and page.extra.toc | default(value=true) %}
-            <details class="intro-toc">
-                <summary class="toc-title">OBSAH</summary>
+            <details class="inline-toc intro-toc" data-pagefind-ignore>
+                <summary class="toc-title">{% if page.extra.catalog %}Kategorie a části{% else %}Obsah tohoto tématu{% endif %}</summary>
                 <div class="toc-wrapper">
-                <ul class="toc-list">
-                    <li class="toc-root">
-                        <a href="#" class="active-toc">{{ page.title }}</a>
-                        {% if page.toc %}
-                        <ul>
-                            {% for h1 in page.toc %}
-                            <li>
-                                <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
-                                {% if h1.children %}
-                                <ul>
-                                    {% for h2 in h1.children %}
-                                    <li>
-                                        <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
-                                        {% if h2.children %}
-                                        <ul>
-                                            {% for h3 in h2.children %}
-                                            <li>
-                                                <a href="{{ h3.permalink | safe }}">{{ h3.title }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                        {% endif %}
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                            </li>
+                <nav class="toc-links" aria-label="Obsah tématu v textu">
+                    {% for h1 in page.toc %}
+                    <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                    {% if h1.children %}
+                    <div class="toc-group">
+                        {% for h2 in h1.children %}
+                        <a href="{{ h2.permalink | safe }}" class="toc-sub">{{ h2.title }}</a>
+                        {% if h2.children %}
+                        <div class="toc-subgroup">
+                            {% for h3 in h2.children %}
+                            <a href="{{ h3.permalink | safe }}" class="toc-sub-sub">{{ h3.title }}</a>
                             {% endfor %}
-                        </ul>
+                        </div>
                         {% endif %}
-                    </li>
-                </ul>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </nav>
                 </div>
             </details>
             {% endif %}
@@ -125,8 +102,8 @@ description = page.content %} {% endif %}
     <div class="catalog-filter" data-catalog-prefix="{{ get_url(path=page.extra.catalog, trailing_slash=true) }}" data-pagefind-ignore hidden>
       <div class="catalog-filter-fields">
         <div class="catalog-query">
-          <label for="catalog-query">Filtrovat seznam</label>
-          <input id="catalog-query" type="search" placeholder="Název, autor nebo číslo…" autocomplete="off" aria-describedby="catalog-status">
+          <label for="catalog-query">Filtrovat tento seznam</label>
+          <input id="catalog-query" type="search" placeholder="Hledat dílo, autora nebo číslo…" autocomplete="off" aria-describedby="catalog-status">
         </div>
         <div class="catalog-category" hidden>
           <label for="catalog-category">Kategorie</label>
@@ -146,6 +123,28 @@ description = page.content %} {% endif %}
     {% endif %}
 
   </main>
-  <br />
 </article>
 {% endblock content %}
+
+{% block right_rail %}
+{% if page.toc and page.extra.toc | default(value=true) %}
+<aside class="right-rail" aria-label="Obsah tématu na této stránce" data-pagefind-ignore>
+  <p class="rail-caption">{% if page.extra.catalog %}Kategorie{% else %}Na této stránce{% endif %}</p>
+  <nav class="toc-links" aria-label="Obsah tématu na velké obrazovce">
+    {% for h1 in page.toc %}
+    <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+    {% if h1.children %}
+      {% for h2 in h1.children %}
+      <a href="{{ h2.permalink | safe }}" class="toc-sub">{{ h2.title }}</a>
+      {% if h2.children %}
+        {% for h3 in h2.children %}
+        <a href="{{ h3.permalink | safe }}" class="toc-sub-sub">{{ h3.title }}</a>
+        {% endfor %}
+      {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% endfor %}
+  </nav>
+</aside>
+{% endif %}
+{% endblock right_rail %}
