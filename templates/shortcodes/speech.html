@@ -1,0 +1,9 @@
+<section class="study-speech" lang="en">
+  <div class="speech-header" lang="cs">
+    <span class="speech-badge"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i> {{ badge | default(value="MODELOVÝ ÚSTNÍ PROJEV") }} ({{ level | default(value="B1/B2") }})</span>
+    {% if title %}<span class="speech-title">{{ title }}</span>{% endif %}
+  </div>
+  <div class="speech-body">
+    {{ body | markdown | safe }}
+  </div>
+</section>
