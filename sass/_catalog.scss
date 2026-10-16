@@ -1,0 +1,315 @@
+// Catalog & Subject List Styles
+.catalog-page {
+  .article-content {
+    max-width: var(--reading-max-width, 68ch);
+    margin: 0 auto;
+  }
+}
+
+.catalog-filter {
+  margin: 1.5rem 0 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface-color);
+  font-family: var(--font-ui);
+  scroll-margin-top: calc(var(--topbar-h) + 1rem);
+
+  .catalog-filter-fields {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.85rem;
+  }
+
+  .catalog-query {
+    flex: 2 1 240px;
+    min-width: 0;
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      font-size: var(--meta-size);
+      color: var(--text-color);
+    }
+
+    input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-size: 0.95rem;
+      font-family: var(--font-ui);
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: var(--accent-color);
+        outline: 2px solid var(--accent-color);
+        outline-offset: 1px;
+      }
+
+      &::placeholder {
+        color: var(--text-color-light);
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .catalog-category {
+    flex: 1 1 200px;
+    min-width: 0;
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      font-size: var(--meta-size);
+      color: var(--text-color);
+    }
+
+    select {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-size: 0.95rem;
+      font-family: var(--font-ui);
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &:focus {
+        border-color: var(--accent-color);
+        outline: 2px solid var(--accent-color);
+        outline-offset: 1px;
+      }
+    }
+  }
+
+  .catalog-clear {
+    min-height: 44px;
+    padding: 0.6rem 1.15rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+      background-color: var(--soft-color);
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  p[role="status"] {
+    margin: 0.75rem 0 0;
+    font-size: var(--meta-size);
+    color: var(--text-color-light);
+    font-weight: 500;
+    min-height: 1.4em;
+  }
+}
+
+.catalog-rules {
+  margin: 1.25rem 0 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--surface-color);
+  overflow: hidden;
+
+  summary.catalog-rules-summary {
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+    min-height: 44px;
+    box-sizing: border-box;
+
+    &:hover {
+      background: var(--soft-color);
+    }
+  }
+
+  .catalog-rules-content {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-color);
+
+    p, blockquote, table, ul, ol {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    hr {
+      margin: 1rem 0;
+    }
+  }
+}
+
+// Compact Catalog Table
+.article-content table.catalog-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0.75rem 0 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+
+  th {
+    background: var(--surface-color);
+    padding: 0.65rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-color-light);
+    border-bottom: 2px solid var(--border-color);
+    text-align: left;
+    font-family: var(--font-ui);
+
+    &:first-child {
+      width: 3.5rem;
+      min-width: 3.5rem;
+      text-align: center;
+    }
+  }
+
+  tbody tr {
+    transition: background-color 0.12s ease;
+
+    &:not(:last-child) td {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    &:hover {
+      background-color: var(--soft-color);
+    }
+  }
+
+  td {
+    padding: 0.75rem 0.85rem;
+    vertical-align: middle;
+    font-family: var(--font-ui);
+    line-height: 1.45;
+
+    &:first-child {
+      width: 3.5rem;
+      min-width: 3.5rem;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--text-color-light);
+      font-size: 0.9rem;
+    }
+
+    &:last-child {
+      a {
+        color: var(--text-color);
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+          color: var(--accent-color);
+          text-decoration: underline;
+        }
+
+        .catalog-author {
+          font-weight: 600;
+          color: var(--text-color);
+        }
+
+        .catalog-title {
+          color: var(--accent-color);
+        }
+      }
+    }
+  }
+}
+
+// Mobile Reflow for Catalog
+@media screen and (max-width: 600px) {
+  :root {
+    --pf-modal-max-width: 95vw;
+    --pf-modal-top: 5dvh;
+    --pf-modal-max-height: 90dvh;
+  }
+
+  .catalog-filter {
+    padding: 0.85rem;
+    margin: 1rem 0;
+
+    .catalog-filter-fields {
+      gap: 0.65rem;
+    }
+
+    .catalog-query,
+    .catalog-category {
+      flex: 1 1 100%;
+    }
+
+    .catalog-clear {
+      width: 100%;
+    }
+  }
+
+  .article-content table.catalog-table {
+    th, td {
+      padding: 0.6rem 0.65rem;
+    }
+
+    th:first-child,
+    td:first-child {
+      width: 2.75rem;
+      min-width: 2.75rem;
+      padding-left: 0.35rem;
+      padding-right: 0.35rem;
+    }
+
+    td:last-child a {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+@media print {
+  .catalog-filter,
+  .catalog-jump {
+    display: none !important;
+  }
+
+  .catalog-rules {
+    border: none !important;
+    background: none !important;
+
+    summary.catalog-rules-summary {
+      display: none !important;
+    }
+
+    .catalog-rules-content {
+      padding: 0 !important;
+      border: none !important;
+    }
+  }
+}
