@@ -1,6 +1,43 @@
 {% extends "_base.html" %}
 {% block title %}{{ config.title }} – SŠTE Brno{% endblock title %}
-{% block head %}<meta name="description" content="{{ config.description }}">{% endblock head %}
+{% block canonical %}{{ config.base_url }}/{% endblock canonical %}
+{% block head %}
+<meta name="description" content="{{ config.description }}">
+<meta name="author" content="{{ config.extra.author }}">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ config.base_url }}/">
+<meta property="og:title" content="{{ config.title }} – SŠTE Brno">
+<meta property="og:description" content="{{ config.description }}">
+<meta property="og:site_name" content="{{ config.title }}">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ config.title }} – SŠTE Brno">
+<meta name="twitter:description" content="{{ config.description }}">
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ config.title }}",
+  "url": "{{ config.base_url }}/",
+  "description": "{{ config.description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ config.extra.author }}",
+    "url": "https://github.com/SDragonex"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ config.base_url }}/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endblock head %}
 {% block content %}
 <main class="study-home">
   <header class="study-home-header">
