@@ -18,7 +18,7 @@
 
 {% block content %}
 <article class="content-article{% if page.extra.catalog %} catalog-page{% endif %}">
-  <main class="article-content" data-pagefind-body>
+  <main class="article-content" {% if page.extra.unindexed %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <nav class="study-breadcrumb" aria-label="Drobečková navigace" data-pagefind-ignore>
       <a href="{{ get_url(path="@/posts/rozcestnik.md") }}">Rozcestník přípravy</a>
       {% if page.components[0] == "aj" %}
@@ -31,12 +31,16 @@
       <span aria-hidden="true">/</span><a href="{{ get_url(path="@/posts/site-a-programovani.md") }}" data-pagefind-meta="subject">Počítačové sítě a programování</a>
       {% elif page.extra.catalog %}
       <span aria-hidden="true">/</span><span data-pagefind-meta="subject">{{ page.title }}</span>
+      {% elif page.extra.unindexed %}
+      <span aria-hidden="true">/</span><span>{{ page.title }}</span>
       {% endif %}
     </nav>
     <div class="article-intro-container">
         <div class="intro-header">
             {% if page.extra.catalog %}
             <p class="eyebrow" data-pagefind-ignore>Katalog · Přehled témat</p>
+            {% elif page.extra.unindexed %}
+            <p class="eyebrow" data-pagefind-ignore>Design systém · Vzorová referenční stránka</p>
             {% elif page.extra.subject and page.extra.cislo %}
             <p class="eyebrow" data-pagefind-ignore>
               {% if page.extra.subject == "aj" %}AJ · téma {% if page.extra.cislo < 10 %}0{% endif %}{{ page.extra.cislo }}
@@ -55,6 +59,8 @@
                 {% elif page.extra.catalog %}
                 {% set subject_section = get_section(path=page.extra.catalog ~ "/_index.md") %}
                 <span class="topic-position">{{ subject_section.pages | length }} {% if page.extra.catalog == "cjl" %}literárních děl{% else %}témat{% endif %}</span>
+                {% elif page.extra.unindexed %}
+                <span class="topic-position">Interní referenční vzor</span>
                 {% endif %}
                 {% if page.updated %}
                 <span class="date">Aktualizováno {{ page.updated | date(format="%d. %m. %Y") }}</span>
