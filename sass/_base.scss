@@ -1,4 +1,4 @@
-*, *::before, *::after { box-sizing: border-box; }
+﻿*, *::before, *::after { box-sizing: border-box; }
 body, h1, h2, h3, h4, p, ul, ol, figure, figcaption, blockquote, dl, dd { margin: 0; }
 body { min-height: 100vh; }
 img, picture { max-width: 100%; display: block; }
@@ -13,7 +13,7 @@ html {
 }
 
 :focus-visible {
-    outline: 2px solid var(--text-color-light);
+    outline: 2px solid var(--accent-color);
     outline-offset: 2px;
 }
 
@@ -22,21 +22,21 @@ a:focus:not(:focus-visible) {
 }
 
 a {
-    text-decoration: none;
-    color: var(--text-color);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    color: var(--accent-color);
 }
 
 a:hover {
-    color: var(--text-color-light);
+    color: var(--accent-color);
+    text-decoration-thickness: 2px;
 }
 
 em, i {
-    font-family: 'STIX Two Text', Georgia, serif;
     font-style: italic;
 }
 
 strong, b {
-    font-family: 'STIX Two Text', Georgia, serif;
     font-weight: bold;
 }
 
@@ -75,8 +75,8 @@ dt {
 }
 
 code {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.87em;
+    font-family: var(--font-mono);
+    font-size: var(--code-size);
 }
 
 hr {
@@ -100,11 +100,11 @@ hr {
 .body-block {
     margin: 0 auto 0 auto;
     color: var(--text-color);
-    font-family: 'STIX Two Text', Georgia, serif;
+    font-family: var(--font-reading);
     background-color: var(--bg-color);
 
     h1, h2, h3, h4 {
-        font-family: 'STIX Two Text', Georgia, serif;
+        font-family: var(--font-reading);
     }
 
     > .content-block {
@@ -302,8 +302,7 @@ hr {
   text-align: center;
   color: var(--text-color-light);
   font-size: small;
-  font-family: 'Ysabeau', sans-serif;
-  font-style: italic;
+  font-family: var(--font-ui);
   position: relative;
 
   &::before {
@@ -366,8 +365,19 @@ hr {
 .study-breadcrumb {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 0.75rem;
+    align-items: center;
+    gap: 0.4rem 0.6rem;
     margin-bottom: 1.25rem;
-    font-size: 0.95rem;
-    a { text-decoration: underline; }
+    font-family: var(--font-ui);
+    font-size: var(--meta-size);
+    color: var(--text-color-light);
+    a {
+        text-decoration: underline;
+        color: var(--text-color-light);
+        &:hover { color: var(--text-color); }
+    }
+    span {
+        color: var(--text-color-light);
+        opacity: 0.6;
+    }
 }
