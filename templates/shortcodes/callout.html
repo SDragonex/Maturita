@@ -1,0 +1,23 @@
+{% set kind = type | default(value="note") -%}
+<aside class="study-callout study-callout-{{ kind }}" role="note">
+  <div class="callout-header">
+    <span class="callout-icon" aria-hidden="true">
+      {% if kind == "tip" %}<i class="fa-solid fa-lightbulb"></i>
+      {% elif kind == "important" %}<i class="fa-solid fa-circle-exclamation"></i>
+      {% elif kind == "warning" %}<i class="fa-solid fa-triangle-exclamation"></i>
+      {% elif kind == "mistake" or kind == "danger" %}<i class="fa-solid fa-circle-xmark"></i>
+      {% else %}<i class="fa-solid fa-circle-info"></i>{% endif %}
+    </span>
+    <span class="callout-title">
+      {% if title %}{{ title }}
+      {% elif kind == "tip" %}Tip
+      {% elif kind == "important" %}Důležité
+      {% elif kind == "warning" %}Varování
+      {% elif kind == "mistake" or kind == "danger" %}Častá chyba
+      {% else %}Poznámka{% endif %}
+    </span>
+  </div>
+  <div class="callout-body">
+    {{ body | markdown | safe }}
+  </div>
+</aside>
