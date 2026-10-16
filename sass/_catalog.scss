@@ -171,20 +171,22 @@
 
 // Compact Catalog Table
 .article-content table.catalog-table {
-  width: 100%;
+  display: table !important;
+  width: 100% !important;
   border-collapse: separate;
   border-spacing: 0;
   margin: 0.75rem 0 2rem;
   border: 1px solid var(--border-color);
   border-radius: 6px;
+  background: var(--surface-color);
   overflow: hidden;
 
   th {
-    background: var(--surface-color);
+    background: var(--table-header-bg);
     padding: 0.65rem 0.85rem;
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-color-light);
+    color: var(--text-color);
     border-bottom: 2px solid var(--border-color);
     text-align: left;
     font-family: var(--font-ui);
