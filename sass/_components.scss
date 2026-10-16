@@ -1,4 +1,4 @@
-@use 'variables' as *;
+﻿@use 'variables' as *;
 
 @keyframes details-show {
     from {
@@ -20,10 +20,11 @@
         align-items: center;
         gap: var(--space-sm);
         list-style: none;
-        color: var(--text-color);
+        color: var(--accent-color);
         user-select: none;
-        font-weight: 700;
-        font-size: 0.85em;
+        font-family: var(--font-ui);
+        font-weight: 600;
+        font-size: var(--ui-size);
         letter-spacing: 0.04em;
         transition: color 0.15s ease;
 
@@ -73,8 +74,10 @@
         > p,
         > dl,
         > table {
-            line-height: 1.6em;
-            margin-bottom: var(--space-md);
+            font-family: var(--font-reading);
+            font-size: var(--reading-size);
+            line-height: var(--reading-line-height);
+            margin-bottom: 1em;
         }
 
         > p:last-child,
@@ -85,11 +88,14 @@
 
         > ul,
         > ol {
-            margin: 0 0 var(--space-md) 2em;
+            font-family: var(--font-reading);
+            font-size: var(--reading-size);
+            line-height: var(--reading-line-height);
+            margin: 0 0 1.2em 1.4em;
             padding-left: 0;
 
             li {
-                line-height: 1.6em;
+                line-height: var(--reading-line-height);
             }
 
             &:last-child {
@@ -98,10 +104,12 @@
         }
 
         > blockquote {
-            border-left: 3px solid var(--border-color);
-            padding: var(--space-sm) 0 var(--space-sm) 1em;
-            line-height: 1.6em;
-            margin-bottom: var(--space-md);
+            border-left: 3px solid var(--accent-color);
+            background: var(--soft-color);
+            border-radius: 6px;
+            padding: var(--space-12) var(--space-16);
+            line-height: var(--reading-line-height);
+            margin-bottom: 1em;
 
             &:last-child {
                 margin-bottom: 0;
@@ -111,25 +119,30 @@
         > h2,
         > h3,
         > h4 {
-            font-family: 'STIX Two Text', Georgia, serif;
+            font-family: var(--font-reading);
+            color: var(--text-color);
+            font-weight: 600;
         }
 
         > h2 {
-            margin-top: var(--space-xl);
-            margin-bottom: var(--space-md);
-            font-size: 1.8em;
+            margin-top: var(--space-24);
+            margin-bottom: var(--space-8);
+            font-size: var(--h2-size);
+            line-height: 1.3;
         }
 
         > h3 {
-            margin-top: var(--space-lg);
-            margin-bottom: var(--space-sm);
-            font-size: 1.4em;
+            margin-top: var(--space-16);
+            margin-bottom: var(--space-8);
+            font-size: var(--h3-size);
+            line-height: 1.35;
         }
 
         > h4 {
-            margin-top: var(--space-md);
-            margin-bottom: var(--space-xs);
-            font-size: 1.2em;
+            margin-top: var(--space-12);
+            margin-bottom: var(--space-4);
+            font-size: var(--h4-size);
+            line-height: 1.4;
         }
 
         // keep code/headers readable if they open as the first child
@@ -465,7 +478,7 @@
         margin-right: 1em;
 
         .date-text {
-            font-family: 'Ysabeau', sans-serif;
+            font-family: var(--font-ui);
             font-style: italic;
             font-size: 0.9em;
             color: var(--text-color-light);
@@ -513,3 +526,5 @@
 
 // Syntax theme stylesheets are loaded in the document head so they also follow
 // the explicit theme switch, not only the operating system preference.
+
+
