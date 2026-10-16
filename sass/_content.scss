@@ -722,7 +722,7 @@
 
     width: 100%;
 
-    margin: 0;
+    margin: 0 auto;
 
     font-family: var(--font-reading);
 
@@ -1692,40 +1692,60 @@
 
 }
 
-.content {
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  max-width: 1480px;
+  margin: 0 auto;
+  min-height: calc(100vh - var(--topbar-h));
 
-  height: auto;
-
-  float: right;
-
-  width: 58.333%;
-
-  margin-right: 8.333%;
-
-  margin-top: calc(var(--topbar-h) + 1.5rem);
-
-  padding-left: 2rem;
-
-  box-sizing: border-box;
-
-  min-height: calc(100vh - var(--topbar-h) - 5rem);
-
-  @media screen and (max-width: 960px) {
-
-    width: 100%;
-
-    float: none;
-
-    margin-right: 0;
-
-    margin-top: calc(var(--topbar-h) + 1rem);
-
-    padding-left: 1.25rem;
-
-    padding-right: 1.25rem;
-
+  &:has(.right-rail) {
+    @media (min-width: 1280px) {
+      grid-template-columns: 220px minmax(0, 1fr) 200px;
+    }
   }
 
+  @media screen and (max-width: 960px) {
+    display: block;
+  }
+
+  &.home-layout {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.main-wrapper {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--topbar-h));
+
+  &.home-wrapper {
+    min-height: auto;
+  }
+}
+
+.reading-area {
+  min-width: 0;
+  width: 100%;
+  padding: 2.5rem clamp(1.25rem, 3.5vw, 3rem) 4.5rem;
+  box-sizing: border-box;
+  flex: 1 0 auto;
+
+  @media screen and (max-width: 960px) {
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  &.home-content {
+    padding: 0;
+  }
+}
+
+.content {
+  height: auto;
+  box-sizing: border-box;
 }
 
 /* Article Intro Container */
@@ -1736,6 +1756,16 @@
 
     .intro-header {
         margin-bottom: var(--space-16, 1rem);
+
+        .eyebrow {
+            font-family: var(--font-ui);
+            font-size: var(--meta-size, 0.875rem);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-color-light);
+            margin: 0 0 0.5rem;
+            font-weight: 600;
+        }
 
         .heading {
             font-family: var(--font-reading);
@@ -1772,9 +1802,16 @@
     .intro-body {
         display: flex;
         flex-direction: column;
-        gap: var(--space-16, 1rem);
-        padding-left: 1.25rem;
-        border-left: 2px solid var(--border-color);
+        gap: var(--space-12, 0.75rem);
+        margin-top: var(--space-12, 0.75rem);
+
+        .lead {
+            font-family: var(--font-reading);
+            font-size: 1.15em;
+            line-height: 1.6;
+            color: var(--text-color-light);
+            margin: 0 0 0.5rem;
+        }
 
         .intro-abstract {
             position: relative;
@@ -1998,5 +2035,21 @@ sup.footnote-reference {
 
     opacity: 0.8;
 
+}
+
+@media print {
+  .layout {
+    display: block !important;
+    max-width: none !important;
+  }
+  .main-wrapper,
+  .reading-area {
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+  .content-article .article-content {
+    max-width: none !important;
+    font-size: 11pt !important;
+  }
 }
 
