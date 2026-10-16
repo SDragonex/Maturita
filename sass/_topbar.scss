@@ -1,74 +1,77 @@
 .page-top {
   width: 100%;
-  position: fixed;
+  position: sticky;
   top: 0;
-  right: 0;
   z-index: 100;
   height: var(--topbar-h);
   background-color: var(--sidebar-bg);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 4vw;
 
-  @media screen and (max-width: 960px) {
-    padding: 0 20px;
+  .site-head-inner {
+    width: 100%;
+    max-width: 1480px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 clamp(1rem, 2.5vw, 1.5rem);
+    box-sizing: border-box;
+
+    @media screen and (max-width: 600px) {
+      padding: 0 0.75rem;
+      gap: 0.5rem;
+    }
   }
 
-  .nav {
+  .head-left {
     display: flex;
-    gap: 2em;
     align-items: center;
-    height: 100%;
+    gap: 0.75rem;
+    flex-shrink: 0;
 
-    @media screen and (max-width: 960px) {
-        display: none;
-    }
-
-    a {
-      color: var(--text-color-light);
-      font-family: 'STIX Two Text', serif;
-      font-size: 1.1rem;
-      text-decoration: none;
-      position: relative;
-      transition: color 0.2s ease;
-      padding: 0.5em 0;
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text-color);
+      font-size: 1.15rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease;
 
       &:hover {
-        color: var(--text-color);
+        background-color: var(--surface-color);
       }
 
-      /* Separator */
-      &:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        right: -1.05em;
-        top: 50%;
-        transform: translateY(-50%) rotate(15deg);
-        width: 1px;
-        height: 0.8em;
-        background-color: var(--text-color-light);
-        opacity: 0.2;
+      @media screen and (max-width: 960px) {
+        display: flex;
       }
+    }
 
-      &.active {
-        color: var(--text-color);
-        font-weight: 600;
+    .brand {
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-color);
+      text-decoration: none;
+      white-space: nowrap;
 
-        /* Active Dot */
-        &::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            background-color: var(--text-color);
-            border-radius: 50%;
-        }
+      &:hover {
+        color: var(--accent-color);
       }
     }
   }
@@ -79,79 +82,61 @@
     height: 100%;
     flex: 1 1 auto;
     min-width: 0;
-    max-width: 320px;
-    margin: 0 1.5em;
-
-    @media screen and (max-width: 960px) {
-      margin: 0 0.5em;
-      max-width: 220px;
-    }
+    max-width: 360px;
+    margin: 0 0.5rem;
 
     pagefind-searchbox {
       width: 100%;
+      min-width: 0;
     }
   }
 
-  .information {
+  .controls {
     display: flex;
     align-items: center;
-    gap: 1.5em;
-    height: 100%;
+    gap: 0.5rem;
+    flex-shrink: 0;
 
-    .back_btn, .theme_btn, .avatar_btn {
-      cursor: pointer;
+    .back_btn,
+    .theme_btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-color-light);
-      transition: color 0.2s ease;
-      font-size: 1.1rem;
-      min-width: 2.75rem;
-      min-height: 2.75rem;
 
-      a, button, summary {
+      button {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: inherit;
-      }
-
-      button, summary {
-        min-width: 2.75rem;
-        min-height: 2.75rem;
-        padding: 0.35rem;
-        border: 0;
-        background: none;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text-color-light);
+        font-size: 1rem;
         cursor: pointer;
-      }
+        transition: color 0.15s ease, background-color 0.15s ease;
 
-      &:hover {
-        color: var(--text-color);
+        &:hover {
+          color: var(--text-color);
+          background-color: var(--surface-color);
+        }
       }
     }
 
-    .avatar_btn {
-        cursor: pointer;
+    @media screen and (max-width: 480px) {
+      .back_btn {
         display: none;
-        font-size: 1.2rem;
-        @media screen and (max-width: 960px) {
-            display: inline-block;
-        }
+      }
     }
   }
 }
 
-@media screen and (max-width: 600px) {
-    .page-top {
-        padding: 0 0.5rem;
-        gap: 0.25rem;
-        .information { gap: 0; }
-        .search-block { margin: 0; max-width: none; }
-        .information .back_btn { display: none; }
-    }
-}
 pagefind-searchbox {
-    display: block;
-    width: 100%;
-    min-width: 0;
+  display: block;
+  width: 100%;
+  min-width: 0;
 }
