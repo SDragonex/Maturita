@@ -4,42 +4,116 @@
 {% block content %}
 <main class="study-home">
   <header class="study-home-header">
-    <a href="{{ get_url(path="@/about/index.md") }}">SŠTE BRNO · INFORMAČNÍ TECHNOLOGIE</a>
-    <button type="button" onclick="toggleTheme()" aria-label="Přepnout motiv">Světlý / tmavý motiv</button>
+    <a class="home-school-badge" href="{{ get_url(path="@/about/index.md") }}">
+      <span class="badge-dot" aria-hidden="true"></span>
+      <span>SŠTE Brno · Informační technologie</span>
+    </a>
+    <div class="study-home-controls">
+      <button type="button" class="home-ctrl-btn" onclick="openReadingDialog()" aria-label="Vzhled a čtení" title="Nastavení vzhledu a písma">
+        <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+        <span>Vzhled</span>
+      </button>
+      <button type="button" class="home-ctrl-btn" onclick="toggleTheme()" aria-label="Přepnout motiv" title="Přepnout světlý / tmavý motiv">
+        <i class="fas fa-moon" id="home-theme-icon" aria-hidden="true"></i>
+        <span>Motiv</span>
+      </button>
+      <a class="home-ctrl-link" href="{{ get_url(path="@/about/index.md") }}">O projektu</a>
+    </div>
   </header>
+
   <section class="study-hero" aria-labelledby="home-title">
-    <p class="study-eyebrow">JARO / PODZIM 2027</p>
-    <h1 id="home-title">Připrav se. Pochop souvislosti.</h1>
-    <p>Jazyky, literatura a IT na jednom místě. Vyber téma, projdi příklad a zkus odpovědět bez poznámek.</p>
-    <div class="home-search"><pagefind-searchbox placeholder="Hledat téma, knihu nebo pojem…"></pagefind-searchbox></div>
-    <noscript>Vyhledávání vyžaduje JavaScript. Předměty a všechny výklady jsou dostupné přes odkazy níže.</noscript>
+    <div class="study-eyebrow">
+      <span class="eyebrow-tag">JARO / PODZIM 2027</span>
+      <span class="eyebrow-sep">·</span>
+      <span>MATURITNÍ ZKOUŠKA IT</span>
+    </div>
+    <h1 id="home-title">Maturitní příprava 2027</h1>
+    <p class="study-hero-lead">Přehledné učivo, řešené příklady a literární přehledy na jednom místě. Vyber předmět, projdi postup a otestuj znalosti bez poznámek.</p>
+    <div class="home-search">
+      <pagefind-searchbox placeholder="Hledat téma, knihu, příkaz nebo pojem…"></pagefind-searchbox>
+    </div>
+    <noscript><p class="no-js-note">Vyhledávání vyžaduje JavaScript. Všechny předměty a studijní témata jsou plně dostupné přes odkazy níže.</p></noscript>
   </section>
-  <aside class="study-year-note">
-    <strong>Jarní testy: 3.–6. května 2027.</strong>
-    Školní seznamy vycházejí z podkladů 2026; jejich platnost pro 2027 čeká na potvrzení.
-    <a href="{{ get_url(path="@/posts/jak-maturita-funguje.md") }}">Termíny a ověřené zdroje →</a>
+
+  <aside class="study-year-note" aria-label="Informace o termínech a platnosti podkladů">
+    <div class="year-note-icon"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
+    <div class="year-note-content">
+      <strong>Jarní didaktické testy: 3.–6. května 2027</strong>
+      <p>Školní seznamy a okruhy vycházejí z podkladů 2026; jejich platnost pro rok 2027 čeká na oficiální potvrzení školou. <a href="{{ get_url(path="@/posts/jak-maturita-funguje.md") }}">Termíny, pravidla a ověřené zdroje →</a></p>
+    </div>
   </aside>
-  <section aria-labelledby="subjects-title">
-    <div class="study-section-heading"><h2 id="subjects-title">Co dnes procvičíš?</h2><a href="{{ get_url(path="@/posts/studijni-plan.md") }}">Studijní plán →</a></div>
+
+  <section class="home-subjects-section" aria-labelledby="subjects-title">
+    <div class="study-section-heading">
+      <h2 id="subjects-title">Maturitní předměty</h2>
+      <a class="study-plan-link" href="{{ get_url(path="@/posts/studijni-plan.md") }}">
+        <i class="fa-solid fa-list-check" aria-hidden="true"></i> Studijní plán →
+      </a>
+    </div>
     <div class="study-subjects">
       {% for item in [
-        {"key":"aj", "name":"Anglický jazyk", "slug":"anglicky-jazyk", "text":"Slovní zásoba, modelové projevy a rozhovory."},
-        {"key":"cjl", "name":"Český jazyk a literatura", "slug":"cesky-jazyk-literatura", "text":"Přehledy knih, souvislosti a práce s ukázkou."},
-        {"key":"asw", "name":"Aplikační software", "slug":"aplikacni-software", "text":"Grafika, 3D, dokumenty, databáze a web."},
-        {"key":"psp", "name":"Sítě a programování", "slug":"site-a-programovani", "text":"Adresace, servery, C# a aplikace ve WPF."}
+        {"key":"aj", "name":"Anglický jazyk", "slug":"anglicky-jazyk", "icon":"fa-earth-americas", "desc":"Slovní zásoba, témata reálií a ČR, modelové ústní projevy a doplňující otázky."},
+        {"key":"cjl", "name":"Český jazyk a literatura", "slug":"cesky-jazyk-literatura", "icon":"fa-book-open", "desc":"Kánon 97 děl, literárněhistorický kontext, kompozice, postavy a rozbory uměleckého textu."},
+        {"key":"asw", "name":"Aplikační software", "slug":"aplikacni-software", "icon":"fa-cubes", "desc":"Rastrová a vektorová grafika, 3D modelování, relační databáze, SQL dotazy a webové technologie."},
+        {"key":"psp", "name":"Sítě a programování", "slug":"site-a-programovani", "icon":"fa-network-wired", "desc":"IP adresace, směrování a přepínání, C#, objektově orientované programování a aplikace ve WPF."}
       ] %}
       {% set topics = get_section(path=item.key ~ "/_index.md") %}
       <a class="study-subject" href="{{ get_url(path="@/posts/" ~ item.slug ~ ".md") }}">
-        <span class="study-subject-count">{{ topics.pages | length }} {% if item.key == "cjl" %}literárních přehledů{% else %}témat{% endif %}</span>
-        <h3>{{ item.name }}</h3><p>{{ item.text }}</p><span class="study-subject-action">Otevřít předmět →</span>
+        <div class="study-subject-top">
+          <span class="study-subject-count">{{ topics.pages | length }} {% if item.key == "cjl" %}literárních děl{% else %}maturitních témat{% endif %}</span>
+          <span class="study-subject-icon"><i class="fa-solid {{ item.icon }}" aria-hidden="true"></i></span>
+        </div>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.desc }}</p>
+        <span class="study-subject-action">Otevřít katalog témat <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </a>
       {% endfor %}
     </div>
   </section>
-  <section class="study-home-resources" aria-label="Další příprava">
-    <a href="{{ get_url(path="@/posts/maturitni-prace.md") }}"><strong>Maturitní práce</strong><span>Od zadání přes dokumentaci k obhajobě →</span></a>
-    <a href="{{ get_url(path="@/posts/rozbor-literatury.md") }}"><strong>Jak rozebrat knihu</strong><span>Výběr, vydání a nácvik s ukázkou →</span></a>
-    <a href="{{ get_url(path="@/posts/odborne-zdroje.md") }}"><strong>Odborné zdroje</strong><span>Dokumentace a ověřování příkladů →</span></a>
+
+  <section class="home-resources-section" aria-label="Další příprava a metodika">
+    <div class="study-home-resources">
+      <a class="study-resource-card" href="{{ get_url(path="@/posts/maturitni-prace.md") }}">
+        <div class="resource-card-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></div>
+        <div class="resource-card-body">
+          <strong>Maturitní práce</strong>
+          <span>Od výběru zadání přes technickou dokumentaci až po obhajobu před komisí →</span>
+        </div>
+      </a>
+      <a class="study-resource-card" href="{{ get_url(path="@/posts/rozbor-literatury.md") }}">
+        <div class="resource-card-icon"><i class="fa-solid fa-book-bookmark" aria-hidden="true"></i></div>
+        <div class="resource-card-body">
+          <strong>Jak rozebrat knihu</strong>
+          <span>Struktura ústní zkoušky, výběr vydání a nácvik práce s uměleckým textem →</span>
+        </div>
+      </a>
+      <a class="study-resource-card" href="{{ get_url(path="@/posts/odborne-zdroje.md") }}">
+        <div class="resource-card-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+        <div class="resource-card-body">
+          <strong>Odborné zdroje</strong>
+          <span>Oficiální dokumentace RFC, Microsoft Learn, Cisco Academy a ověřování příkladů →</span>
+        </div>
+      </a>
+    </div>
   </section>
+
+  <footer class="study-home-footer">
+    <div class="home-footer-inner">
+      <div class="home-footer-meta">
+        <p class="footer-title"><strong>Maturita 2027</strong> · SŠTE Brno, Olomoucká</p>
+        <p class="footer-desc">Obor 18-20-M/01 Informační technologie · Školní studijní průvodce</p>
+      </div>
+      <nav class="home-footer-nav" aria-label="Doplňková navigace v patičce">
+        <a href="{{ get_url(path="@/about/index.md") }}">O projektu</a>
+        <a href="{{ get_url(path="@/posts/jak-maturita-funguje.md") }}">Pravidla a termíny</a>
+        <a href="{{ get_url(path="@/posts/studijni-plan.md") }}">Studijní plán</a>
+        <a href="{{ get_url(path="@/posts/rozcestnik.md") }}">Rozcestník</a>
+        <a href="https://github.com/SDragonex/Maturita" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+      </nav>
+      <div class="home-footer-credit">
+        <p>© 2026 Dany Chaker (<a href="https://github.com/SDragonex" target="_blank" rel="noopener noreferrer">SDragonex</a>)</p>
+      </div>
+    </div>
+  </footer>
 </main>
 {% endblock content %}
