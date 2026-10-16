@@ -103,6 +103,61 @@ html[data-pf-theme="dark"] {
   border-collapse: collapse;
 }
 
+/* Topic pagination (prev / next topic links at bottom of study guide) */
+.topic-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.6rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--surface-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-size: var(--ui-size);
+    font-weight: 500;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+
+    &:hover {
+      background: var(--soft-color);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    &[rel="prev"] {
+      margin-right: auto;
+    }
+
+    &[rel="next"] {
+      margin-left: auto;
+      text-align: right;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    a {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      margin: 0 !important;
+    }
+  }
+}
+
 @media (max-width: 600px) {
   .article-intro-container {
     margin-bottom: 1.25rem;
