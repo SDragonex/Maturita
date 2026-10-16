@@ -1,7 +1,9 @@
-{% set url = get_url(path=src) %} {% if caption %}
-<figure {% if class %}class="{{ class }}" {% endif %}>
-  <img src="{{ url }}" alt="{{ alt | default(value="") }}" />
-  <figcaption>{{ caption | safe }}</figcaption>
+{% set url = get_url(path=src) -%}
+{% if caption -%}
+<figure class="study-figure{% if class %} {{ class }}{% endif %}">
+  <img src="{{ url }}" alt="{{ alt | default(value="") }}" loading="lazy" decoding="async"{% if width %} width="{{ width }}"{% endif %} />
+  <figcaption class="study-figcaption">{{ caption | safe }}</figcaption>
 </figure>
-{% else %} <img src="{{ url }}" alt="{{ alt | default(value="") }}" {% if class
-%}class="{{ class }}"{% endif %} /> {% endif %}
+{%- else -%}
+<img class="study-img{% if class %} {{ class }}{% endif %}" src="{{ url }}" alt="{{ alt | default(value="") }}" loading="lazy" decoding="async"{% if width %} width="{{ width }}"{% endif %} />
+{%- endif %}
