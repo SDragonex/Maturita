@@ -248,7 +248,7 @@ Kde $C$ je maximální přenosová rychlost v bitech za sekundu, $B$ je šířka
 Obrázky v textu využívají sémantický prvek `figure` s čitelným popiskem `figcaption`:
 
 <figure class="study-figure">
-  <img src="/Maturita/images/SSTE-WHITE.png" alt="SŠTE Brno logo" loading="lazy" decoding="async" width="180" />
+  <img src="../../images/SSTE-WHITE.png" alt="SŠTE Brno logo" loading="lazy" decoding="async" width="180" />
   <figcaption class="study-figcaption">Ukázka grafického prvku školy se středovým zarovnáním a popiskem</figcaption>
 </figure>
 
