@@ -60,94 +60,73 @@
 <body class="body-block">
   <pagefind-config bundle-path="{{ get_url(path="pagefind", trailing_slash=true) }}" base-url="{{ get_url(path="", trailing_slash=true) }}"></pagefind-config>
   <a class="skip-link" href="#main-content">Přeskočit na obsah</a>
-  <div id="sidebar-mask" onclick="toggleSidebar()"></div>
+  <div id="sidebar-mask" onclick="toggleSidebar(false)"></div>
+
   {% if current_path != "/" %}
-  <div id="sidebar" class="">
-    <button class="sidebar-close" type="button" onclick="toggleSidebar(false)" aria-label="Zavřít menu">×</button>
-    <div class="logo-title">
-      <div class="title-inner">
-        {% if config.extra.avatar %}
-        <div class="avatar">
-          <img src="{{ get_url(path=config.extra.avatar) }}" alt="avatar">
-        </div>
-        {% endif %}
-        <div class="title">
-          <h3><a href="{{ get_url(path="@/_index.md", lang=lang) }}">{{ config.title }}</a></h3>
-          <div class="description">
-            <p>{{ config.description }}</p>
-          </div>
-          {% if config.extra.motto_mode and config.extra.motto_mode != "hide" %}
-            {% if config.extra.motto_mode == "single" and config.extra.motto %}
-            <p class="motto">{{ config.extra.motto }}</p>
-            {% elif config.extra.motto_mode == "multi" and config.extra.mottos %}
-            <p class="motto" data-mottos='{{ config.extra.mottos | json_encode | safe }}'></p>
-            {% endif %}
-          {% endif %}
-        </div>
+  <header class="page-top">
+    <div class="site-head-inner">
+      <div class="head-left">
+        <button type="button" id="sidebar-toggle" class="menu-button" onclick="toggleSidebar()" aria-label="Otevřít navigaci" aria-controls="sidebar" aria-expanded="false">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <a class="brand" href="{{ get_url(path="@/_index.md", lang=lang) }}">MATURITA</a>
       </div>
-      {% if config.extra.sections.about | default(value=true) %}
-      <div class="sidebar-action">
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
-      </div>
-      {% endif %}
-
-      <nav class="sidebar-nav" aria-label="Postranní navigace">
-<a href="{{ get_url(path="@/posts/anglicky-jazyk.md") }}">Anglický jazyk</a>
-<a href="{{ get_url(path="@/posts/cesky-jazyk-literatura.md") }}">Český jazyk a literatura</a>
-<a href="{{ get_url(path="@/posts/aplikacni-software.md") }}">Aplikační software</a>
-<a href="{{ get_url(path="@/posts/site-a-programovani.md") }}">Sítě a programování</a>
-<a href="{{ get_url(path="@/posts/maturitni-prace.md") }}">Maturitní práce</a>
-<a href="{{ get_url(path="@/posts/jak-maturita-funguje.md") }}">Pravidla 2027</a>
-<a href="{{ get_url(path="@/posts/studijni-plan.md") }}">Studijní plán</a>
-      </nav>
-    </div>
-  </div>
-  {% endif %}
-
-  <div id="main">
-    {% if current_path != "/" %}
-    <div class="page-top animated fadeInDown">
-      <nav class="nav" aria-label="Hlavní navigace">
-        <a href="{{ get_url(path="@/_index.md", lang=lang) }}">Domů</a>
-
-        {% if config.extra.sections.posts | default(value=true) %}
-        <a href="{{ get_url(path="@/posts/rozcestnik.md", lang=lang) }}">Předměty</a>
-        {% endif %}
-
-        {% if config.extra.sections.about | default(value=true) %}
-        <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
-        {% endif %}
-
-        {% if config.extra.sections.links | default(value=true) %}
-        <a href="{{ get_url(path="@/links/index.md", lang=lang) }}">Moje další projekty</a>
-        {% endif %}
-      </nav>
       <div class="search-block">
         <pagefind-searchbox id="search" placeholder="Hledat v přípravě…" hide-shortcut></pagefind-searchbox>
       </div>
-      <div class="information">
+      <div class="controls">
         <div class="back_btn">
-          <button type="button" onclick="goBack()" aria-label="Zpět"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+          <button type="button" onclick="goBack()" aria-label="Zpět" title="Zpět"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
         </div>
         <div class="theme_btn">
-          <button type="button" onclick="toggleTheme()" aria-label="Přepnout motiv"><i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i></button>
-        </div>
-        <div class="avatar_btn">
-          <button type="button" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Postranní panel" aria-controls="sidebar" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+          <button type="button" class="theme-button" onclick="toggleTheme()" aria-label="Přepnout motiv" title="Přepnout motiv">
+            <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>
+  </header>
+  {% endif %}
+
+  <div class="layout{% if current_path == '/' %} home-layout{% endif %}">
+    {% if current_path != "/" %}
+    <aside id="sidebar" class="left-rail" aria-label="Studijní navigace">
+      <div class="left-rail-inner">
+        <div class="rail-header">
+          <p class="rail-caption">Studijní příprava</p>
+          <button class="sidebar-close" type="button" onclick="toggleSidebar(false)" aria-label="Zavřít menu">×</button>
+        </div>
+        <nav class="sidebar-nav subject-nav" aria-label="Předměty a témata">
+          <a href="{{ get_url(path="@/posts/rozcestnik.md") }}">Rozcestník přípravy</a>
+          <a href="{{ get_url(path="@/posts/cesky-jazyk-literatura.md") }}">Český jazyk a literatura</a>
+          <a href="{{ get_url(path="@/posts/anglicky-jazyk.md") }}">Anglický jazyk</a>
+          <a href="{{ get_url(path="@/posts/aplikacni-software.md") }}">Aplikační software</a>
+          <a href="{{ get_url(path="@/posts/site-a-programovani.md") }}">Sítě a programování</a>
+          <a href="{{ get_url(path="@/posts/maturitni-prace.md") }}">Maturitní práce</a>
+          <a href="{{ get_url(path="@/posts/jak-maturita-funguje.md") }}">Pravidla 2027</a>
+          <a href="{{ get_url(path="@/posts/studijni-plan.md") }}">Studijní plán</a>
+          {% if config.extra.sections.about | default(value=true) %}
+          <a href="{{ get_url(path="@/about/index.md", lang=lang) }}">O projektu</a>
+          {% endif %}
+        </nav>
+      </div>
+    </aside>
     {% endif %}
-    <div class="autopagerize_page_element">
-      <div id="main-content" tabindex="-1" class="content animated fadeIn {% if current_path == '/' %}home-content{% endif %}">
+
+    <div id="main" class="main-wrapper{% if current_path == '/' %} home-wrapper{% endif %}">
+      <div id="main-content" tabindex="-1" class="reading-area content animated fadeIn{% if current_path == '/' %} home-content{% endif %}">
         {% block content %}{% endblock content %}
       </div>
+      {% if current_path != "/" %}
+      <footer class="page-footer">
+        <div class="footer-content">
+          <span>© 2026 <a href="https://github.com/SDragonex" target="_blank" rel="noopener noreferrer">Dany Chaker</a></span>
+        </div>
+      </footer>
+      {% endif %}
     </div>
-    <div class="page-footer">
-      <div class="footer-content">
-        <span>© 2026 <a href="https://github.com/SDragonex" target="_blank" rel="noopener noreferrer">Dany Chaker</a></span>
-      </div>
-    </div>
+
+    {% block right_rail %}{% endblock right_rail %}
   </div>
 
   <script>
@@ -162,8 +141,9 @@
       const mobile = window.matchMedia('(max-width: 960px)').matches;
       const open = mobile && sidebar.classList.contains('open');
       sidebar.inert = mobile && !open;
-      document.getElementById('main').inert = open;
-      document.getElementById('sidebar-mask').classList.toggle('open', open);
+      const main = document.getElementById('main');
+      if (main) main.inert = open;
+      document.getElementById('sidebar-mask')?.classList.toggle('open', open);
       const button = document.getElementById('sidebar-toggle');
       if (button) button.setAttribute('aria-expanded', String(open));
     }
@@ -313,40 +293,6 @@
             window.MathJax.startup.promise.then(() => window.MathJax.typesetPromise())
                 .catch(() => { /* Keep the readable TeX if the external renderer fails. */ });
         }
-
-        document.querySelectorAll('[data-mottos]').forEach(function(el) {
-            var mottos = JSON.parse(el.dataset.mottos);
-            if (!mottos || mottos.length === 0) return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                el.textContent = mottos[0];
-                return;
-            }
-            var idx = 0, charIdx = 0, deleting = false;
-            function tick() {
-                var current = mottos[idx];
-                if (!deleting) {
-                    charIdx++;
-                    el.textContent = current.substring(0, charIdx);
-                    if (charIdx === current.length) {
-                        deleting = true;
-                        setTimeout(tick, 2500);
-                        return;
-                    }
-                    setTimeout(tick, 80 + Math.random() * 40);
-                } else {
-                    charIdx--;
-                    el.textContent = current.substring(0, charIdx);
-                    if (charIdx === 0) {
-                        deleting = false;
-                        idx = (idx + 1) % mottos.length;
-                        setTimeout(tick, 400);
-                        return;
-                    }
-                    setTimeout(tick, 35);
-                }
-            }
-            tick();
-        });
     });
   </script>
 
