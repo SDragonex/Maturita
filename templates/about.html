@@ -1,23 +1,28 @@
 {% extends "_base.html" %} {% block title %}{{ page.title }} | {{ config.title
-}}{% endblock title %} {% block head %}
+}}{% endblock title %}
+{% block canonical %}{{ page.permalink | safe }}{% endblock canonical %}
+{% block head %}
 <!-- Primary Meta Tags -->
 {% if page.description %} {% set description = page.description %} {%- elif
 page.summary %} {% set description = page.summary %} {% else %} {% set
 description = page.content %} {% endif %}
 <meta
   name="description"
-  content="{{ description | striptags | truncate(length=100) | safe }}"
+  content="{{ description | striptags | truncate(length=160) | safe }}"
 />
+<meta name="author" content="{{ config.extra.author }}" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:title" content="{{ page.title }} | {{ config.title }}" />
+<meta property="og:description" content="{{ description | striptags | truncate(length=160) }}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{{ page.permalink | safe }}" />
-{% if page.date %}
-<meta property="article:published_time" content="{{ page.date }}" />
-<meta property="article:modified_time" content="{{ page.date }}" />
-{% endif %}
-<meta property="article:section" content="{{ page.components | first }}" />
+<meta property="og:site_name" content="{{ config.title }}" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ page.title }} | {{ config.title }}" />
+<meta name="twitter:description" content="{{ description | striptags | truncate(length=160) }}" />
 
 {% endblock head %}  {% block content %}
 
