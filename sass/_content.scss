@@ -1487,73 +1487,44 @@
     }
 
     table {
-
-        border-collapse: collapse;
-
-        margin-bottom: var(--space-16);
-
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1.5rem 0 2rem;
         width: 100%;
-
         max-width: 100%;
-
-        display: block;
-
-        overflow-x: auto;
-
-        -webkit-overflow-scrolling: touch;
-
+        display: table;
         font-size: var(--ui-size, 0.95rem);
-
         border-radius: 6px;
-
         border: 1px solid var(--border-color);
+        background: var(--surface-color);
+        overflow: hidden;
 
         th {
-
             font-family: var(--font-ui);
-
             text-align: left;
-
-            padding: 0.65em 1em;
-
+            padding: 0.65rem 1rem;
             font-weight: 600;
-
             color: var(--text-color);
-
             background-color: var(--table-header-bg);
-
             border-bottom: 2px solid var(--border-color);
-
-            white-space: nowrap;
-
         }
 
         td {
-
             font-family: var(--font-ui);
-
-            padding: 0.6em 1em;
-
+            padding: 0.65rem 1rem;
             border-bottom: 1px solid var(--border-color);
-
             vertical-align: top;
-
             color: var(--text-color);
-
+            line-height: 1.5;
         }
 
         tr:last-child td {
-
             border-bottom: none;
-
         }
 
-        th + th, td + td {
-
-            border-left: 1px solid var(--border-color);
-
+        tbody tr:hover {
+            background-color: var(--soft-color);
         }
-
     }
 
     > hr {
