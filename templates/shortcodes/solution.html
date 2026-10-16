@@ -1,0 +1,13 @@
+<div class="study-solution-block">
+  {% if question %}
+  <p class="solution-question"><strong>Otázka:</strong> {{ question | markdown(inline=true) | safe }}</p>
+  {% endif %}
+  <details class="solution-toggle"{% if unfold %} open{% endif %}>
+    <summary class="solution-summary">
+      <span class="solution-label">{{ title | default(value="Zobrazit řešení a postup") }}</span>
+    </summary>
+    <div class="solution-content">
+      {{ body | markdown | safe }}
+    </div>
+  </details>
+</div>
