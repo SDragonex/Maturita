@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Print Stylesheet (A4 high-contrast reading layout & pagination)
+   ========================================================================== */
+
+@media print {
+  :root,
+  :root[data-theme] {
+    color-scheme: light !important;
+    --bg: #ffffff !important;
+    --bg-color: #ffffff !important;
+    --surface: #ffffff !important;
+    --surface-color: #ffffff !important;
+    --text: #111111 !important;
+    --text-color: #111111 !important;
+    --text-color-light: #333333 !important;
+    --muted: #444444 !important;
+    --line: #cccccc !important;
+    --border-color: #cccccc !important;
+    --accent-color: #111111 !important;
+    --soft: #ffffff !important;
+    --soft-color: #f7f7f7 !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 1. Hide all navigation, topbars, buttons, dialogs, drawers and floating widgets */
+  .page-top,
+  .left-rail,
+  .right-rail,
+  #sidebar,
+  #sidebar-mask,
+  .inline-toc,
+  .controls,
+  .search-block,
+  .skip-link,
+  .menu-button,
+  .code-copy-btn,
+  .code-dots,
+  .dialog-head,
+  dialog,
+  .print-dialog,
+  .reading-dialog,
+  .study-home-header,
+  .home-search,
+  .back_btn,
+  .theme_btn,
+  .print_btn,
+  .appearance_btn,
+  .text-size,
+  .catalog-jump,
+  .catalog-filter-fields,
+  .prev-link,
+  .next-link,
+  .page-end,
+  .practice form,
+  .check-button,
+  noscript {
+    display: none !important;
+  }
+
+  /* 2. Full-width clean reading layout */
+  .layout,
+  .main-wrapper,
+  .reading-area,
+  .content-article,
+  .article-content {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  .content-article .article-content {
+    font-size: 11pt !important;
+    color: #111111 !important;
+    max-width: none !important;
+  }
+
+  /* 3. Typography & Headings in Print */
+  h1 {
+    font-size: 20pt !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  h2, h3, h4 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  h2 {
+    font-size: 14pt !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  h3 {
+    font-size: 12pt !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  /* 4. Tables in Print (Repeat thead across pages, no overflow cut) */
+  table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse !important;
+    border: 1px solid #777 !important;
+    break-inside: auto !important;
+    font-size: 9.5pt !important;
+    margin: 1rem 0 !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tr {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  th, td {
+    border: 1px solid #888 !important;
+    padding: 5px 8px !important;
+    color: #111 !important;
+  }
+
+  th {
+    background: #eee !important;
+    font-weight: 700 !important;
+  }
+
+  .table-scroll {
+    overflow: visible !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 1rem 0 !important;
+  }
+
+  /* 5. Code blocks in Print */
+  pre {
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+    background: #fdfdfd !important;
+    border: 1px solid #888 !important;
+    color: #111 !important;
+    font-size: 9pt !important;
+    line-height: 1.4 !important;
+    padding: 8px 12px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .code-header {
+    background: #eee !important;
+    border-bottom: 1px solid #888 !important;
+    padding: 4px 8px !important;
+  }
+
+  /* 6. Callouts, Examples, Speeches, Quotes */
+  .study-callout,
+  .study-example,
+  .study-speech,
+  .literary-quote,
+  blockquote {
+    background: #ffffff !important;
+    border-color: #666666 !important;
+    color: #111111 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin: 1rem 0 !important;
+    padding: 8px 12px !important;
+  }
+
+  .example-header,
+  .speech-header {
+    background: #f0f0f0 !important;
+    border-bottom: 1px solid #888888 !important;
+  }
+
+  .study-callout-note,
+  .study-callout-tip,
+  .study-callout-important,
+  .study-callout-warning,
+  .study-callout-mistake {
+    border-left: 3pt solid #333333 !important;
+  }
+
+  /* 7. Details / Solutions in Print */
+  details {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    border: 1px solid #888888 !important;
+    border-left: 3pt solid #333333 !important;
+    margin: 1rem 0 !important;
+    background: #ffffff !important;
+  }
+
+  details > summary {
+    font-weight: bold !important;
+    color: #111111 !important;
+    border-bottom: 1px solid #888888 !important;
+    padding: 6px 10px !important;
+
+    &::before {
+      display: none !important;
+    }
+  }
+
+  /* 8. Links in Print */
+  a {
+    color: #111111 !important;
+    text-decoration: none !important;
+  }
+
+  /* 9. Catalog in Print */
+  .catalog-table {
+    font-size: 9pt !important;
+    tr {
+      break-inside: avoid !important;
+    }
+  }
+
+  .catalog-filter {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0.5rem 0 !important;
+
+    p {
+      color: #111111 !important;
+    }
+  }
+}
