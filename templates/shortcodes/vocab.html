@@ -1,0 +1,10 @@
+{% if body -%}
+<div class="study-vocab-wrap">
+  {{ body | markdown | safe }}
+</div>
+{%- else -%}
+<dl class="study-vocab-pair">
+  <dt><span class="vocab-en" lang="en">{{ en }}</span>{% if phonetic %} <span class="vocab-phonetic">{{ phonetic }}</span>{% endif %}</dt>
+  <dd><span class="vocab-cz">{{ cz }}</span>{% if note %} <small class="vocab-note">({{ note }})</small>{% endif %}</dd>
+</dl>
+{%- endif %}
