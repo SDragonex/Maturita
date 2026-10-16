@@ -1,0 +1,92 @@
+{% extends "_base.html" %}
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
+{% block head %}
+<!-- Primary Meta Tags -->
+{% if page.description %} {% set description = page.description %} {%- elif page.summary %} {% set description = page.summary %} {% else %} {% set description = page.content %} {% endif %}
+<meta name="description" content="{{ description | striptags | truncate(length=160) }}" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:title" content="{{ page.title }} | {{ config.title }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ page.permalink | safe }}" />
+<meta property="article:section" content="catalog" />
+{% endblock head %}
+
+{% block content %}
+<article class="content-article catalog-page">
+  <main class="article-content" data-pagefind-body>
+    <nav class="study-breadcrumb" aria-label="Drobečková navigace" data-pagefind-ignore>
+      <a href="{{ get_url(path="@/posts/rozcestnik.md") }}">Rozcestník přípravy</a>
+      <span aria-hidden="true">/</span><span data-pagefind-meta="subject">{{ page.title }}</span>
+    </nav>
+    <div class="article-intro-container">
+        <div class="intro-header">
+            <p class="eyebrow" data-pagefind-ignore>Katalog · Přehled témat</p>
+            <h1 class="heading">{{ page.title }}</h1>
+            <div class="meta-line" data-pagefind-ignore>
+                {% if page.extra.catalog %}
+                {% set subject_section = get_section(path=page.extra.catalog ~ "/_index.md") %}
+                <span class="topic-position">{{ subject_section.pages | length }} {% if page.extra.catalog == "cjl" %}literárních děl{% else %}témat{% endif %}</span>
+                {% endif %}
+                {% if page.updated %}
+                <span class="date">Aktualizováno {{ page.updated | date(format="%d. %m. %Y") }}</span>
+                {% elif page.date %}
+                <span class="date">{{ page.date | date(format="%d. %m. %Y") }}</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="intro-body" data-pagefind-ignore>
+            {% if page.description %}
+            <p class="lead description">{{ page.description }}</p>
+            {% endif %}
+
+            {% if page.toc and page.extra.toc | default(value=true) %}
+            <details class="inline-toc intro-toc" data-pagefind-ignore>
+                <summary class="toc-title">Kategorie a části</summary>
+                <div class="toc-wrapper">
+                <nav class="toc-links" aria-label="Kategorie v textu">
+                    {% for h1 in page.toc %}
+                    <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                    {% endfor %}
+                </nav>
+                </div>
+            </details>
+            {% endif %}
+        </div>
+    </div>
+    
+    {% if page.extra.catalog %}
+    <div class="catalog-filter" data-catalog-prefix="{{ get_url(path=page.extra.catalog, trailing_slash=true) }}" data-pagefind-ignore hidden>
+      <div class="catalog-filter-fields">
+        <div class="catalog-query">
+          <label for="catalog-query">Filtrovat tento seznam</label>
+          <input id="catalog-query" type="search" placeholder="Hledat dílo, autora nebo číslo…" autocomplete="off" aria-describedby="catalog-status">
+        </div>
+        <div class="catalog-category" hidden>
+          <label for="catalog-category">Kategorie</label>
+          <select id="catalog-category"><option value="">Všechny kategorie</option></select>
+        </div>
+        <button type="button" class="catalog-clear">Zrušit filtr</button>
+      </div>
+      <p id="catalog-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    </div>
+    {% endif %}
+    {{ page.content | safe }}
+
+  </main>
+</article>
+{% endblock content %}
+
+{% block right_rail %}
+{% if page.toc and page.extra.toc | default(value=true) %}
+<aside class="right-rail" aria-label="Kategorie na této stránce" data-pagefind-ignore>
+  <p class="rail-caption">Kategorie</p>
+  <nav class="toc-links" aria-label="Kategorie na velké obrazovce">
+    {% for h1 in page.toc %}
+    <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+    {% endfor %}
+  </nav>
+</aside>
+{% endif %}
+{% endblock right_rail %}
