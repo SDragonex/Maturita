@@ -33,6 +33,12 @@
     }
     const systemScheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     applyTheme(readSavedTheme() || systemScheme());
+    try {
+      const savedSize = localStorage.getItem('reading-size');
+      if (savedSize && ['18', '20', '22'].includes(savedSize)) {
+        document.documentElement.style.setProperty('--reading-size', savedSize + 'px');
+      }
+    } catch (_) {}
   </script>
 
   {% if config.extra.math_display == "mathjax" %}
@@ -75,18 +81,105 @@
         <pagefind-searchbox id="search" placeholder="Hledat v přípravě…" hide-shortcut></pagefind-searchbox>
       </div>
       <div class="controls">
-        <div class="back_btn">
-          <button type="button" onclick="goBack()" aria-label="Zpět" title="Zpět"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+        <fieldset class="text-size" aria-label="Velikost písma učiva">
+          <legend class="sr-only">Velikost písma učiva</legend>
+          <button type="button" data-size="18" onclick="setReadingSize(18)" aria-pressed="true" aria-label="Základní velikost textu 18 px" title="Velikost textu 18 px">18</button>
+          <button type="button" data-size="20" onclick="setReadingSize(20)" aria-pressed="false" aria-label="Střední velikost textu 20 px" title="Velikost textu 20 px">20</button>
+          <button type="button" data-size="22" onclick="setReadingSize(22)" aria-pressed="false" aria-label="Větší velikost textu 22 px" title="Velikost textu 22 px">22</button>
+        </fieldset>
+        <div class="appearance_btn">
+          <button type="button" id="reading-toggle" onclick="openReadingDialog()" aria-label="Vzhled a čtení" title="Nastavení vzhledu a čtení">
+            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+          </button>
         </div>
         <div class="theme_btn">
           <button type="button" class="theme-button" onclick="toggleTheme()" aria-label="Přepnout motiv" title="Přepnout motiv">
             <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
           </button>
         </div>
+        <div class="print_btn">
+          <button type="button" id="print-button" class="print-button" onclick="openPrintDialog()" aria-label="Možnosti tisku" title="Vytisknout téma nebo uložit do PDF">
+            <i class="fa-solid fa-print" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="back_btn">
+          <button type="button" onclick="goBack()" aria-label="Zpět" title="Zpět"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+        </div>
       </div>
     </div>
   </header>
+
+  <dialog id="reading-dialog" class="reading-dialog" aria-labelledby="reading-dialog-title">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <h3 id="reading-dialog-title"><i class="fa-solid fa-sliders" aria-hidden="true"></i> Vzhled a čtení</h3>
+        <button type="button" class="dialog-close" onclick="closeReadingDialog()" aria-label="Zavřít panel vzhledu">×</button>
+      </div>
+      <p class="dialog-desc">Přizpůsob si prostředí pro soustředěné studium a čtení textů.</p>
+      <div class="dialog-section">
+        <span class="section-label">Barevný motiv</span>
+        <div class="btn-group theme-choices">
+          <button type="button" id="theme-choice-system" onclick="setThemePreference('system')" aria-pressed="false">
+            <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Systémový
+          </button>
+          <button type="button" id="theme-choice-light" onclick="setThemePreference('light')" aria-pressed="false">
+            <i class="fa-solid fa-sun" aria-hidden="true"></i> Světlý
+          </button>
+          <button type="button" id="theme-choice-dark" onclick="setThemePreference('dark')" aria-pressed="false">
+            <i class="fa-solid fa-moon" aria-hidden="true"></i> Tmavý
+          </button>
+        </div>
+      </div>
+      <div class="dialog-section">
+        <span class="section-label">Velikost písma učiva</span>
+        <div class="btn-group size-choices">
+          <button type="button" data-size="18" onclick="setReadingSize(18)" aria-pressed="true">18 px</button>
+          <button type="button" data-size="20" onclick="setReadingSize(20)" aria-pressed="false">20 px</button>
+          <button type="button" data-size="22" onclick="setReadingSize(22)" aria-pressed="false">22 px</button>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="reset-btn" onclick="resetAppearance()">Obnovit výchozí hodnoty</button>
+        <button type="button" class="close-btn" onclick="closeReadingDialog()">Hotovo</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="print-dialog" class="print-dialog" aria-labelledby="print-dialog-title">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <h3 id="print-dialog-title"><i class="fa-solid fa-print" aria-hidden="true"></i> Možnosti tisku a PDF</h3>
+        <button type="button" class="dialog-close" onclick="closePrintDialog()" aria-label="Zavřít dialog tisku">×</button>
+      </div>
+      <p class="dialog-desc">Zvolte, v jakém stavu chcete studijní materiál vytisknout nebo uložit do PDF:</p>
+      <div class="dialog-actions" id="print-actions-study">
+        <button type="button" class="print-action-btn" onclick="executePrint('solutions')">
+          <strong><i class="fa-solid fa-check-double" aria-hidden="true"></i> Tisk včetně řešení</strong>
+          <span>Automaticky rozbalí všechny otázky, postupy a odpovědi pro kompletní přehled učiva.</span>
+        </button>
+        <button type="button" class="print-action-btn" onclick="executePrint('no-solutions')">
+          <strong><i class="fa-solid fa-file-pen" aria-hidden="true"></i> Tisk bez řešení</strong>
+          <span>Ponechá odpovědi a řešení skryté pro samostatné testování a nácvik.</span>
+        </button>
+      </div>
+      <div class="dialog-actions" id="print-actions-catalog" style="display:none">
+        <button type="button" class="print-action-btn" onclick="executePrint('filtered')">
+          <strong><i class="fa-solid fa-filter" aria-hidden="true"></i> Tisk aktuálního výběru</strong>
+          <span>Vytiskne pouze položky odpovídající aktuálnímu vyhledávání a filtru.</span>
+        </button>
+        <button type="button" class="print-action-btn" onclick="executePrint('all')">
+          <strong><i class="fa-solid fa-list-ol" aria-hidden="true"></i> Tisk celého seznamu</strong>
+          <span>Dočasně zobrazí všech 97 knih nebo všech 26 témat pro kompletní soupis.</span>
+        </button>
+      </div>
+      <div class="dialog-footer">
+        <span style="font-size:0.82rem;color:var(--text-color-light)"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Přímý tisk (Ctrl+P) tiskne včetně řešení.</span>
+        <button type="button" class="close-btn" onclick="closePrintDialog()">Zrušit</button>
+      </div>
+    </div>
+  </dialog>
   {% endif %}
+
 
   <div class="layout{% if current_path == '/' %} home-layout{% endif %}">
     {% if current_path != "/" %}
@@ -162,6 +255,10 @@
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') {
         if (document.getElementById('sidebar')?.classList.contains('open')) toggleSidebar(false);
+        const rd = document.getElementById('reading-dialog');
+        if (rd?.open) closeReadingDialog();
+        const pd = document.getElementById('print-dialog');
+        if (pd?.open) closePrintDialog();
       }
     });
 
@@ -171,12 +268,158 @@
       icon.classList.toggle('fa-moon', scheme !== 'dark');
       icon.classList.toggle('fa-sun', scheme === 'dark');
     }
-    function toggleTheme() {
-      const scheme = document.documentElement.style.colorScheme === 'dark' ? 'light' : 'dark';
-      applyTheme(scheme);
-      try { localStorage.setItem('theme', scheme); } catch (_) { /* The theme still works for this page. */ }
-      updateThemeIcon(scheme);
+
+    function syncThemeChoices(activePref) {
+      const pref = activePref || (readSavedTheme() || 'system');
+      ['system', 'light', 'dark'].forEach(k => {
+        const btn = document.getElementById('theme-choice-' + k);
+        if (btn) btn.setAttribute('aria-pressed', String(k === pref));
+      });
     }
+
+    function setThemePreference(pref) {
+      if (pref === 'system') {
+        try { localStorage.removeItem('theme'); } catch (_) {}
+        applyTheme(systemScheme());
+        updateThemeIcon(systemScheme());
+      } else {
+        applyTheme(pref);
+        try { localStorage.setItem('theme', pref); } catch (_) {}
+        updateThemeIcon(pref);
+      }
+      syncThemeChoices(pref);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.style.colorScheme === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setThemePreference(next);
+    }
+
+    function setReadingSize(size) {
+      const s = String(size);
+      if (!['18', '20', '22'].includes(s)) return;
+      document.documentElement.style.setProperty('--reading-size', s + 'px');
+      document.querySelectorAll('[data-size]').forEach(btn => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.size === s));
+      });
+      try { localStorage.setItem('reading-size', s); } catch (_) {}
+    }
+
+    function resetAppearance() {
+      setThemePreference('system');
+      setReadingSize(18);
+    }
+
+    function openReadingDialog() {
+      const dialog = document.getElementById('reading-dialog');
+      if (dialog) {
+        syncThemeChoices();
+        try {
+          const currentSize = localStorage.getItem('reading-size') || '18';
+          document.querySelectorAll('.size-choices button').forEach(btn => {
+            btn.setAttribute('aria-pressed', String(btn.dataset.size === currentSize));
+          });
+        } catch (_) {}
+        dialog.showModal();
+        dialog.querySelector('.dialog-close')?.focus();
+      }
+    }
+
+    function closeReadingDialog() {
+      const dialog = document.getElementById('reading-dialog');
+      if (dialog?.open) {
+        dialog.close();
+        document.getElementById('reading-toggle')?.focus();
+      }
+    }
+
+    window.previousPrintState = null;
+
+    function openPrintDialog() {
+      const dialog = document.getElementById('print-dialog');
+      if (!dialog) return;
+      const isCatalog = document.querySelector('.catalog-table') || document.querySelector('.catalog-filter');
+      const studyActions = document.getElementById('print-actions-study');
+      const catalogActions = document.getElementById('print-actions-catalog');
+      if (isCatalog) {
+        if (studyActions) studyActions.style.display = 'none';
+        if (catalogActions) catalogActions.style.display = 'grid';
+      } else {
+        if (studyActions) studyActions.style.display = 'grid';
+        if (catalogActions) catalogActions.style.display = 'none';
+      }
+      dialog.showModal();
+      dialog.querySelector('.dialog-close')?.focus();
+    }
+
+    function closePrintDialog() {
+      const dialog = document.getElementById('print-dialog');
+      if (dialog?.open) {
+        dialog.close();
+        document.getElementById('print-button')?.focus();
+      }
+    }
+
+    function executePrint(mode) {
+      closePrintDialog();
+      const isCatalog = document.querySelector('.catalog-table') || document.querySelector('.catalog-filter');
+      if (isCatalog) {
+        if (mode === 'all') {
+          const qInput = document.getElementById('catalog-query');
+          const catSelect = document.getElementById('catalog-category');
+          const prevQ = qInput ? qInput.value : '';
+          const prevCat = catSelect ? catSelect.value : '';
+          window.previousPrintState = { type: 'catalog', prevQ, prevCat };
+          if (qInput) qInput.value = '';
+          if (catSelect) catSelect.value = '';
+          qInput?.dispatchEvent(new Event('input'));
+        }
+      } else {
+        const details = [...document.querySelectorAll('.article-content details:not(.inline-toc):not(.catalog-rules)')];
+        window.previousPrintState = {
+          type: 'study',
+          openStates: details.map(d => ({ el: d, wasOpen: d.open }))
+        };
+        if (mode === 'solutions') {
+          details.forEach(d => d.open = true);
+        } else if (mode === 'no-solutions') {
+          details.forEach(d => d.open = false);
+        }
+      }
+
+      setTimeout(() => {
+        window.print();
+      }, 120);
+    }
+
+    function restoreAfterPrint() {
+      if (!window.previousPrintState) return;
+      if (window.previousPrintState.type === 'catalog') {
+        const qInput = document.getElementById('catalog-query');
+        const catSelect = document.getElementById('catalog-category');
+        if (qInput) qInput.value = window.previousPrintState.prevQ;
+        if (catSelect) catSelect.value = window.previousPrintState.prevCat;
+        qInput?.dispatchEvent(new Event('input'));
+      } else if (window.previousPrintState.type === 'study') {
+        window.previousPrintState.openStates.forEach(item => {
+          item.el.open = item.wasOpen;
+        });
+      }
+      window.previousPrintState = null;
+    }
+
+    window.addEventListener('afterprint', restoreAfterPrint);
+
+    // Close dialogs when clicking on backdrop
+    ['reading-dialog', 'print-dialog'].forEach(id => {
+      document.getElementById(id)?.addEventListener('click', event => {
+        if (event.target === document.getElementById(id)) {
+          document.getElementById(id).close();
+        }
+      });
+    });
+
     updateThemeIcon(document.documentElement.style.colorScheme);
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
       if (!readSavedTheme()) {
@@ -184,6 +427,14 @@
         updateThemeIcon(systemScheme());
       }
     });
+
+    try {
+      const initialSize = localStorage.getItem('reading-size') || '18';
+      document.querySelectorAll('.text-size button').forEach(btn => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.size === initialSize));
+      });
+    } catch (_) {}
+
 
     document.addEventListener("DOMContentLoaded", function() {
         customElements.whenDefined('pagefind-searchbox').then(() => {
