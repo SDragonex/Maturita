@@ -1,0 +1,505 @@
+@use 'variables' as *;
+
+/* ==========================================================================
+   Study Components & Content Formatting System (Phase 4)
+   ========================================================================== */
+
+/* 1. Interactive Questions & Solutions (Shortcode + native details) */
+.study-solution-block {
+  margin: 1.75rem 0;
+
+  .solution-question {
+    font-family: var(--font-reading);
+    font-size: var(--reading-size);
+    line-height: var(--reading-line-height);
+    margin-bottom: 0.65rem;
+    color: var(--text-color);
+
+    strong {
+      color: var(--accent-color);
+      font-family: var(--font-ui);
+      letter-spacing: 0.04em;
+    }
+  }
+}
+
+/* Unified styling for details toggles (both shortcode and native markdown) */
+.article-content details.solution-toggle,
+.article-content details:not(.catalog-rules):not(.inline-toc):not(.collapse-block) {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 6px;
+  background: var(--surface-color);
+  overflow: hidden;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  > summary {
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: var(--ui-size);
+    color: var(--accent-color);
+    line-height: 1.4;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: transparent;
+    user-select: none;
+    touch-action: manipulation;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-right: 2px solid var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
+      transform: rotate(-45deg);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: var(--soft-color);
+    }
+  }
+
+  &[open] > summary {
+    border-bottom: 1px solid var(--border-color);
+    &::before {
+      transform: rotate(45deg);
+    }
+  }
+
+  .solution-content,
+  > div, > p, > pre, > table, > ul, > ol {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .solution-content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-family: var(--font-reading);
+    font-size: var(--reading-size);
+    line-height: var(--reading-line-height);
+
+    > *:first-child { margin-top: 0; }
+    > *:last-child { margin-bottom: 0; }
+  }
+
+  > p:first-of-type {
+    margin-top: 1rem;
+  }
+
+  > div:last-child,
+  > p:last-child,
+  > ul:last-child,
+  > ol:last-child {
+    margin-bottom: 1rem;
+  }
+}
+
+/* 2. Solved Practical Example (.study-example) */
+.study-example {
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface-color);
+  overflow: hidden;
+
+  .example-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.65rem 1.15rem;
+    background: var(--soft-color);
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-ui);
+
+    .example-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .example-title {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+  }
+
+  .example-body {
+    padding: 1.25rem 1.25rem 0.5rem;
+    font-family: var(--font-reading);
+    font-size: var(--reading-size);
+    line-height: var(--reading-line-height);
+
+    > *:first-child { margin-top: 0; }
+    > *:last-child { margin-bottom: 0.75rem; }
+
+    ol, ul {
+      margin-left: 1.25rem;
+      margin-bottom: 1.15rem;
+    }
+  }
+}
+
+/* 3. Callout Boxes (.study-callout) */
+.study-callout {
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.25rem;
+  border-radius: 6px;
+  border-left: 4px solid var(--callout-border, var(--accent-color));
+  background: var(--callout-bg, var(--soft-color));
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.45rem;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    color: var(--callout-border, var(--accent-color));
+
+    .callout-icon {
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  .callout-body {
+    font-family: var(--font-reading);
+    font-size: var(--reading-size);
+    line-height: var(--reading-line-height);
+
+    > *:first-child { margin-top: 0; }
+    > *:last-child { margin-bottom: 0; }
+  }
+
+  /* Types */
+  &.study-callout-note {
+    --callout-border: var(--accent-color);
+    --callout-bg: var(--soft-color);
+  }
+
+  &.study-callout-tip {
+    --callout-border: #16a34a;
+    --callout-bg: rgba(22, 163, 74, 0.09);
+  }
+
+  &.study-callout-important {
+    --callout-border: #7c3aed;
+    --callout-bg: rgba(124, 58, 237, 0.09);
+  }
+
+  &.study-callout-warning {
+    --callout-border: #d97706;
+    --callout-bg: rgba(217, 119, 6, 0.09);
+  }
+
+  &.study-callout-mistake,
+  &.study-callout-danger {
+    --callout-border: #dc2626;
+    --callout-bg: rgba(220, 38, 38, 0.09);
+  }
+}
+
+/* Dark mode adjustments for callouts */
+:root[data-theme="dark"], html[data-theme="dark"] {
+  .study-callout-tip {
+    --callout-border: #4ade80;
+    --callout-bg: rgba(74, 222, 128, 0.12);
+  }
+  .study-callout-important {
+    --callout-border: #a78bfa;
+    --callout-bg: rgba(167, 139, 250, 0.12);
+  }
+  .study-callout-warning {
+    --callout-border: #fbbf24;
+    --callout-bg: rgba(251, 191, 36, 0.12);
+  }
+  .study-callout-mistake,
+  .study-callout-danger {
+    --callout-border: #f87171;
+    --callout-bg: rgba(248, 113, 113, 0.12);
+  }
+}
+
+/* 4. Bilingual Vocabulary (.study-vocab-pair, .study-vocab-wrap) */
+.study-vocab-wrap {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.study-vocab-pair {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) 2fr;
+  gap: 0.5rem 1.25rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-reading);
+  font-size: var(--reading-size);
+  line-height: 1.5;
+  margin: 0;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:nth-child(even) {
+    background: var(--surface-color);
+  }
+
+  dt {
+    font-weight: 600;
+    margin: 0;
+
+    .vocab-en {
+      color: var(--accent-color);
+    }
+    .vocab-phonetic {
+      font-family: var(--font-ui);
+      font-weight: 400;
+      font-size: 0.82em;
+      color: var(--text-color-light);
+      margin-left: 0.35rem;
+    }
+  }
+
+  dd {
+    margin: 0;
+    color: var(--text-color);
+
+    .vocab-note {
+      color: var(--text-color-light);
+      font-size: 0.85em;
+    }
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+/* 5. Model Spoken Passage (.study-speech) */
+.study-speech {
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface-color);
+  overflow: hidden;
+
+  .speech-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    background: var(--soft-color);
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-ui);
+
+    .speech-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .speech-title {
+      font-size: 0.85rem;
+      color: var(--text-color-light);
+    }
+  }
+
+  .speech-body {
+    padding: 1.5rem 1.5rem 0.75rem;
+    font-family: var(--font-reading);
+    font-size: var(--reading-size);
+    line-height: 1.75;
+    color: var(--text-color);
+
+    > p { margin-bottom: 1.15em; }
+    > p:last-child { margin-bottom: 0.75rem; }
+  }
+}
+
+/* 6. Literary Excerpt (.literary-quote) */
+.literary-quote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--accent-color);
+  background: var(--soft-color);
+  border-radius: 0 8px 8px 0;
+  font-family: var(--font-reading);
+  font-style: italic;
+  font-size: var(--reading-size);
+  line-height: 1.8;
+
+  .literary-quote-body {
+    color: var(--text-color);
+    > p { margin-bottom: 0.85em; }
+    > p:last-child { margin-bottom: 0; }
+  }
+
+  .literary-quote-footer {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border-color);
+    font-family: var(--font-ui);
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-color-light);
+
+    cite {
+      font-style: normal;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+
+      .quote-author {
+        font-weight: 600;
+        color: var(--text-color);
+      }
+      .quote-work {
+        font-style: italic;
+        color: var(--accent-color);
+      }
+      .quote-source {
+        color: var(--text-color-light);
+      }
+      .quote-year {
+        color: var(--text-color-light);
+      }
+    }
+  }
+}
+
+/* 7. Images & Figures (.study-figure, .study-figcaption, .study-img) */
+.study-figure {
+  margin: 2rem 0;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+  }
+
+  .study-figcaption {
+    margin-top: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--text-color-light);
+    line-height: 1.5;
+  }
+}
+
+.study-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+}
+
+/* 8. Sources & Validity (.study-sources) */
+.study-sources {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  color: var(--text-color-light);
+  line-height: 1.6;
+
+  .sources-heading {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    margin: 0 0 0.5rem;
+  }
+
+  .sources-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-color-light);
+  }
+}
+
+/* 9. Print Overrides for Study Components */
+@media print {
+  .study-solution-block details,
+  .article-content details {
+    border-color: #777 !important;
+    background: #fff !important;
+    break-inside: avoid;
+
+    > summary {
+      color: #000 !important;
+      &::before {
+        display: none !important;
+      }
+    }
+  }
+
+  .study-example,
+  .study-speech,
+  .study-callout,
+  .literary-quote {
+    background: #fff !important;
+    border-color: #777 !important;
+    color: #000 !important;
+    break-inside: avoid;
+  }
+
+  .example-header,
+  .speech-header {
+    background: #eee !important;
+    border-color: #777 !important;
+  }
+
+  .example-badge,
+  .speech-badge,
+  .callout-header {
+    color: #000 !important;
+  }
+}
