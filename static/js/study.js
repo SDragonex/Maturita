@@ -291,3 +291,32 @@
 
   filter(false);
 })();
+
+// 5. Accessible Table Scroll Wrappers
+(() => {
+  document.querySelectorAll('.article-content table:not(.catalog-table)').forEach(table => {
+    if (!table.parentElement.classList.contains('table-scroll')) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-scroll';
+      wrapper.setAttribute('role', 'region');
+      const caption = table.querySelector('caption')?.textContent?.trim();
+      wrapper.setAttribute('aria-label', caption ? `Tabulka: ${caption}` : 'Tabulka; při přesahu lze posouvat vodorovně');
+      wrapper.tabIndex = 0;
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    }
+  });
+})();
+
+// 6. Print Mode Handling (Expand all solutions before print, restore after print)
+(() => {
+  let printedDetails = [];
+  window.addEventListener('beforeprint', () => {
+    printedDetails = [...document.querySelectorAll('.article-content details:not([open])')];
+    printedDetails.forEach(item => item.open = true);
+  });
+  window.addEventListener('afterprint', () => {
+    printedDetails.forEach(item => item.open = false);
+    printedDetails = [];
+  });
+})();
