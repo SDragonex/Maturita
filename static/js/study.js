@@ -308,15 +308,18 @@
   });
 })();
 
-// 6. Print Mode Handling (Expand all solutions before print, restore after print)
+// 6. Direct Print Mode Handling (Ctrl+P without dialog: expand all solutions, restore after print)
 (() => {
   let printedDetails = [];
   window.addEventListener('beforeprint', () => {
+    if (window.previousPrintState) return;
     printedDetails = [...document.querySelectorAll('.article-content details:not([open])')];
     printedDetails.forEach(item => item.open = true);
   });
   window.addEventListener('afterprint', () => {
-    printedDetails.forEach(item => item.open = false);
-    printedDetails = [];
+    if (printedDetails.length) {
+      printedDetails.forEach(item => item.open = false);
+      printedDetails = [];
+    }
   });
 })();
