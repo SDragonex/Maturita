@@ -1,9 +1,11 @@
 {% extends "_base.html" %} {% block title %}{{ section.title | title }} | {{
-config.title }}{% endblock title %} {% block head %}
+config.title }}{% endblock title %}
+{% block canonical %}{{ section.permalink | safe }}{% endblock canonical %}
+{% block head %}
 <!-- Primary Meta Tags -->
 <meta
   name="description"
-  content="{{ section.title | title }} | {{ config.title }}"
+  content="{{ section.title | title }} – {{ config.description }}"
 />
 
 <!-- Open Graph / Facebook -->
@@ -11,10 +13,15 @@ config.title }}{% endblock title %} {% block head %}
   property="og:title"
   content="{{ section.title | title }} | {{ config.title }}"
 />
+<meta property="og:description" content="{{ section.title | title }} – {{ config.description }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ section.permalink | safe }}" />
+<meta property="og:site_name" content="{{ config.title }}" />
 
 <!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ section.title | title }} | {{ config.title }}" />
+<meta name="twitter:description" content="{{ section.title | title }} – {{ config.description }}" />
 {% endblock head %}  {% block content %}
 <main class="article-list">
   <div class="ad">{% block ad1 %} {% endblock ad1 %}</div>
