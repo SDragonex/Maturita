@@ -108,6 +108,7 @@
       </div>
     </div>
   </header>
+  {% endif %}
 
   <dialog id="reading-dialog" class="reading-dialog" aria-labelledby="reading-dialog-title">
     <div class="dialog-inner">
@@ -178,7 +179,6 @@
       </div>
     </div>
   </dialog>
-  {% endif %}
 
 
   <div class="layout{% if current_path == '/' %} home-layout{% endif %}">
@@ -264,9 +264,15 @@
 
     function updateThemeIcon(scheme) {
       const icon = document.getElementById('theme-icon');
-      if (!icon) return;
-      icon.classList.toggle('fa-moon', scheme !== 'dark');
-      icon.classList.toggle('fa-sun', scheme === 'dark');
+      if (icon) {
+        icon.classList.toggle('fa-moon', scheme !== 'dark');
+        icon.classList.toggle('fa-sun', scheme === 'dark');
+      }
+      const homeIcon = document.getElementById('home-theme-icon');
+      if (homeIcon) {
+        homeIcon.classList.toggle('fa-moon', scheme !== 'dark');
+        homeIcon.classList.toggle('fa-sun', scheme === 'dark');
+      }
     }
 
     function syncThemeChoices(activePref) {
@@ -544,6 +550,11 @@
             window.MathJax.startup.promise.then(() => window.MathJax.typesetPromise())
                 .catch(() => { /* Keep the readable TeX if the external renderer fails. */ });
         }
+
+        try {
+            const current = document.documentElement.style.colorScheme || (readSavedTheme() || systemScheme());
+            updateThemeIcon(current);
+        } catch (_) {}
     });
   </script>
 
