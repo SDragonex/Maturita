@@ -93,14 +93,27 @@ html[data-pf-theme="dark"] {
   p { margin-top: .7rem; color: var(--text-color-light); font-size: var(--meta-size); }
 }
 
-/* Ensure all tables are horizontally scrollable without causing whole-page overflow */
-.article-content table {
+/* Accessible Table Scroll Container (wraps wide tables for horizontal overflow without breaking table-layout) */
+.table-scroll {
   display: block;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-collapse: collapse;
+  margin: 1.5rem 0 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--surface-color);
+
+  > table {
+    display: table !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
 }
 
 /* Topic pagination (prev / next topic links at bottom of study guide) */
